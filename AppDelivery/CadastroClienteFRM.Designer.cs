@@ -45,6 +45,9 @@
             txtTelefone = new MaskedTextBox();
             cmbTipoPessoa = new ComboBox();
             txtCpfCnpj = new MaskedTextBox();
+            lblComplemento = new Label();
+            txtComplemento = new TextBox();
+            lblTipoPessoa = new Label();
             SuspendLayout();
             // 
             // lblNome
@@ -77,7 +80,7 @@
             // lblTelefone
             // 
             lblTelefone.AutoSize = true;
-            lblTelefone.Location = new Point(12, 235);
+            lblTelefone.Location = new Point(204, 9);
             lblTelefone.Name = "lblTelefone";
             lblTelefone.Size = new Size(81, 25);
             lblTelefone.TabIndex = 5;
@@ -90,19 +93,19 @@
             txtNome.Location = new Point(120, 53);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(423, 31);
-            txtNome.TabIndex = 6;
+            txtNome.TabIndex = 2;
             // 
             // txtEndereco
             // 
             txtEndereco.Location = new Point(120, 141);
             txtEndereco.Name = "txtEndereco";
             txtEndereco.Size = new Size(423, 31);
-            txtEndereco.TabIndex = 8;
+            txtEndereco.TabIndex = 5;
             // 
             // lblNumero
             // 
             lblNumero.AutoSize = true;
-            lblNumero.Location = new Point(12, 191);
+            lblNumero.Location = new Point(12, 194);
             lblNumero.Name = "lblNumero";
             lblNumero.Size = new Size(81, 25);
             lblNumero.TabIndex = 10;
@@ -111,7 +114,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(204, 191);
+            label1.Location = new Point(12, 288);
             label1.Name = "label1";
             label1.Size = new Size(62, 25);
             label1.TabIndex = 11;
@@ -119,17 +122,17 @@
             // 
             // txtNumero
             // 
-            txtNumero.Location = new Point(99, 185);
+            txtNumero.Location = new Point(148, 194);
             txtNumero.Name = "txtNumero";
-            txtNumero.Size = new Size(99, 31);
-            txtNumero.TabIndex = 9;
+            txtNumero.Size = new Size(395, 31);
+            txtNumero.TabIndex = 6;
             // 
             // txtBairro
             // 
-            txtBairro.Location = new Point(272, 185);
+            txtBairro.Location = new Point(148, 288);
             txtBairro.Name = "txtBairro";
-            txtBairro.Size = new Size(271, 31);
-            txtBairro.TabIndex = 10;
+            txtBairro.Size = new Size(395, 31);
+            txtBairro.TabIndex = 8;
             // 
             // lblCodCli
             // 
@@ -154,7 +157,7 @@
             btnSalvar.Location = new Point(246, 383);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(112, 34);
-            btnSalvar.TabIndex = 16;
+            btnSalvar.TabIndex = 9;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += btnSalvar_Click;
@@ -164,18 +167,18 @@
             btnCancelar.Location = new Point(395, 383);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(112, 34);
-            btnCancelar.TabIndex = 17;
+            btnCancelar.TabIndex = 10;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
             // txtTelefone
             // 
-            txtTelefone.Location = new Point(99, 235);
+            txtTelefone.Location = new Point(291, 9);
             txtTelefone.Mask = "(99)99999-9999";
             txtTelefone.Name = "txtTelefone";
-            txtTelefone.Size = new Size(185, 31);
-            txtTelefone.TabIndex = 11;
+            txtTelefone.Size = new Size(252, 31);
+            txtTelefone.TabIndex = 1;
             // 
             // cmbTipoPessoa
             // 
@@ -184,7 +187,7 @@
             cmbTipoPessoa.Location = new Point(606, 51);
             cmbTipoPessoa.Name = "cmbTipoPessoa";
             cmbTipoPessoa.Size = new Size(182, 33);
-            cmbTipoPessoa.TabIndex = 18;
+            cmbTipoPessoa.TabIndex = 3;
             cmbTipoPessoa.SelectedValueChanged += cmbTipoPessoa_SelectedValueChanged;
             // 
             // txtCpfCnpj
@@ -192,13 +195,42 @@
             txtCpfCnpj.Location = new Point(120, 103);
             txtCpfCnpj.Name = "txtCpfCnpj";
             txtCpfCnpj.Size = new Size(423, 31);
-            txtCpfCnpj.TabIndex = 7;
+            txtCpfCnpj.TabIndex = 4;
+            txtCpfCnpj.Leave += txtCpfCnpj_Leave;
+            // 
+            // lblComplemento
+            // 
+            lblComplemento.AutoSize = true;
+            lblComplemento.Location = new Point(12, 240);
+            lblComplemento.Name = "lblComplemento";
+            lblComplemento.Size = new Size(130, 25);
+            lblComplemento.TabIndex = 19;
+            lblComplemento.Text = "Complemento:";
+            // 
+            // txtComplemento
+            // 
+            txtComplemento.Location = new Point(148, 240);
+            txtComplemento.Name = "txtComplemento";
+            txtComplemento.Size = new Size(395, 31);
+            txtComplemento.TabIndex = 7;
+            // 
+            // lblTipoPessoa
+            // 
+            lblTipoPessoa.AutoSize = true;
+            lblTipoPessoa.Location = new Point(646, 23);
+            lblTipoPessoa.Name = "lblTipoPessoa";
+            lblTipoPessoa.Size = new Size(106, 25);
+            lblTipoPessoa.TabIndex = 20;
+            lblTipoPessoa.Text = "Tipo Pessoa";
             // 
             // CadastroClienteFRM
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblTipoPessoa);
+            Controls.Add(txtComplemento);
+            Controls.Add(lblComplemento);
             Controls.Add(txtCpfCnpj);
             Controls.Add(cmbTipoPessoa);
             Controls.Add(txtTelefone);
@@ -241,5 +273,8 @@
         private MaskedTextBox txtTelefone;
         private ComboBox cmbTipoPessoa;
         private MaskedTextBox txtCpfCnpj;
+        private Label lblComplemento;
+        private TextBox txtComplemento;
+        private Label lblTipoPessoa;
     }
 }
