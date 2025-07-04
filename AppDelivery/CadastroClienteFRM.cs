@@ -9,15 +9,30 @@ namespace AppDelivery
 {
     public partial class CadastroClienteFRM : Form
     {
+
+        private string connectionString;
+        private int _codClienteParaEditar = 0; // Adicione esta linha
+        private bool _modoEdicao = false;       // Adicione esta linha
+
+
         public CadastroClienteFRM()
         {
             InitializeComponent();
-
-
-
-
-
+            connectionString = ConfigurationManager.ConnectionStrings["MinhaConexaoDB"].ConnectionString;
+            this.Load += new EventHandler(CadastroClienteFRM_Load);
+    
         }
+
+        // ADICIONE ESTE NOVO CONSTRUTOR:
+        public CadastroClienteFRM(int codCliente)
+        {
+            InitializeComponent();
+            connectionString = ConfigurationManager.ConnectionStrings["MinhaConexaoDB"].ConnectionString;
+            _codClienteParaEditar = codCliente; // Atribui o valor passado
+            _modoEdicao = true;                 // Sinaliza o modo de edição
+            this.Load += new EventHandler(CadastroClienteFRM_Load); // Garanta que o manipulador de evento Load esteja aqui
+        }
+
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {

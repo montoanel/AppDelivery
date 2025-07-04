@@ -154,7 +154,7 @@
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(233, 404);
+            btnSalvar.Location = new Point(700, 849);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(112, 34);
             btnSalvar.TabIndex = 8;
@@ -164,7 +164,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(351, 404);
+            btnCancelar.Location = new Point(818, 849);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(112, 34);
             btnCancelar.TabIndex = 10;
@@ -227,7 +227,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 494);
+            ClientSize = new Size(1898, 1024);
             Controls.Add(lblTipoPessoa);
             Controls.Add(txtComplemento);
             Controls.Add(lblComplemento);

@@ -170,6 +170,58 @@ namespace AppDelivery
             this.Close(); // Fecha o formulário atual
         }
 
-        
+        private void bntNovo_Click(object sender, EventArgs e)
+        {
+            // Cria uma nova instância do formulário de cadastro de clientes
+            CadastroClienteFRM formCadastro = new CadastroClienteFRM();
+
+            // Exibe o formulário de cadastro
+            // Opção 1: Mostrar como uma janela modal (bloqueia o formulário pai até ser fechado)
+            formCadastro.ShowDialog();
+
+            // Opção 2: Mostrar como uma janela não modal (permite interagir com o formulário pai)
+            // formCadastro.Show();
+
+            // Opcional: Se você quiser que o DataGridView seja atualizado após o CadastroClienteFRM ser fechado (se o ShowDialog for usado)
+            // Você pode chamar o método de carregamento novamente aqui para refletir novas adições ou edições
+            CarregarClientesNoDataGridView(); // Recarrega todos os clientes, sem filtro
+                                              // Ou CarregarClientesNoDataGridView(txtListarCliente.Text.Trim(), cmbListaFiltroClientes.SelectedItem?.ToString());
+                                              // para manter o filtro e termo de busca atuais.
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            // 1. Verificar se alguma linha está selecionada
+            if (dgvListaClientes.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Por favor, selecione um cliente para editar.", "Editar Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // 2. Obter o cod_cliente da linha selecionada
+            // Como o SelectionMode está como FullRowSelect, dgvListaClientes.SelectedRows[0] pegará a linha correta.
+            // O 'cod_cliente' é a primeira coluna (índice 0) no seu DataGridView.
+            int codClienteSelecionado;
+            if (dgvListaClientes.SelectedRows[0].Cells["cod_cliente"].Value != null &&
+                int.TryParse(dgvListaClientes.SelectedRows[0].Cells["cod_cliente"].Value.ToString(), out codClienteSelecionado))
+            {
+                // 3. Abrir o formulário CadastroClienteFRM
+                // Precisamos de um construtor no CadastroClienteFRM que aceite o cod_cliente
+                CadastroClienteFRM formCadastro = new CadastroClienteFRM(codClienteSelecionado);
+
+                // Exibir o formulário de cadastro como modal
+                formCadastro.ShowDialog();
+
+                // 4. (Opcional) Recarregar os clientes no DataGridView após a edição
+                // Isso garante que qualquer alteração feita no cliente seja refletida imediatamente.
+                CarregarClientesNoDataGridView();
+            }
+            else
+            {
+                MessageBox.Show("Não foi possível obter o código do cliente selecionado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
     }
+
 }

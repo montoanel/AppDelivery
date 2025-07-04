@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             dgvListaClientes = new DataGridView();
-            bntNovo = new Button();
+            btnNovo = new Button();
             btnEditar = new Button();
             btnCancelar = new Button();
             cmbListaFiltroClientes = new ComboBox();
@@ -44,17 +44,19 @@
             dgvListaClientes.Location = new Point(2, 1);
             dgvListaClientes.Name = "dgvListaClientes";
             dgvListaClientes.RowHeadersWidth = 62;
+            dgvListaClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvListaClientes.Size = new Size(1891, 641);
             dgvListaClientes.TabIndex = 0;
             // 
-            // bntNovo
+            // btnNovo
             // 
-            bntNovo.Location = new Point(566, 895);
-            bntNovo.Name = "bntNovo";
-            bntNovo.Size = new Size(112, 34);
-            bntNovo.TabIndex = 1;
-            bntNovo.Text = "Novo";
-            bntNovo.UseVisualStyleBackColor = true;
+            btnNovo.Location = new Point(566, 895);
+            btnNovo.Name = "btnNovo";
+            btnNovo.Size = new Size(112, 34);
+            btnNovo.TabIndex = 1;
+            btnNovo.Text = "Novo";
+            btnNovo.UseVisualStyleBackColor = true;
+            btnNovo.Click += bntNovo_Click;
             // 
             // btnEditar
             // 
@@ -64,6 +66,7 @@
             btnEditar.TabIndex = 2;
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnCancelar
             // 
@@ -111,7 +114,7 @@
             Controls.Add(cmbListaFiltroClientes);
             Controls.Add(btnCancelar);
             Controls.Add(btnEditar);
-            Controls.Add(bntNovo);
+            Controls.Add(btnNovo);
             Controls.Add(dgvListaClientes);
             Name = "ListaClientes";
             Text = "Cadastros de Clientes";
@@ -122,7 +125,7 @@
 
         #endregion
         private DataGridView dgvListaClientes;
-        private Button bntNovo;
+        private Button btnNovo;
         private Button btnEditar;
         private Button btnCancelar;
         private ComboBox cmbListaFiltroClientes;
