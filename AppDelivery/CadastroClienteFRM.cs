@@ -345,6 +345,39 @@ namespace AppDelivery
             // outra coisa (por exemplo, um novo item foi adicionado sem lógica correspondente),
             // a validação simplesmente não será executada, o que é aceitável na maioria dos casos.
         }
+
+        private void txtTelefone_Leave(object sender, EventArgs e)
+        {
+            string telefone = txtTelefone.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+
+            if (telefone.Length == 10) // Telefone fixo
+            {
+                if (long.TryParse(telefone, out long num))
+                {
+                    txtTelefone.Text = string.Format("({0:00}){1:0000}-{2:0000}",
+                                                        num / 100000000, // DDD
+                                                        (num / 10000) % 10000, // Quatro primeiros dígitos
+                                                        num % 10000); // Quatro últimos dígitos
+                }
+            }
+            else if (telefone.Length == 11) // Telefone celular
+            {
+                if (long.TryParse(telefone, out long num))
+                {
+                    txtTelefone.Text = string.Format("({0:00}){1:00000}-{2:0000}",
+                                                        num / 1000000000, // DDD
+                                                        (num / 10000) % 100000, // Cinco primeiros dígitos
+                                                        num % 10000); // Quatro últimos dígitos
+                }
+            }
+            else
+            {
+                // Se o número não tiver 10 ou 11 dígitos, limpe a máscara ou mostre uma mensagem de erro.
+                // Por exemplo, você pode deixar o campo sem máscara ou exibir um aviso.
+                // txtTelefone.Text = telefone; // Para remover qualquer máscara se o número for inválido
+                // MessageBox.Show("Número de telefone inválido. Por favor, insira um DDD + 8 ou 9 dígitos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
 

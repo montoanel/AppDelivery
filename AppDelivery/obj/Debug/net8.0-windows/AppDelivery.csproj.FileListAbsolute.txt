@@ -52,11 +52,15 @@ C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\bin\Debug\net8.0-windows
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.csproj.AssemblyReference.cache
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.CadastroClienteFRM.resources
+C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.ListaClientes.resources
+C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.Main.resources
+C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.Properties.Resources.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.csproj.GenerateResource.cache
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.AssemblyInfoInputs.cache
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.AssemblyInfo.cs
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.csproj.CoreCompileInputs.cache
+C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.sourcelink.json
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDeliv.2A883C71.Up2Date
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.dll
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\refint\AppDelivery.dll

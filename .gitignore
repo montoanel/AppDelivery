@@ -1,0 +1,53 @@
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.bak
+*.pdb
+*.exe
+*.dll
+*.obj
+*.ilk
+*.log
+*.trx
+*.nupkg
+*.dbmdl
+*.publishprofile
+*.opendata
+*.jfm
+*.fsproj.user
+*.ipch
+*.aps
+*.pch
+*.exp
+*.lib
+*.res
+*.pch
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+bin/
+obj/
+
+# Rider files
+.idea/
+
+# NuGet packages
+packages/
+*.nupkg
+
+# Test Results
+TestResults/
+
+# Resharper
+_ReSharper.*/
+*.DotSettings.user
+
+# Visual Studio Code
+.vscode/
+
+# Node.js
+node_modules/
+
+# Add other ignored files as needed

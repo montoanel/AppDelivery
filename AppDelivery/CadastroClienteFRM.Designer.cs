@@ -80,7 +80,7 @@
             // lblTelefone
             // 
             lblTelefone.AutoSize = true;
-            lblTelefone.Location = new Point(204, 9);
+            lblTelefone.Location = new Point(12, 332);
             lblTelefone.Name = "lblTelefone";
             lblTelefone.Size = new Size(81, 25);
             lblTelefone.TabIndex = 5;
@@ -100,7 +100,7 @@
             txtEndereco.Location = new Point(120, 141);
             txtEndereco.Name = "txtEndereco";
             txtEndereco.Size = new Size(423, 31);
-            txtEndereco.TabIndex = 5;
+            txtEndereco.TabIndex = 4;
             // 
             // lblNumero
             // 
@@ -125,14 +125,14 @@
             txtNumero.Location = new Point(148, 194);
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(395, 31);
-            txtNumero.TabIndex = 6;
+            txtNumero.TabIndex = 5;
             // 
             // txtBairro
             // 
             txtBairro.Location = new Point(148, 288);
             txtBairro.Name = "txtBairro";
             txtBairro.Size = new Size(395, 31);
-            txtBairro.TabIndex = 8;
+            txtBairro.TabIndex = 7;
             // 
             // lblCodCli
             // 
@@ -154,17 +154,17 @@
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(246, 383);
+            btnSalvar.Location = new Point(233, 404);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(112, 34);
-            btnSalvar.TabIndex = 9;
+            btnSalvar.TabIndex = 8;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += btnSalvar_Click;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(395, 383);
+            btnCancelar.Location = new Point(351, 404);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(112, 34);
             btnCancelar.TabIndex = 10;
@@ -174,20 +174,20 @@
             // 
             // txtTelefone
             // 
-            txtTelefone.Location = new Point(291, 9);
-            txtTelefone.Mask = "(99)99999-9999";
+            txtTelefone.Location = new Point(148, 325);
             txtTelefone.Name = "txtTelefone";
-            txtTelefone.Size = new Size(252, 31);
-            txtTelefone.TabIndex = 1;
+            txtTelefone.Size = new Size(395, 31);
+            txtTelefone.TabIndex = 8;
+            txtTelefone.Leave += txtTelefone_Leave;
             // 
             // cmbTipoPessoa
             // 
             cmbTipoPessoa.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipoPessoa.FormattingEnabled = true;
-            cmbTipoPessoa.Location = new Point(606, 51);
+            cmbTipoPessoa.Location = new Point(345, 9);
             cmbTipoPessoa.Name = "cmbTipoPessoa";
-            cmbTipoPessoa.Size = new Size(182, 33);
-            cmbTipoPessoa.TabIndex = 3;
+            cmbTipoPessoa.Size = new Size(198, 33);
+            cmbTipoPessoa.TabIndex = 1;
             cmbTipoPessoa.SelectedValueChanged += cmbTipoPessoa_SelectedValueChanged;
             // 
             // txtCpfCnpj
@@ -195,7 +195,7 @@
             txtCpfCnpj.Location = new Point(120, 103);
             txtCpfCnpj.Name = "txtCpfCnpj";
             txtCpfCnpj.Size = new Size(423, 31);
-            txtCpfCnpj.TabIndex = 4;
+            txtCpfCnpj.TabIndex = 3;
             txtCpfCnpj.Leave += txtCpfCnpj_Leave;
             // 
             // lblComplemento
@@ -212,12 +212,12 @@
             txtComplemento.Location = new Point(148, 240);
             txtComplemento.Name = "txtComplemento";
             txtComplemento.Size = new Size(395, 31);
-            txtComplemento.TabIndex = 7;
+            txtComplemento.TabIndex = 6;
             // 
             // lblTipoPessoa
             // 
             lblTipoPessoa.AutoSize = true;
-            lblTipoPessoa.Location = new Point(646, 23);
+            lblTipoPessoa.Location = new Point(233, 9);
             lblTipoPessoa.Name = "lblTipoPessoa";
             lblTipoPessoa.Size = new Size(106, 25);
             lblTipoPessoa.TabIndex = 20;
@@ -227,7 +227,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 494);
             Controls.Add(lblTipoPessoa);
             Controls.Add(txtComplemento);
             Controls.Add(lblComplemento);
