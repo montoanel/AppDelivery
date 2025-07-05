@@ -191,37 +191,43 @@ namespace AppDelivery
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            // 1. Verificar se alguma linha está selecionada
+            // 1. Verifica se alguma linha foi selecionada no DataGridView.
+            // Isso é crucial para evitar erros caso o usuário clique em "Editar" sem escolher um cliente.
             if (dgvListaClientes.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Por favor, selecione um cliente para editar.", "Editar Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                return; // Sai do método se nenhuma linha for selecionada.
             }
 
-            // 2. Obter o cod_cliente da linha selecionada
-            // Como o SelectionMode está como FullRowSelect, dgvListaClientes.SelectedRows[0] pegará a linha correta.
-            // O 'cod_cliente' é a primeira coluna (índice 0) no seu DataGridView.
+            // 2. Tenta obter o 'cod_cliente' da linha selecionada.
+            // Usamos o nome da coluna "cod_cliente" para maior clareza e robustez.
+            // O TryParse é usado para garantir que o valor seja um número inteiro válido.
             int codClienteSelecionado;
             if (dgvListaClientes.SelectedRows[0].Cells["cod_cliente"].Value != null &&
                 int.TryParse(dgvListaClientes.SelectedRows[0].Cells["cod_cliente"].Value.ToString(), out codClienteSelecionado))
             {
-                // 3. Abrir o formulário CadastroClienteFRM
-                // Precisamos de um construtor no CadastroClienteFRM que aceite o cod_cliente
-                CadastroClienteFRM formCadastro = new CadastroClienteFRM(codClienteSelecionado);
+                // 3. Instancia o formulário de Cadastro/Edição de Cliente no modo de edição,
+                // passando o código do cliente selecionado para ele.
+                CadastroClienteFRM formEdicao = new CadastroClienteFRM(codClienteSelecionado);
 
-                // Exibir o formulário de cadastro como modal
-                formCadastro.ShowDialog();
-
-                // 4. (Opcional) Recarregar os clientes no DataGridView após a edição
-                // Isso garante que qualquer alteração feita no cliente seja refletida imediatamente.
-                CarregarClientesNoDataGridView();
+                // 4. Exibe o formulário de edição como um diálogo modal.
+                // O `ShowDialog()` interrompe a interação com o formulário pai até que o formulário de edição seja fechado.
+                // A verificação `== DialogResult.OK` garante que a lista seja recarregada SOMENTE se o usuário
+                // salvar as alterações com sucesso no formulário de edição.
+                if (formEdicao.ShowDialog() == DialogResult.OK)
+                {
+                    // 5. Recarrega os clientes no DataGridView para refletir as mudanças feitas.
+                    // Este método (CarregarClientesNoDataGridView()) deve estar implementado em seu ListaCliente.cs
+                    // e ser responsável por buscar os dados atualizados do banco e preencher o dgvListaClientes.
+                    CarregarClientesNoDataGridView();
+                }
             }
             else
             {
-                MessageBox.Show("Não foi possível obter o código do cliente selecionado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Caso não seja possível obter ou converter o código do cliente.
+                MessageBox.Show("Não foi possível obter o código do cliente selecionado. Verifique os dados da tabela.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
-    }
 
+    }
 }

@@ -43,6 +43,7 @@
             dgvListaClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListaClientes.Location = new Point(2, 1);
             dgvListaClientes.Name = "dgvListaClientes";
+            dgvListaClientes.ReadOnly = true;
             dgvListaClientes.RowHeadersWidth = 62;
             dgvListaClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvListaClientes.Size = new Size(1891, 641);
