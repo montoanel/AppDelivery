@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             pctBoxClientes = new PictureBox();
+            pctBoxProdutos = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).BeginInit();
             SuspendLayout();
             // 
             // pctBoxClientes
             // 
-            pctBoxClientes.Image = Properties.Resources.target;
+            pctBoxClientes.Image = Properties.Resources.clientes;
             pctBoxClientes.Location = new Point(12, 12);
             pctBoxClientes.Name = "pctBoxClientes";
             pctBoxClientes.Size = new Size(90, 90);
@@ -45,21 +47,37 @@
             pctBoxClientes.MouseEnter += pctBoxClientes_MouseEnter;
             pctBoxClientes.MouseLeave += pctBoxClientes_MouseLeave;
             // 
+            // pctBoxProdutos
+            // 
+            pctBoxProdutos.Image = Properties.Resources.produtos;
+            pctBoxProdutos.Location = new Point(108, 12);
+            pctBoxProdutos.Name = "pctBoxProdutos";
+            pctBoxProdutos.Size = new Size(90, 90);
+            pctBoxProdutos.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctBoxProdutos.TabIndex = 1;
+            pctBoxProdutos.TabStop = false;
+            pctBoxProdutos.Click += pctBoxProdutos_Click;
+            pctBoxProdutos.MouseEnter += pctBoxProdutos_MouseEnter;
+            pctBoxProdutos.MouseLeave += pctBoxProdutos_MouseLeave;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1898, 1024);
+            Controls.Add(pctBoxProdutos);
             Controls.Add(pctBoxClientes);
             Name = "Main";
             Text = "Main";
             MouseEnter += Main_MouseEnter;
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private PictureBox pctBoxClientes;
+        private PictureBox pctBoxProdutos;
     }
 }

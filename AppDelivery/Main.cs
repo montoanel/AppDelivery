@@ -50,5 +50,22 @@ namespace AppDelivery
         {
             pctBoxClientes.BackColor = Color.Transparent; // Ou Color.White, dependendo do fundo do seu formulário
         }
+
+        private void pctBoxProdutos_MouseLeave(object sender, EventArgs e)
+        {
+            pctBoxProdutos.BackColor = Color.Transparent;
+        }
+
+        private void pctBoxProdutos_MouseEnter(object sender, EventArgs e)
+        {
+            pctBoxProdutos.BackColor = Color.LightBlue; // Uma cor suave de destaque
+        }
+
+        private void pctBoxProdutos_Click(object sender, EventArgs e)
+        {
+            //criar nova instancia do formulario
+            ListaProdutosFRM listaProdutosFRM = new ListaProdutosFRM();
+            listaProdutosFRM.ShowDialog();  
+        }
     }
 }

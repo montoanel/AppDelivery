@@ -173,7 +173,8 @@ namespace AppDelivery
                             else
                             {
                                 MessageBox.Show("Cliente cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                ClearForm(); // Limpa todos os campos do formulário após o sucesso do cadastro
+                                this.Close();
+                                //ClearForm(); // Limpa todos os campos do formulário após o sucesso do cadastro
                             }
                         }
                         else
