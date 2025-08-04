@@ -103,6 +103,7 @@
             btnNovoProduto.TabIndex = 10;
             btnNovoProduto.Text = "Novo";
             btnNovoProduto.UseVisualStyleBackColor = true;
+            btnNovoProduto.Click += btnNovoProduto_Click;
             // 
             // ListaProdutosFRM
             // 
