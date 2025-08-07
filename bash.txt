@@ -1,0 +1,15 @@
+# Navegar até o diretório do projeto
+cd C:/USERS/Angélica/source/repos/AppDelivery
+
+# Adicionar todas as alterações
+git add .
+
+# Confirmar as alterações com uma mensagem
+git commit -m "Implementando a lógica para os botões Novo e Editar produtos no ListaProdutosFRM.cs"
+
+# Enviar as alterações para o GitHub
+git push origin main
+
+
+
+cd /c/Users/Angélica/source/repos/AppDelivery

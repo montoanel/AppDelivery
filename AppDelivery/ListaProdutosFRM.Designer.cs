@@ -94,6 +94,7 @@
             btnEditarProduto.TabIndex = 11;
             btnEditarProduto.Text = "Editar";
             btnEditarProduto.UseVisualStyleBackColor = true;
+            btnEditarProduto.Click += btnEditarProduto_Click;
             // 
             // btnNovoProduto
             // 

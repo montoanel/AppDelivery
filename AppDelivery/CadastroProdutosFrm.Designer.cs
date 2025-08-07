@@ -51,6 +51,7 @@
             lblProdutoInativo = new Label();
             printDialog1 = new PrintDialog();
             cmbTipoProduto = new ComboBox();
+            bntGerarCodBarras = new Button();
             SuspendLayout();
             // 
             // bntCancelarProduto
@@ -71,6 +72,7 @@
             bntSalvarProduto.TabIndex = 1;
             bntSalvarProduto.Text = "Salvar";
             bntSalvarProduto.UseVisualStyleBackColor = true;
+            bntSalvarProduto.Click += btnSalvarProduto_Click;
             // 
             // lblIdProduto
             // 
@@ -107,7 +109,6 @@
             lblCodBarras.Size = new Size(124, 25);
             lblCodBarras.TabIndex = 4;
             lblCodBarras.Text = "Código Barras";
-            lblCodBarras.Click += lblCodBarras_Click;
             // 
             // lblGrupo
             // 
@@ -242,11 +243,23 @@
             cmbTipoProduto.Size = new Size(169, 33);
             cmbTipoProduto.TabIndex = 24;
             // 
+            // bntGerarCodBarras
+            // 
+            bntGerarCodBarras.Location = new Point(403, 175);
+            bntGerarCodBarras.Name = "bntGerarCodBarras";
+            bntGerarCodBarras.Size = new Size(59, 31);
+            bntGerarCodBarras.TabIndex = 25;
+            bntGerarCodBarras.Text = "F1";
+            bntGerarCodBarras.UseVisualStyleBackColor = true;
+            bntGerarCodBarras.Click += bntGerarCodBarras_Click;
+            bntGerarCodBarras.KeyDown += CadastroProdutosFrm_KeyDown;
+            // 
             // CadastroProdutosFrm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1898, 1024);
+            Controls.Add(bntGerarCodBarras);
             Controls.Add(cmbTipoProduto);
             Controls.Add(lblProdutoInativo);
             Controls.Add(txtGrupo);
@@ -300,5 +313,6 @@
         private Label lblProdutoInativo;
         private PrintDialog printDialog1;
         private ComboBox cmbTipoProduto;
+        private Button bntGerarCodBarras;
     }
 }
