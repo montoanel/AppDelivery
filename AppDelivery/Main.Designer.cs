@@ -30,16 +30,24 @@
         {
             pctBoxClientes = new PictureBox();
             pctBoxProdutos = new PictureBox();
+            menuStrip1 = new MenuStrip();
+            cadastrosToolStripMenuItem = new ToolStripMenuItem();
+            clientesToolStripMenuItem = new ToolStripMenuItem();
+            produtosToolStripMenuItem = new ToolStripMenuItem();
+            unidadeDeMedidaToolStripMenuItem = new ToolStripMenuItem();
+            tipoProdutosToolStripMenuItem = new ToolStripMenuItem();
+            gruposDeProdutosToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // pctBoxClientes
             // 
             pctBoxClientes.Image = Properties.Resources.clientes;
-            pctBoxClientes.Location = new Point(12, 12);
+            pctBoxClientes.Location = new Point(9, 43);
             pctBoxClientes.Name = "pctBoxClientes";
-            pctBoxClientes.Size = new Size(90, 90);
+            pctBoxClientes.Size = new Size(85, 90);
             pctBoxClientes.SizeMode = PictureBoxSizeMode.StretchImage;
             pctBoxClientes.TabIndex = 0;
             pctBoxClientes.TabStop = false;
@@ -50,15 +58,65 @@
             // pctBoxProdutos
             // 
             pctBoxProdutos.Image = Properties.Resources.produtos;
-            pctBoxProdutos.Location = new Point(108, 12);
+            pctBoxProdutos.Location = new Point(105, 43);
             pctBoxProdutos.Name = "pctBoxProdutos";
-            pctBoxProdutos.Size = new Size(90, 90);
+            pctBoxProdutos.Size = new Size(85, 90);
             pctBoxProdutos.SizeMode = PictureBoxSizeMode.StretchImage;
             pctBoxProdutos.TabIndex = 1;
             pctBoxProdutos.TabStop = false;
             pctBoxProdutos.Click += pctBoxProdutos_Click;
             pctBoxProdutos.MouseEnter += pctBoxProdutos_MouseEnter;
             pctBoxProdutos.MouseLeave += pctBoxProdutos_MouseLeave;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.ImageScalingSize = new Size(24, 24);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastrosToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1898, 33);
+            menuStrip1.TabIndex = 2;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // cadastrosToolStripMenuItem
+            // 
+            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, produtosToolStripMenuItem, unidadeDeMedidaToolStripMenuItem, tipoProdutosToolStripMenuItem, gruposDeProdutosToolStripMenuItem });
+            cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
+            cadastrosToolStripMenuItem.Size = new Size(107, 29);
+            cadastrosToolStripMenuItem.Text = "Cadastros";
+            // 
+            // clientesToolStripMenuItem
+            // 
+            clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            clientesToolStripMenuItem.Size = new Size(275, 34);
+            clientesToolStripMenuItem.Text = "Clientes";
+            clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
+            // 
+            // produtosToolStripMenuItem
+            // 
+            produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
+            produtosToolStripMenuItem.Size = new Size(275, 34);
+            produtosToolStripMenuItem.Text = "Produtos";
+            produtosToolStripMenuItem.Click += produtosToolStripMenuItem_Click;
+            // 
+            // unidadeDeMedidaToolStripMenuItem
+            // 
+            unidadeDeMedidaToolStripMenuItem.Name = "unidadeDeMedidaToolStripMenuItem";
+            unidadeDeMedidaToolStripMenuItem.Size = new Size(275, 34);
+            unidadeDeMedidaToolStripMenuItem.Text = "Unidade de Medida";
+            // 
+            // tipoProdutosToolStripMenuItem
+            // 
+            tipoProdutosToolStripMenuItem.Name = "tipoProdutosToolStripMenuItem";
+            tipoProdutosToolStripMenuItem.Size = new Size(275, 34);
+            tipoProdutosToolStripMenuItem.Text = "Tipo Produtos";
+            // 
+            // gruposDeProdutosToolStripMenuItem
+            // 
+            gruposDeProdutosToolStripMenuItem.Name = "gruposDeProdutosToolStripMenuItem";
+            gruposDeProdutosToolStripMenuItem.Size = new Size(275, 34);
+            gruposDeProdutosToolStripMenuItem.Text = "Grupos de Produtos";
+            gruposDeProdutosToolStripMenuItem.Click += gruposDeProdutosToolStripMenuItem_Click;
             // 
             // Main
             // 
@@ -67,17 +125,29 @@
             ClientSize = new Size(1898, 1024);
             Controls.Add(pctBoxProdutos);
             Controls.Add(pctBoxClientes);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "Main";
             Text = "Main";
             MouseEnter += Main_MouseEnter;
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private PictureBox pctBoxClientes;
         private PictureBox pctBoxProdutos;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem cadastrosToolStripMenuItem;
+        private ToolStripMenuItem clientesToolStripMenuItem;
+        private ToolStripMenuItem produtosToolStripMenuItem;
+        private ToolStripMenuItem unidadeDeMedidaToolStripMenuItem;
+        private ToolStripMenuItem tipoProdutosToolStripMenuItem;
+        private ToolStripMenuItem gruposDeProdutosToolStripMenuItem;
     }
 }

@@ -65,7 +65,28 @@ namespace AppDelivery
         {
             //criar nova instancia do formulario
             ListaProdutosFRM listaProdutosFRM = new ListaProdutosFRM();
-            listaProdutosFRM.ShowDialog();  
+            listaProdutosFRM.ShowDialog();
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Crie uma nova instância do seu formulário ListaClientes
+            ListaClientes formListaClientes = new ListaClientes();
+
+            // Exiba o formulário como uma janela modal (bloqueia o formulário pai até ser fechada)
+            formListaClientes.ShowDialog();
+        }
+
+        private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaProdutosFRM listaProdutosFRM = new ListaProdutosFRM();
+            listaProdutosFRM.ShowDialog();
+        }
+
+        private void gruposDeProdutosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           GrupoProdutoFRM grupoProdutoFRM = new GrupoProdutoFRM();
+            grupoProdutoFRM.ShowDialog();
         }
     }
 }
