@@ -85,8 +85,15 @@ namespace AppDelivery
 
         private void gruposDeProdutosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           GrupoProdutoFRM grupoProdutoFRM = new GrupoProdutoFRM();
+            GrupoProdutoFRM grupoProdutoFRM = new GrupoProdutoFRM();
             grupoProdutoFRM.ShowDialog();
+        }
+
+        private void formasDePagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            FormasPagamentoFRM formasPagamentoFRM = new FormasPagamentoFRM();
+            formasPagamentoFRM.ShowDialog();
         }
     }
 }

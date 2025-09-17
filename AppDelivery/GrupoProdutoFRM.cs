@@ -170,5 +170,10 @@ namespace AppDelivery
             chkStatus.Checked = false;
             selectedId = null;
         }
+
+        private void btnSelecionar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

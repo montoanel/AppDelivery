@@ -549,5 +549,17 @@ namespace AppDelivery
             // Formata o novo código para o padrão "GERADO0XX"
             return $"GERADO{proximoNumero:D3}";
         }
+
+        private void btnGrupoProduto_Click(object sender, EventArgs e)
+        {
+            // 1. Cria uma nova instância do formulário de Grupos
+            GrupoProdutoFRM formGruposProdutos = new GrupoProdutoFRM();
+
+            // 2. Exibe o formulário de forma modal (como um diálogo).
+            // Isso significa que o usuário precisará fechar o form de grupos antes
+            // de poder interagir novamente com o form de produtos.
+            // O método ShowDialog() é ideal para isso.
+            formGruposProdutos.ShowDialog();
+        }
     }
 }

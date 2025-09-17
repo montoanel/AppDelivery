@@ -118,12 +118,13 @@
             // 
             // btnSelecionar
             // 
-            btnSelecionar.Location = new Point(369, 321);
+            btnSelecionar.Location = new Point(228, 356);
             btnSelecionar.Name = "btnSelecionar";
             btnSelecionar.Size = new Size(112, 34);
             btnSelecionar.TabIndex = 9;
             btnSelecionar.Text = "Selecionar";
             btnSelecionar.UseVisualStyleBackColor = true;
+            btnSelecionar.Click += btnSelecionar_Click;
             // 
             // GrupoProdutoFRM
             // 

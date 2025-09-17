@@ -37,6 +37,7 @@
             unidadeDeMedidaToolStripMenuItem = new ToolStripMenuItem();
             tipoProdutosToolStripMenuItem = new ToolStripMenuItem();
             gruposDeProdutosToolStripMenuItem = new ToolStripMenuItem();
+            formasDePagamentoToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).BeginInit();
             menuStrip1.SuspendLayout();
@@ -80,7 +81,7 @@
             // 
             // cadastrosToolStripMenuItem
             // 
-            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, produtosToolStripMenuItem, unidadeDeMedidaToolStripMenuItem, tipoProdutosToolStripMenuItem, gruposDeProdutosToolStripMenuItem });
+            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, produtosToolStripMenuItem, unidadeDeMedidaToolStripMenuItem, tipoProdutosToolStripMenuItem, gruposDeProdutosToolStripMenuItem, formasDePagamentoToolStripMenuItem });
             cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             cadastrosToolStripMenuItem.Size = new Size(107, 29);
             cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -88,35 +89,42 @@
             // clientesToolStripMenuItem
             // 
             clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            clientesToolStripMenuItem.Size = new Size(275, 34);
+            clientesToolStripMenuItem.Size = new Size(293, 34);
             clientesToolStripMenuItem.Text = "Clientes";
             clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
             // 
             // produtosToolStripMenuItem
             // 
             produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
-            produtosToolStripMenuItem.Size = new Size(275, 34);
+            produtosToolStripMenuItem.Size = new Size(293, 34);
             produtosToolStripMenuItem.Text = "Produtos";
             produtosToolStripMenuItem.Click += produtosToolStripMenuItem_Click;
             // 
             // unidadeDeMedidaToolStripMenuItem
             // 
             unidadeDeMedidaToolStripMenuItem.Name = "unidadeDeMedidaToolStripMenuItem";
-            unidadeDeMedidaToolStripMenuItem.Size = new Size(275, 34);
+            unidadeDeMedidaToolStripMenuItem.Size = new Size(293, 34);
             unidadeDeMedidaToolStripMenuItem.Text = "Unidade de Medida";
             // 
             // tipoProdutosToolStripMenuItem
             // 
             tipoProdutosToolStripMenuItem.Name = "tipoProdutosToolStripMenuItem";
-            tipoProdutosToolStripMenuItem.Size = new Size(275, 34);
+            tipoProdutosToolStripMenuItem.Size = new Size(293, 34);
             tipoProdutosToolStripMenuItem.Text = "Tipo Produtos";
             // 
             // gruposDeProdutosToolStripMenuItem
             // 
             gruposDeProdutosToolStripMenuItem.Name = "gruposDeProdutosToolStripMenuItem";
-            gruposDeProdutosToolStripMenuItem.Size = new Size(275, 34);
+            gruposDeProdutosToolStripMenuItem.Size = new Size(293, 34);
             gruposDeProdutosToolStripMenuItem.Text = "Grupos de Produtos";
             gruposDeProdutosToolStripMenuItem.Click += gruposDeProdutosToolStripMenuItem_Click;
+            // 
+            // formasDePagamentoToolStripMenuItem
+            // 
+            formasDePagamentoToolStripMenuItem.Name = "formasDePagamentoToolStripMenuItem";
+            formasDePagamentoToolStripMenuItem.Size = new Size(293, 34);
+            formasDePagamentoToolStripMenuItem.Text = "Formas de Pagamento";
+            formasDePagamentoToolStripMenuItem.Click += formasDePagamentoToolStripMenuItem_Click;
             // 
             // Main
             // 
@@ -149,5 +157,6 @@
         private ToolStripMenuItem unidadeDeMedidaToolStripMenuItem;
         private ToolStripMenuItem tipoProdutosToolStripMenuItem;
         private ToolStripMenuItem gruposDeProdutosToolStripMenuItem;
+        private ToolStripMenuItem formasDePagamentoToolStripMenuItem;
     }
 }

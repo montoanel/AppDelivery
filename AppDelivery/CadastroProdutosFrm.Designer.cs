@@ -52,6 +52,9 @@
             printDialog1 = new PrintDialog();
             cmbTipoProduto = new ComboBox();
             bntGerarCodBarras = new Button();
+            btnGrupoProduto = new Button();
+            listboxGrupo = new ListBox();
+            listView1 = new ListView();
             SuspendLayout();
             // 
             // bntCancelarProduto
@@ -211,8 +214,10 @@
             // 
             txtGrupo.Location = new Point(247, 460);
             txtGrupo.Name = "txtGrupo";
+            txtGrupo.ReadOnly = true;
             txtGrupo.Size = new Size(150, 31);
             txtGrupo.TabIndex = 19;
+            txtGrupo.Visible = false;
             // 
             // txtUnidadeMedida
             // 
@@ -254,11 +259,41 @@
             bntGerarCodBarras.Click += bntGerarCodBarras_Click;
             bntGerarCodBarras.KeyDown += CadastroProdutosFrm_KeyDown;
             // 
+            // btnGrupoProduto
+            // 
+            btnGrupoProduto.Location = new Point(629, 460);
+            btnGrupoProduto.Name = "btnGrupoProduto";
+            btnGrupoProduto.Size = new Size(59, 31);
+            btnGrupoProduto.TabIndex = 26;
+            btnGrupoProduto.Text = "F1";
+            btnGrupoProduto.UseVisualStyleBackColor = true;
+            btnGrupoProduto.Click += btnGrupoProduto_Click;
+            // 
+            // listboxGrupo
+            // 
+            listboxGrupo.FormattingEnabled = true;
+            listboxGrupo.ItemHeight = 25;
+            listboxGrupo.Location = new Point(403, 462);
+            listboxGrupo.Name = "listboxGrupo";
+            listboxGrupo.Size = new Size(220, 29);
+            listboxGrupo.TabIndex = 27;
+            // 
+            // listView1
+            // 
+            listView1.Location = new Point(686, 54);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(182, 146);
+            listView1.TabIndex = 28;
+            listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // CadastroProdutosFrm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1898, 1024);
+            Controls.Add(listView1);
+            Controls.Add(listboxGrupo);
+            Controls.Add(btnGrupoProduto);
             Controls.Add(bntGerarCodBarras);
             Controls.Add(cmbTipoProduto);
             Controls.Add(lblProdutoInativo);
@@ -314,5 +349,8 @@
         private PrintDialog printDialog1;
         private ComboBox cmbTipoProduto;
         private Button bntGerarCodBarras;
+        private Button btnGrupoProduto;
+        private ListBox listboxGrupo;
+        private ListView listView1;
     }
 }
