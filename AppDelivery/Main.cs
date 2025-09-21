@@ -95,5 +95,21 @@ namespace AppDelivery
             FormasPagamentoFRM formasPagamentoFRM = new FormasPagamentoFRM();
             formasPagamentoFRM.ShowDialog();
         }
+
+        private void pctAtendimentos_Click(object sender, EventArgs e)
+        {
+            AtendimentosFRM atendimentosFRM = new AtendimentosFRM();
+            atendimentosFRM.ShowDialog();
+        }
+
+        private void pctAtendimentos_MouseEnter(object sender, EventArgs e)
+        {
+            pctAtendimentos.BackColor = Color.LightBlue;
+        }
+
+        private void pctAtendimentos_MouseLeave(object sender, EventArgs e)
+        {
+            pctAtendimentos.BackColor = Color.Transparent;
+        }
     }
 }

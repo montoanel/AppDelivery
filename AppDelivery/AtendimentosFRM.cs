@@ -16,5 +16,15 @@ namespace AppDelivery
         {
             InitializeComponent();
         }
+
+        private void pctNovoAtendimento_MouseLeave(object sender, EventArgs e)
+        {
+            pctNovoAtendimento.BackColor = Color.Transparent;
+        }
+
+        private void pctNovoAtendimento_MouseEnter(object sender, EventArgs e)
+        {
+            pctNovoAtendimento.BackColor = Color.LightGray;
+        }
     }
 }

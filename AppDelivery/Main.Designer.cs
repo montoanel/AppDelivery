@@ -137,6 +137,9 @@
             pctAtendimentos.SizeMode = PictureBoxSizeMode.StretchImage;
             pctAtendimentos.TabIndex = 3;
             pctAtendimentos.TabStop = false;
+            pctAtendimentos.Click += pctAtendimentos_Click;
+            pctAtendimentos.MouseEnter += pctAtendimentos_MouseEnter;
+            pctAtendimentos.MouseLeave += pctAtendimentos_MouseLeave;
             // 
             // Main
             // 
