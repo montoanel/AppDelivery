@@ -33,7 +33,8 @@ namespace AppDelivery
                 try
                 {
                     conexao.Open();
-                    string query = "SELECT id_produto, codigo_interno, codigo_barras, nome, preco, custo, unidade_medida, grupo, tipo_produto, inativo FROM tb_produtos";
+                    // ALTERAÇÃO 1: a query agora seleciona `id_grupo`
+                    string query = "SELECT id_produto, codigo_interno, codigo_barras, nome, preco, custo, unidade_medida, id_grupo, tipo_produto, inativo FROM tb_produtos";
 
                     if (!string.IsNullOrEmpty(termoBusca) && !string.IsNullOrEmpty(colunaFiltro))
                     {
@@ -41,6 +42,7 @@ namespace AppDelivery
 
                         if (colunaFiltro == "Automático")
                         {
+                            // ALTERAÇÃO 2: incluir id_grupo na busca automática
                             query += $" WHERE CAST(id_produto AS VARCHAR(50)) LIKE @termo OR " +
                                      $"codigo_interno LIKE @termo OR " +
                                      $"codigo_barras LIKE @termo OR " +
@@ -48,14 +50,15 @@ namespace AppDelivery
                                      $"CAST(preco AS VARCHAR(50)) LIKE @termo OR " +
                                      $"CAST(custo AS VARCHAR(50)) LIKE @termo OR " +
                                      $"unidade_medida LIKE @termo OR " +
-                                     $"grupo LIKE @termo OR " +
+                                     $"CAST(id_grupo AS VARCHAR(50)) LIKE @termo OR " + // Busca em `id_grupo`
                                      $"tipo_produto LIKE @termo OR " +
                                      $"inativo LIKE @termo";
                         }
                         else
                         {
                             string nomeColunaBanco = MapearNomeAmigavelParaColunaBanco(colunaFiltro);
-                            if (nomeColunaBanco == "id_produto" || nomeColunaBanco == "preco" || nomeColunaBanco == "custo")
+                            // ALTERAÇÃO 3: mapear id_grupo como um campo numérico para a conversão
+                            if (nomeColunaBanco == "id_produto" || nomeColunaBanco == "preco" || nomeColunaBanco == "custo" || nomeColunaBanco == "id_grupo")
                             {
                                 query += $" WHERE CAST({nomeColunaBanco} AS VARCHAR(50)) LIKE @termo";
                             }
@@ -82,7 +85,9 @@ namespace AppDelivery
                     if (dgvListaProdutos.Columns.Contains("preco")) { dgvListaProdutos.Columns["preco"].HeaderText = "Preço"; dgvListaProdutos.Columns["preco"].DefaultCellStyle.Format = "C2"; dgvListaProdutos.Columns["preco"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; }
                     if (dgvListaProdutos.Columns.Contains("custo")) { dgvListaProdutos.Columns["custo"].HeaderText = "Custo"; dgvListaProdutos.Columns["custo"].DefaultCellStyle.Format = "C2"; dgvListaProdutos.Columns["custo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; }
                     if (dgvListaProdutos.Columns.Contains("unidade_medida")) { dgvListaProdutos.Columns["unidade_medida"].HeaderText = "Unid. Medida"; dgvListaProdutos.Columns["unidade_medida"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; }
-                    if (dgvListaProdutos.Columns.Contains("grupo")) { dgvListaProdutos.Columns["grupo"].HeaderText = "Grupo"; dgvListaProdutos.Columns["grupo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; }
+                    // ALTERAÇÃO 4: A coluna `grupo` não existe mais, agora é `id_grupo`.
+                    // O HeaderText para "Grupo" permanece, mas o nome da coluna é o novo.
+                    if (dgvListaProdutos.Columns.Contains("id_grupo")) { dgvListaProdutos.Columns["id_grupo"].HeaderText = "Grupo"; dgvListaProdutos.Columns["id_grupo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; }
                     if (dgvListaProdutos.Columns.Contains("tipo_produto")) { dgvListaProdutos.Columns["tipo_produto"].HeaderText = "Tipo Produto"; dgvListaProdutos.Columns["tipo_produto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; }
                     if (dgvListaProdutos.Columns.Contains("inativo")) { dgvListaProdutos.Columns["inativo"].HeaderText = "Status"; dgvListaProdutos.Columns["inativo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; }
 
@@ -112,6 +117,7 @@ namespace AppDelivery
             cmbListaFiltroProdutos.Items.Add("Preço");
             cmbListaFiltroProdutos.Items.Add("Custo");
             cmbListaFiltroProdutos.Items.Add("Unid. Medida");
+            // ALTERAÇÃO 5: a caixa de combinação ainda deve exibir "Grupo", mas a busca será por id_grupo
             cmbListaFiltroProdutos.Items.Add("Grupo");
             cmbListaFiltroProdutos.Items.Add("Tipo Produto");
             cmbListaFiltroProdutos.Items.Add("Status");
@@ -129,7 +135,8 @@ namespace AppDelivery
                 case "Preço": return "preco";
                 case "Custo": return "custo";
                 case "Unid. Medida": return "unidade_medida";
-                case "Grupo": return "grupo";
+                // ALTERAÇÃO 6: o nome amigável "Grupo" agora mapeia para a coluna "id_grupo"
+                case "Grupo": return "id_grupo";
                 case "Tipo Produto": return "tipo_produto";
                 case "Status": return "inativo";
                 default: return string.Empty;

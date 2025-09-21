@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             bntCancelarProduto = new Button();
             bntSalvarProduto = new Button();
             lblIdProduto = new Label();
@@ -53,8 +54,11 @@
             cmbTipoProduto = new ComboBox();
             bntGerarCodBarras = new Button();
             btnGrupoProduto = new Button();
-            listboxGrupo = new ListBox();
-            listView1 = new ListView();
+            pictureBox1 = new PictureBox();
+            btInserirFoto = new Button();
+            btLimpar = new Button();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // bntCancelarProduto
@@ -217,7 +221,6 @@
             txtGrupo.ReadOnly = true;
             txtGrupo.Size = new Size(150, 31);
             txtGrupo.TabIndex = 19;
-            txtGrupo.Visible = false;
             // 
             // txtUnidadeMedida
             // 
@@ -261,7 +264,7 @@
             // 
             // btnGrupoProduto
             // 
-            btnGrupoProduto.Location = new Point(629, 460);
+            btnGrupoProduto.Location = new Point(403, 460);
             btnGrupoProduto.Name = "btnGrupoProduto";
             btnGrupoProduto.Size = new Size(59, 31);
             btnGrupoProduto.TabIndex = 26;
@@ -269,30 +272,47 @@
             btnGrupoProduto.UseVisualStyleBackColor = true;
             btnGrupoProduto.Click += btnGrupoProduto_Click;
             // 
-            // listboxGrupo
+            // pictureBox1
             // 
-            listboxGrupo.FormattingEnabled = true;
-            listboxGrupo.ItemHeight = 25;
-            listboxGrupo.Location = new Point(403, 462);
-            listboxGrupo.Name = "listboxGrupo";
-            listboxGrupo.Size = new Size(220, 29);
-            listboxGrupo.TabIndex = 27;
+            pictureBox1.Location = new Point(693, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(236, 172);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 28;
+            pictureBox1.TabStop = false;
             // 
-            // listView1
+            // btInserirFoto
             // 
-            listView1.Location = new Point(686, 54);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(182, 146);
-            listView1.TabIndex = 28;
-            listView1.UseCompatibleStateImageBehavior = false;
+            btInserirFoto.Location = new Point(935, 17);
+            btInserirFoto.Name = "btInserirFoto";
+            btInserirFoto.Size = new Size(112, 34);
+            btInserirFoto.TabIndex = 29;
+            btInserirFoto.Text = "Inserir";
+            btInserirFoto.UseVisualStyleBackColor = true;
+            // 
+            // btLimpar
+            // 
+            btLimpar.Location = new Point(935, 52);
+            btLimpar.Name = "btLimpar";
+            btLimpar.Size = new Size(112, 34);
+            btLimpar.TabIndex = 30;
+            btLimpar.Text = "Limpar";
+            btLimpar.UseVisualStyleBackColor = true;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(24, 24);
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
             // 
             // CadastroProdutosFrm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1898, 1024);
-            Controls.Add(listView1);
-            Controls.Add(listboxGrupo);
+            ClientSize = new Size(1898, 1050);
+            Controls.Add(btLimpar);
+            Controls.Add(btInserirFoto);
+            Controls.Add(pictureBox1);
             Controls.Add(btnGrupoProduto);
             Controls.Add(bntGerarCodBarras);
             Controls.Add(cmbTipoProduto);
@@ -319,6 +339,7 @@
             Controls.Add(bntCancelarProduto);
             Name = "CadastroProdutosFrm";
             Text = "Cadastrar Produtos";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -350,7 +371,9 @@
         private ComboBox cmbTipoProduto;
         private Button bntGerarCodBarras;
         private Button btnGrupoProduto;
-        private ListBox listboxGrupo;
-        private ListView listView1;
+        private PictureBox pictureBox1;
+        private Button btInserirFoto;
+        private Button btLimpar;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

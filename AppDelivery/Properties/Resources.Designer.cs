@@ -63,6 +63,16 @@ namespace AppDelivery.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add {
+            get {
+                object obj = ResourceManager.GetObject("add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap client {
             get {
                 object obj = ResourceManager.GetObject("client", resourceCulture);
@@ -76,6 +86,16 @@ namespace AppDelivery.Properties {
         internal static System.Drawing.Bitmap clientes {
             get {
                 object obj = ResourceManager.GetObject("clientes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_lista_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-lista-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -11,6 +11,8 @@ namespace AppDelivery
     {
         private string connectionString;
         private int? selectedId = null;
+        public int GrupoSelecionadoID { get; private set; }
+        public string GrupoSelecionadoNome { get; private set; }
 
         public GrupoProdutoFRM()
         {
@@ -171,9 +173,27 @@ namespace AppDelivery
             selectedId = null;
         }
 
-        private void btnSelecionar_Click(object sender, EventArgs e)
+        // Evento de clique do botão OK
+        private void btOk_Click(object sender, EventArgs e)
         {
+            // 1. Verifica se alguma linha foi selecionada no DataGridView
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // 2. Obtém a linha selecionada
+                DataGridViewRow linhaSelecionada = dataGridView1.SelectedRows[0];
 
+                // 3. Pega o ID e o Nome da linha e armazena nas propriedades públicas
+                // Certifique-se de que o nome das colunas está correto
+                this.GrupoSelecionadoID = Convert.ToInt32(linhaSelecionada.Cells["id_grupo"].Value);
+                this.GrupoSelecionadoNome = linhaSelecionada.Cells["nome_grupo"].Value.ToString();
+
+                // 4. Define o DialogResult como OK para sinalizar sucesso ao formulário chamador
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecione um grupo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

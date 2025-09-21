@@ -38,9 +38,11 @@
             tipoProdutosToolStripMenuItem = new ToolStripMenuItem();
             gruposDeProdutosToolStripMenuItem = new ToolStripMenuItem();
             formasDePagamentoToolStripMenuItem = new ToolStripMenuItem();
+            pctAtendimentos = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).BeginInit();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pctAtendimentos).BeginInit();
             SuspendLayout();
             // 
             // pctBoxClientes
@@ -126,11 +128,22 @@
             formasDePagamentoToolStripMenuItem.Text = "Formas de Pagamento";
             formasDePagamentoToolStripMenuItem.Click += formasDePagamentoToolStripMenuItem_Click;
             // 
+            // pctAtendimentos
+            // 
+            pctAtendimentos.Image = Properties.Resources.icons8_lista_100;
+            pctAtendimentos.Location = new Point(196, 43);
+            pctAtendimentos.Name = "pctAtendimentos";
+            pctAtendimentos.Size = new Size(100, 90);
+            pctAtendimentos.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctAtendimentos.TabIndex = 3;
+            pctAtendimentos.TabStop = false;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1898, 1024);
+            Controls.Add(pctAtendimentos);
             Controls.Add(pctBoxProdutos);
             Controls.Add(pctBoxClientes);
             Controls.Add(menuStrip1);
@@ -142,6 +155,7 @@
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pctAtendimentos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -158,5 +172,6 @@
         private ToolStripMenuItem tipoProdutosToolStripMenuItem;
         private ToolStripMenuItem gruposDeProdutosToolStripMenuItem;
         private ToolStripMenuItem formasDePagamentoToolStripMenuItem;
+        private PictureBox pctAtendimentos;
     }
 }

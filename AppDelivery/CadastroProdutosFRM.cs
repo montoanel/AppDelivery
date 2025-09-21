@@ -14,7 +14,9 @@ namespace AppDelivery
     {
         private string connectionString;
         private int _idProdutoParaEditar = 0; // Armazena o ID do produto para edição
-        private bool _modoEdicao = false;     // Sinaliza se estamos no modo de edição
+        private bool _modoEdicao = false;      // Sinaliza se estamos no modo de edição
+                                               // NOVO: Variável para armazenar o ID do grupo selecionado
+        private int _idGrupoSelecionado = 0;
 
         // Construtor para MODO DE CADASTRO (Novo Produto)
         public CadastroProdutosFrm()
@@ -49,7 +51,7 @@ namespace AppDelivery
             if (_modoEdicao)
             {
                 this.Text = "Editar Produto"; // Muda o título do formulário
-                CarregarDadosProduto();       // Carrega os dados do produto para edição
+                CarregarDadosProduto();        // Carrega os dados do produto para edição
             }
             else
             {
@@ -137,7 +139,7 @@ namespace AppDelivery
                 return;
             }
 
-            // Validação de Preço e Custo (assumindo que devem ser numéricos)
+            // Validação de Preço e Custo
             decimal preco;
             if (!decimal.TryParse(txtPreco.Text, NumberStyles.Currency, CultureInfo.CurrentCulture, out preco))
             {
@@ -154,13 +156,9 @@ namespace AppDelivery
                 return;
             }
 
-            // =========================================================
-            // NOVO TRATAMENTO: Validação de Código de Barras
-            // =========================================================
-            // Só executa a verificação de duplicidade se o campo não estiver vazio
+            // Validação de Código de Barras (Continua o mesmo)
             if (!string.IsNullOrWhiteSpace(txtCodigoBarras.Text))
             {
-                // Chama o novo método para verificar a unicidade
                 if (VerificarCodigoBarrasDuplicado(txtCodigoBarras.Text.Trim(), _idProdutoParaEditar))
                 {
                     MessageBox.Show("O código de barras inserido já está em uso por outro produto. Por favor, insira um código de barras único.", "Erro de Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -168,11 +166,8 @@ namespace AppDelivery
                     return;
                 }
             }
-            // Se o campo estiver vazio, a validação é ignorada, e o valor nulo será inserido.
 
-            // =========================================================
-            // Validação de Nome do Produto
-            // =========================================================
+            // Validação de Nome do Produto (Continua o mesmo)
             if (VerificarNomeDuplicado(txtNomeProduto.Text.Trim(), _idProdutoParaEditar))
             {
                 MessageBox.Show("Já existe um produto com este nome. Por favor, insira um nome único.", "Erro de Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -180,6 +175,13 @@ namespace AppDelivery
                 return;
             }
 
+            // Validação do Grupo (NOVA VALIDAÇÃO)
+            // Verifica se um grupo foi selecionado. Se a variável _idGrupoSelecionado for 0, é porque nenhum foi escolhido.
+            if (_idGrupoSelecionado == 0)
+            {
+                MessageBox.Show("Você deve selecionar um grupo para o produto.", "Erro de Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Determinar o valor 'inativo' para o banco de dados ('A' para Ativo, 'I' para Inativo)
             string statusInativo = (cmbProdutoInativo.SelectedItem != null && cmbProdutoInativo.SelectedItem.ToString() == "Inativo") ? "I" : "A";
@@ -190,6 +192,7 @@ namespace AppDelivery
             if (_modoEdicao)
             {
                 // Query para atualizar um produto existente
+                // ATENÇÃO: a coluna "grupo" foi substituída por "id_grupo"
                 query = "UPDATE tb_produtos SET " +
                         "codigo_interno = @codigo_interno, " +
                         "codigo_barras = @codigo_barras, " +
@@ -197,7 +200,7 @@ namespace AppDelivery
                         "preco = @preco, " +
                         "custo = @custo, " +
                         "unidade_medida = @unidade_medida, " +
-                        "grupo = @grupo, " +
+                        "id_grupo = @id_grupo, " + // Coluna ajustada para 'id_grupo'
                         "tipo_produto = @tipo_produto, " +
                         "inativo = @inativo " +
                         "WHERE id_produto = @id_produto";
@@ -205,37 +208,36 @@ namespace AppDelivery
             else
             {
                 // Query para inserir um novo produto
+                // ATENÇÃO: a coluna "grupo" foi substituída por "id_grupo"
                 query = "INSERT INTO tb_produtos " +
-                        "(codigo_interno, codigo_barras, nome, preco, custo, unidade_medida, grupo, tipo_produto, inativo) " +
+                        "(codigo_interno, codigo_barras, nome, preco, custo, unidade_medida, id_grupo, tipo_produto, inativo) " +
                         "VALUES " +
-                        "(@codigo_interno, @codigo_barras, @nome, @preco, @custo, @unidade_medida, @grupo, @tipo_produto, @inativo);" +
-                        "SELECT SCOPE_IDENTITY();"; // Retorna o ID do último registro inserido
+                        "(@codigo_interno, @codigo_barras, @nome, @preco, @custo, @unidade_medida, @id_grupo, @tipo_produto, @inativo);" + // Coluna ajustada para 'id_grupo'
+                        "SELECT SCOPE_IDENTITY();";
             }
 
-            // ATENÇÃO: A mensagem de erro "Violação da restrição UNIQUE KEY" ainda aparece porque o banco de dados
-            // ainda tem uma restrição que proíbe valores nulos duplicados. O código C# abaixo está correto,
-            // mas só funcionará após você executar o script SQL de correção fornecido na conversa.
+            // Agora, a lógica de conexão e comando
             using (SqlConnection conexao = new SqlConnection(connectionString))
             {
                 using (SqlCommand comando = new SqlCommand(query, conexao))
                 {
-                    // Adicionar Parâmetros à Query
                     if (_modoEdicao)
                     {
-                        // Parâmetro essencial para o UPDATE
                         comando.Parameters.AddWithValue("@id_produto", _idProdutoParaEditar);
                     }
 
                     comando.Parameters.AddWithValue("@codigo_interno", string.IsNullOrWhiteSpace(txtCodigoInterno.Text) ? (object)DBNull.Value : txtCodigoInterno.Text);
-                    // Passa DBNull.Value se o campo estiver vazio para permitir o valor nulo no banco
                     comando.Parameters.AddWithValue("@codigo_barras", string.IsNullOrWhiteSpace(txtCodigoBarras.Text) ? (object)DBNull.Value : txtCodigoBarras.Text);
                     comando.Parameters.AddWithValue("@nome", txtNomeProduto.Text);
-                    comando.Parameters.AddWithValue("@preco", preco); // Já validado como decimal
-                    comando.Parameters.AddWithValue("@custo", custo); // Já validado como decimal
+                    comando.Parameters.AddWithValue("@preco", preco);
+                    comando.Parameters.AddWithValue("@custo", custo);
                     comando.Parameters.AddWithValue("@unidade_medida", string.IsNullOrWhiteSpace(txtUnidadeMedida.Text) ? (object)DBNull.Value : txtUnidadeMedida.Text);
-                    comando.Parameters.AddWithValue("@grupo", string.IsNullOrWhiteSpace(txtGrupo.Text) ? (object)DBNull.Value : txtGrupo.Text);
+
+                    // NOVO PARÂMETRO: Adiciona o ID do grupo.
+                    comando.Parameters.AddWithValue("@id_grupo", _idGrupoSelecionado);
+
                     comando.Parameters.AddWithValue("@tipo_produto", cmbTipoProduto.SelectedItem != null ? cmbTipoProduto.SelectedItem.ToString() : (object)DBNull.Value);
-                    comando.Parameters.AddWithValue("@inativo", statusInativo); // 'A' ou 'I'
+                    comando.Parameters.AddWithValue("@inativo", statusInativo);
 
                     try
                     {
@@ -246,8 +248,8 @@ namespace AppDelivery
                             if (linhasAfetadas > 0)
                             {
                                 MessageBox.Show("Produto atualizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                this.DialogResult = DialogResult.OK; // Indica sucesso para o formulário chamador
-                                this.Close(); // Fecha o formulário de edição após a atualização
+                                this.DialogResult = DialogResult.OK;
+                                this.Close();
                             }
                             else
                             {
@@ -256,12 +258,10 @@ namespace AppDelivery
                         }
                         else // Modo de cadastro
                         {
-                            // Usa ExecuteScalar para obter o ID do produto recém-inserido
                             object result = comando.ExecuteScalar();
                             if (result != null && result != DBNull.Value)
                             {
                                 MessageBox.Show("Produto cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                // Alteração: Agora o formulário fecha após o cadastro, em vez de apenas limpar os campos.
                                 this.DialogResult = DialogResult.OK;
                                 this.Close();
                             }
@@ -384,8 +384,13 @@ namespace AppDelivery
                 return;
             }
 
-            string query = "SELECT id_produto, codigo_interno, codigo_barras, nome, preco, custo, unidade_medida, grupo, tipo_produto, inativo " +
-                            "FROM tb_produtos WHERE id_produto = @id_produto";
+            // A consulta foi modificada para buscar o 'id_grupo' e o 'nome_grupo' da tabela 'grupo_produtos'
+            // através de um JOIN.
+            string query = "SELECT p.id_produto, p.codigo_interno, p.codigo_barras, p.nome, p.preco, p.custo, p.unidade_medida, " +
+                 "p.id_grupo, p.tipo_produto, p.inativo, g.nome_grupo " +
+                 "FROM tb_produtos AS p " +
+                 "LEFT JOIN grupo_produtos AS g ON p.id_grupo = g.id_grupo " +
+                 "WHERE p.id_produto = @id_produto";
 
             using (SqlConnection conexao = new SqlConnection(connectionString))
             {
@@ -407,12 +412,25 @@ namespace AppDelivery
                             txtCodigoBarras.Text = reader.IsDBNull(reader.GetOrdinal("codigo_barras")) ? string.Empty : reader["codigo_barras"].ToString();
                             txtNomeProduto.Text = reader["nome"].ToString();
 
-                            // Use `ToString("C2")` para formatar como moeda, ou apenas `ToString()` se preferir o formato puro.
                             txtPreco.Text = reader["preco"].ToString();
                             txtCusto.Text = reader["custo"].ToString();
 
                             txtUnidadeMedida.Text = reader.IsDBNull(reader.GetOrdinal("unidade_medida")) ? string.Empty : reader["unidade_medida"].ToString();
-                            txtGrupo.Text = reader.IsDBNull(reader.GetOrdinal("grupo")) ? string.Empty : reader["grupo"].ToString();
+
+                            // --- NOVO: Lógica para carregar o ID e o nome do grupo selecionado ---
+                            _idGrupoSelecionado = reader.IsDBNull(reader.GetOrdinal("id_grupo")) ? 0 : reader.GetInt32(reader.GetOrdinal("id_grupo"));
+                            string nomeGrupo = reader.IsDBNull(reader.GetOrdinal("nome_grupo")) ? string.Empty : reader["nome_grupo"].ToString();
+
+                            // Formata o texto para exibir o ID e o nome, se um grupo estiver associado
+                            if (_idGrupoSelecionado > 0)
+                            {
+                                txtGrupo.Text = $"{_idGrupoSelecionado} - {nomeGrupo}";
+                            }
+                            else
+                            {
+                                txtGrupo.Text = "Nenhum grupo selecionado";
+                            }
+                            // -------------------------------------------------------------
 
                             // Selecionar o item correto no ComboBox de Tipo de Produto
                             string tipoProdutoDB = reader.IsDBNull(reader.GetOrdinal("tipo_produto")) ? string.Empty : reader["tipo_produto"].ToString();
@@ -555,11 +573,14 @@ namespace AppDelivery
             // 1. Cria uma nova instância do formulário de Grupos
             GrupoProdutoFRM formGruposProdutos = new GrupoProdutoFRM();
 
-            // 2. Exibe o formulário de forma modal (como um diálogo).
-            // Isso significa que o usuário precisará fechar o form de grupos antes
-            // de poder interagir novamente com o form de produtos.
-            // O método ShowDialog() é ideal para isso.
-            formGruposProdutos.ShowDialog();
+            // 2. Exibe o formulário de forma modal e verifica o resultado
+            if (formGruposProdutos.ShowDialog() == DialogResult.OK)
+            {
+                // Se o resultado for OK, significa que o usuário selecionou um grupo e clicou em OK
+                // Pega o ID e o Nome das propriedades públicas do formulário de grupos
+                _idGrupoSelecionado = formGruposProdutos.GrupoSelecionadoID;
+                txtGrupo.Text = formGruposProdutos.GrupoSelecionadoNome;
+            }
         }
     }
 }

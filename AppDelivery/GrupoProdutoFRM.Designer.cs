@@ -36,7 +36,7 @@
             btnSalvar = new Button();
             btnCancelar = new Button();
             chkStatus = new CheckBox();
-            btnSelecionar = new Button();
+            btOk = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -116,22 +116,22 @@
             chkStatus.Text = "Ativo";
             chkStatus.UseVisualStyleBackColor = true;
             // 
-            // btnSelecionar
+            // btOk
             // 
-            btnSelecionar.Location = new Point(228, 356);
-            btnSelecionar.Name = "btnSelecionar";
-            btnSelecionar.Size = new Size(112, 34);
-            btnSelecionar.TabIndex = 9;
-            btnSelecionar.Text = "Selecionar";
-            btnSelecionar.UseVisualStyleBackColor = true;
-            btnSelecionar.Click += btnSelecionar_Click;
+            btOk.Location = new Point(228, 356);
+            btOk.Name = "btOk";
+            btOk.Size = new Size(112, 34);
+            btOk.TabIndex = 9;
+            btOk.Text = "OK";
+            btOk.UseVisualStyleBackColor = true;
+            btOk.Click += btOk_Click;
             // 
             // GrupoProdutoFRM
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnSelecionar);
+            Controls.Add(btOk);
             Controls.Add(chkStatus);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
@@ -157,6 +157,6 @@
         private Button btnSalvar;
         private Button btnCancelar;
         private CheckBox chkStatus;
-        private Button btnSelecionar;
+        private Button btOk;
     }
 }
