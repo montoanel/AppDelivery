@@ -39,6 +39,7 @@
             gruposDeProdutosToolStripMenuItem = new ToolStripMenuItem();
             formasDePagamentoToolStripMenuItem = new ToolStripMenuItem();
             pctAtendimentos = new PictureBox();
+            funcionáriosToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).BeginInit();
             menuStrip1.SuspendLayout();
@@ -83,7 +84,7 @@
             // 
             // cadastrosToolStripMenuItem
             // 
-            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, produtosToolStripMenuItem, unidadeDeMedidaToolStripMenuItem, tipoProdutosToolStripMenuItem, gruposDeProdutosToolStripMenuItem, formasDePagamentoToolStripMenuItem });
+            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, produtosToolStripMenuItem, unidadeDeMedidaToolStripMenuItem, tipoProdutosToolStripMenuItem, gruposDeProdutosToolStripMenuItem, formasDePagamentoToolStripMenuItem, funcionáriosToolStripMenuItem });
             cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             cadastrosToolStripMenuItem.Size = new Size(107, 29);
             cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -141,6 +142,13 @@
             pctAtendimentos.MouseEnter += pctAtendimentos_MouseEnter;
             pctAtendimentos.MouseLeave += pctAtendimentos_MouseLeave;
             // 
+            // funcionáriosToolStripMenuItem
+            // 
+            funcionáriosToolStripMenuItem.Name = "funcionáriosToolStripMenuItem";
+            funcionáriosToolStripMenuItem.Size = new Size(293, 34);
+            funcionáriosToolStripMenuItem.Text = "Funcionários";
+            funcionáriosToolStripMenuItem.Click += funcionáriosToolStripMenuItem_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -176,5 +184,6 @@
         private ToolStripMenuItem gruposDeProdutosToolStripMenuItem;
         private ToolStripMenuItem formasDePagamentoToolStripMenuItem;
         private PictureBox pctAtendimentos;
+        private ToolStripMenuItem funcionáriosToolStripMenuItem;
     }
 }

@@ -19,12 +19,12 @@ namespace AppDelivery
 
         private void pctNovoAtendimento_MouseLeave(object sender, EventArgs e)
         {
-            pctNovoAtendimento.BackColor = Color.Transparent;
+            pctVendaRapida.BackColor = Color.Transparent;
         }
 
         private void pctNovoAtendimento_MouseEnter(object sender, EventArgs e)
         {
-            pctNovoAtendimento.BackColor = Color.LightGray;
+            pctVendaRapida.BackColor = Color.LightGray;
         }
     }
 }

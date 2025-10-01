@@ -111,5 +111,14 @@ namespace AppDelivery
         {
             pctAtendimentos.BackColor = Color.Transparent;
         }
+
+        private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            FuncionariosFRM funcionariosFRM = new FuncionariosFRM();
+            funcionariosFRM.ShowDialog();
+
+            
+        }
     }
 }

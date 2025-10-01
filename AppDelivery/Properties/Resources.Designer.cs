@@ -93,6 +93,16 @@ namespace AppDelivery.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap forma_de_pagamento {
+            get {
+                object obj = ResourceManager.GetObject("forma-de-pagamento", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_lista_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-lista-100", resourceCulture);
