@@ -36,6 +36,7 @@
             pctDelivery = new PictureBox();
             pctVendaRapida = new PictureBox();
             panel2 = new Panel();
+            checkBoxEmTransito = new CheckBox();
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
             checkBoxCancelado = new CheckBox();
@@ -128,6 +129,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(checkBoxEmTransito);
             panel2.Controls.Add(dateTimePicker2);
             panel2.Controls.Add(dateTimePicker1);
             panel2.Controls.Add(checkBoxCancelado);
@@ -146,6 +148,18 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1220, 142);
             panel2.TabIndex = 1;
+            // 
+            // checkBoxEmTransito
+            // 
+            checkBoxEmTransito.AutoSize = true;
+            checkBoxEmTransito.Checked = true;
+            checkBoxEmTransito.CheckState = CheckState.Checked;
+            checkBoxEmTransito.Location = new Point(294, 99);
+            checkBoxEmTransito.Name = "checkBoxEmTransito";
+            checkBoxEmTransito.Size = new Size(128, 29);
+            checkBoxEmTransito.TabIndex = 14;
+            checkBoxEmTransito.Text = "Em trânsito";
+            checkBoxEmTransito.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker2
             // 
@@ -170,7 +184,7 @@
             // checkBoxCancelado
             // 
             checkBoxCancelado.AutoSize = true;
-            checkBoxCancelado.Location = new Point(413, 99);
+            checkBoxCancelado.Location = new Point(553, 99);
             checkBoxCancelado.Name = "checkBoxCancelado";
             checkBoxCancelado.Size = new Size(128, 29);
             checkBoxCancelado.TabIndex = 12;
@@ -180,7 +194,7 @@
             // checkBoxRecebido
             // 
             checkBoxRecebido.AutoSize = true;
-            checkBoxRecebido.Location = new Point(294, 99);
+            checkBoxRecebido.Location = new Point(428, 99);
             checkBoxRecebido.Name = "checkBoxRecebido";
             checkBoxRecebido.Size = new Size(119, 29);
             checkBoxRecebido.TabIndex = 11;
@@ -238,6 +252,7 @@
             button1.TabIndex = 6;
             button1.Text = "Filtrar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += Button1_Click;
             // 
             // checkBox4
             // 
@@ -356,5 +371,6 @@
         private DateTimePicker dateTimePicker1;
         private PictureBox pctReceber;
         private Panel panel3;
+        private CheckBox checkBoxEmTransito;
     }
 }
