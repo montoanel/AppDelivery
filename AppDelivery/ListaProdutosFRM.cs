@@ -191,5 +191,29 @@ namespace AppDelivery
         {
             this.Close();
         }
+
+        // Evento personalizado para retornar o produto selecionado
+        public event Action<int, string, decimal> ProdutoSelecionado;
+
+        // Novo botão "Selecionar" (você pode colocar via designer também)
+        private void btnSelecionar_Click(object sender, EventArgs e)
+        {
+            if (dgvListaProdutos.SelectedRows.Count > 0)
+            {
+                int idProduto = Convert.ToInt32(dgvListaProdutos.SelectedRows[0].Cells["id_produto"].Value);
+                string nomeProduto = dgvListaProdutos.SelectedRows[0].Cells["nome"].Value.ToString();
+                decimal preco = Convert.ToDecimal(dgvListaProdutos.SelectedRows[0].Cells["preco"].Value);
+
+                // Dispara o evento informando o produto selecionado
+                ProdutoSelecionado?.Invoke(idProduto, nomeProduto, preco);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Selecione um produto na lista!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
     }
 }

@@ -35,6 +35,7 @@
             btnCancelar = new Button();
             btnEditarProduto = new Button();
             btnNovoProduto = new Button();
+            btnSelecionar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvListaProdutos).BeginInit();
             SuspendLayout();
             // 
@@ -106,11 +107,23 @@
             btnNovoProduto.UseVisualStyleBackColor = true;
             btnNovoProduto.Click += btnNovoProduto_Click;
             // 
+            // btnSelecionar
+            // 
+            btnSelecionar.Location = new Point(983, 895);
+            btnSelecionar.Name = "btnSelecionar";
+            btnSelecionar.Size = new Size(129, 34);
+            btnSelecionar.TabIndex = 13;
+            btnSelecionar.Text = "Selecionar";
+            btnSelecionar.TextAlign = ContentAlignment.TopCenter;
+            btnSelecionar.UseVisualStyleBackColor = true;
+            btnSelecionar.Click += btnSelecionar_Click;
+            // 
             // ListaProdutosFRM
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1898, 1024);
+            Controls.Add(btnSelecionar);
             Controls.Add(btnCancelar);
             Controls.Add(btnEditarProduto);
             Controls.Add(btnNovoProduto);
@@ -134,5 +147,6 @@
         private Button btnCancelar;
         private Button btnEditarProduto;
         private Button btnNovoProduto;
+        private Button btnSelecionar;
     }
 }
