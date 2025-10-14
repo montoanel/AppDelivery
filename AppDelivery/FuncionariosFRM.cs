@@ -57,7 +57,8 @@ namespace AppDelivery
                     dataGridView1.DataSource = dtFuncionarios;
 
                     // Formata as colunas do DataGridView para melhor visualização.
-                    if (dataGridView1.Columns.Contains("id")) dataGridView1.Columns["id"].HeaderText = "ID";
+                    // Nota: O nome da coluna do ID no Select é "id_atendente", não "id".
+                    if (dataGridView1.Columns.Contains("id_atendente")) dataGridView1.Columns["id_atendente"].HeaderText = "ID";
                     if (dataGridView1.Columns.Contains("nome")) dataGridView1.Columns["nome"].HeaderText = "Nome";
                     if (dataGridView1.Columns.Contains("status")) dataGridView1.Columns["status"].HeaderText = "Status";
                     if (dataGridView1.Columns.Contains("comissao")) dataGridView1.Columns["comissao"].HeaderText = "Comissão";
@@ -101,6 +102,10 @@ namespace AppDelivery
         // Configura o estado do formulário para o padrão inicial.
         private void ConfigurarFormularioInicial()
         {
+            // CORREÇÃO: Força o foco a sair dos campos de texto (como txtNome) antes de limpá-los,
+            // evitando que o evento de LostFocus dispare a validação no campo vazio.
+            this.Focus();
+
             HabilitarControles(false);
             LimparCampos();
             btnNovo.Enabled = true;
@@ -139,11 +144,9 @@ namespace AppDelivery
         // Evento de clique do botão "Salvar".
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            // NOVO: Força o controle ativo a perder o foco para garantir que o TextBox atualize seu valor.
-            this.ActiveControl = null;
+            // LINHA REMOVIDA: this.ActiveControl = null; - Sua observação sobre o foco estar correta torna esta linha desnecessária.
 
             // 1. VALIDAÇÃO DE OBRIGATORIEDADE: Nome
-            // Esta validação é a que você deseja manter (não aceitar vazio/espaços)
             if (string.IsNullOrWhiteSpace(txtNome.Text))
             {
                 MessageBox.Show("O campo Nome é obrigatório.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -151,7 +154,7 @@ namespace AppDelivery
                 return;
             }
 
-            // 2. VALIDAÇÃO E CONVERSÃO DA COMISSÃO: (Lógica anterior para aceitar vazio como '0')
+            // 2. VALIDAÇÃO E CONVERSÃO DA COMISSÃO:
             string comissaoTexto = txtComissao.Text;
             if (string.IsNullOrWhiteSpace(comissaoTexto))
             {
@@ -166,15 +169,12 @@ namespace AppDelivery
             }
 
             // Pega os valores dos campos.
-            // Usamos o Trim() aqui novamente para garantir que não haja espaços extras no valor salvo.
             string nomeFuncionario = txtNome.Text.Trim();
 
             // Otimização para status:
             string statusFuncionario = cmbStatus.SelectedItem != null
-                                     ? cmbStatus.SelectedItem.ToString()[0].ToString()
-                                     : "A";
-
-            // ... (Restante do código de conexão e SQL permanece o mesmo) ...
+                                           ? cmbStatus.SelectedItem.ToString()[0].ToString()
+                                           : "A";
 
             using (SqlConnection conexao = new SqlConnection(connectionString))
             {
@@ -207,11 +207,16 @@ namespace AppDelivery
                 catch (Exception ex)
                 {
                     MessageBox.Show("Erro ao salvar dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Interrompe a execução para não resetar o formulário se houve erro.
                 }
             }
 
+            // Ações pós-salvamento:
             ConfigurarFormularioInicial();
             CarregarFuncionarios();
+
+            // CORREÇÃO: Força o foco para o DataGridView, um controle seguro, evitando que ele caia no txtNome vazio.
+            dataGridView1.Focus();
         }
 
         // Evento de clique do botão "Cancelar".
