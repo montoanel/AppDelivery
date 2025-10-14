@@ -11,7 +11,7 @@ namespace AppDelivery
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-           // Application.Run(new Main());
+          // Application.Run(new Main());
             //Application.Run(new CadastroProdutosFrm());
             Application.Run(new NovosAtendimentosFRM());
         }

@@ -117,40 +117,23 @@ namespace AppDelivery
             decimal preco = Convert.ToDecimal(produto["preco"]);
             decimal total = preco * qtd;
 
-            // 🔹 Verifica se produto já está no DataGridView
-            foreach (DataGridViewRow row in dgvProdutos.Rows)
-            {
-                // 1. CORREÇÃO DE NOME DA COLUNA: de "Codigo" para "id_produto"
-                if (Convert.ToInt32(row.Cells["id_produto"].Value) == idProduto)
-                {
-                    // 2. CORREÇÃO DE NOME DA COLUNA: de "Qtd" para "quantidade" (e de "Total" para "total")
-                    int qtdExistente = Convert.ToInt32(row.Cells["quantidade"].Value);
+            // ⛔️ REMOÇÃO DO BLOCO DE AGRUPAMENTO (foreach):
+            // Todo o bloco 'foreach (DataGridViewRow row in dgvProdutos.Rows)'
+            // que verificava se o produto já existia e somava a quantidade foi REMOVIDO.
+            // Isso garante que o código sempre chegue na linha de adição.
 
-                    row.Cells["quantidade"].Value = qtdExistente + qtd;
-
-                    // 3. CORREÇÃO DE NOME DA COLUNA: de "Total" para "total"
-                    // E mantendo a correção do FormatException (usando decimal puro)
-                    row.Cells["total"].Value = preco * (qtdExistente + qtd);
-
-                    AtualizarTotalGeral();
-                    LimparCamposProduto();
-                    return;
-                }
-            }
-
-            // 🔹 Adiciona novo produto à grade
+            // 🔹 Adiciona novo produto à grade (sempre uma nova linha)
             dgvProdutos.Rows.Add(
                 idProduto,
                 nomeProduto,
                 qtd,
-                preco, // ✅ OK: Decimal puro (Correção do FormatException)
-                total  // ✅ OK: Decimal puro (Correção do FormatException)
+                preco,
+                total
             );
 
             AtualizarTotalGeral();
             LimparCamposProduto();
         }
-
         private decimal ObterPrecoDoProduto(int idProduto)
         {
             using (SqlConnection conexao = new SqlConnection(connectionString))

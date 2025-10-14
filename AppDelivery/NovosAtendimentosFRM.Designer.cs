@@ -344,6 +344,7 @@
             // 
             // NovosAtendimentosFRM
             // 
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1898, 1024);
             Controls.Add(groupBox1);
             Controls.Add(btnConcluir);
