@@ -30,12 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AtendimentosFRM));
             panel1 = new Panel();
+            groupBox2 = new GroupBox();
+            label5 = new Label();
+            pctReceber = new PictureBox();
             groupBox1 = new GroupBox();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             pctEncomenda = new PictureBox();
             pctVendaRapida = new PictureBox();
             pctRetiradaBalcao = new PictureBox();
             pctDelivery = new PictureBox();
-            pctReceber = new PictureBox();
             panel2 = new Panel();
             checkBoxEmTransito = new CheckBox();
             dateTimePicker2 = new DateTimePicker();
@@ -54,22 +60,17 @@
             lblTipoAtendimento = new Label();
             dataGridView1 = new DataGridView();
             panel3 = new Panel();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            groupBox2 = new GroupBox();
-            label5 = new Label();
+            button2 = new Button();
             panel1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pctReceber).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pctEncomenda).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctVendaRapida).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctRetiradaBalcao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctDelivery).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pctReceber).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -80,6 +81,39 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1895, 120);
             panel1.TabIndex = 0;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(label5);
+            groupBox2.Controls.Add(pctReceber);
+            groupBox2.Location = new Point(800, 7);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(618, 111);
+            groupBox2.TabIndex = 7;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Informações Financeiras";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(505, 79);
+            label5.Name = "label5";
+            label5.Size = new Size(66, 21);
+            label5.TabIndex = 11;
+            label5.Text = "Receber";
+            // 
+            // pctReceber
+            // 
+            pctReceber.Image = Properties.Resources.forma_de_pagamento;
+            pctReceber.Location = new Point(492, 23);
+            pctReceber.Name = "pctReceber";
+            pctReceber.Size = new Size(79, 53);
+            pctReceber.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctReceber.TabIndex = 5;
+            pctReceber.TabStop = false;
+            pctReceber.MouseEnter += pctEncomenda_MouseEnter;
+            pctReceber.MouseLeave += pctEncomenda_MouseLeave;
             // 
             // groupBox1
             // 
@@ -97,6 +131,46 @@
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Atendimentos";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(452, 78);
+            label4.Name = "label4";
+            label4.Size = new Size(91, 21);
+            label4.TabIndex = 10;
+            label4.Text = "Encomenda";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(338, 78);
+            label3.Name = "label3";
+            label3.Size = new Size(73, 21);
+            label3.TabIndex = 9;
+            label3.Text = "V. Buscar";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(233, 81);
+            label2.Name = "label2";
+            label2.Size = new Size(67, 21);
+            label2.TabIndex = 8;
+            label2.Text = "Delivery";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(113, 81);
+            label1.Name = "label1";
+            label1.Size = new Size(75, 21);
+            label1.TabIndex = 7;
+            label1.Text = "V. Rápida";
             // 
             // pctEncomenda
             // 
@@ -146,20 +220,9 @@
             pctDelivery.MouseEnter += pctDelivery_MouseEnter;
             pctDelivery.MouseLeave += pctDelivery_MouseLeave;
             // 
-            // pctReceber
-            // 
-            pctReceber.Image = Properties.Resources.forma_de_pagamento;
-            pctReceber.Location = new Point(492, 23);
-            pctReceber.Name = "pctReceber";
-            pctReceber.Size = new Size(79, 53);
-            pctReceber.SizeMode = PictureBoxSizeMode.StretchImage;
-            pctReceber.TabIndex = 5;
-            pctReceber.TabStop = false;
-            pctReceber.MouseEnter += pctEncomenda_MouseEnter;
-            pctReceber.MouseLeave += pctEncomenda_MouseLeave;
-            // 
             // panel2
             // 
+            panel2.Controls.Add(button2);
             panel2.Controls.Add(checkBoxEmTransito);
             panel2.Controls.Add(dateTimePicker2);
             panel2.Controls.Add(dateTimePicker1);
@@ -354,66 +417,15 @@
             panel3.Size = new Size(1898, 66);
             panel3.TabIndex = 2;
             // 
-            // label1
+            // button2
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(113, 81);
-            label1.Name = "label1";
-            label1.Size = new Size(75, 21);
-            label1.TabIndex = 7;
-            label1.Text = "V. Rápida";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(233, 81);
-            label2.Name = "label2";
-            label2.Size = new Size(67, 21);
-            label2.TabIndex = 8;
-            label2.Text = "Delivery";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(338, 78);
-            label3.Name = "label3";
-            label3.Size = new Size(73, 21);
-            label3.TabIndex = 9;
-            label3.Text = "V. Buscar";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(452, 78);
-            label4.Name = "label4";
-            label4.Size = new Size(91, 21);
-            label4.TabIndex = 10;
-            label4.Text = "Encomenda";
-            // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(label5);
-            groupBox2.Controls.Add(pctReceber);
-            groupBox2.Location = new Point(800, 7);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(618, 111);
-            groupBox2.TabIndex = 7;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Informações Financeiras";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(505, 79);
-            label5.Name = "label5";
-            label5.Size = new Size(66, 21);
-            label5.TabIndex = 11;
-            label5.Text = "Receber";
+            button2.Image = Properties.Resources.impressora;
+            button2.Location = new Point(722, 94);
+            button2.Name = "button2";
+            button2.Size = new Size(112, 34);
+            button2.TabIndex = 3;
+            button2.Text = "Imprimir";
+            button2.UseVisualStyleBackColor = true;
             // 
             // AtendimentosFRM
             // 
@@ -427,18 +439,18 @@
             Name = "AtendimentosFRM";
             Text = "AtendimentosFRM";
             panel1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pctReceber).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pctEncomenda).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctVendaRapida).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctRetiradaBalcao).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctDelivery).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pctReceber).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -475,5 +487,6 @@
         private Label label2;
         private Label label1;
         private Label label5;
+        private Button button2;
     }
 }
