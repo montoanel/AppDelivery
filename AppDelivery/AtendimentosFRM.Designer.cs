@@ -43,6 +43,8 @@
             pctRetiradaBalcao = new PictureBox();
             pctDelivery = new PictureBox();
             panel2 = new Panel();
+            btnResetSequencia = new Button();
+            button2 = new Button();
             checkBoxEmTransito = new CheckBox();
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
@@ -60,7 +62,6 @@
             lblTipoAtendimento = new Label();
             dataGridView1 = new DataGridView();
             panel3 = new Panel();
-            button2 = new Button();
             panel1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pctReceber).BeginInit();
@@ -88,7 +89,7 @@
             groupBox2.Controls.Add(pctReceber);
             groupBox2.Location = new Point(800, 7);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(618, 111);
+            groupBox2.Size = new Size(420, 111);
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "Informações Financeiras";
@@ -97,7 +98,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(505, 79);
+            label5.Location = new Point(331, 78);
             label5.Name = "label5";
             label5.Size = new Size(66, 21);
             label5.TabIndex = 11;
@@ -106,7 +107,7 @@
             // pctReceber
             // 
             pctReceber.Image = Properties.Resources.forma_de_pagamento;
-            pctReceber.Location = new Point(492, 23);
+            pctReceber.Location = new Point(318, 22);
             pctReceber.Name = "pctReceber";
             pctReceber.Size = new Size(79, 53);
             pctReceber.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -217,11 +218,13 @@
             pctDelivery.SizeMode = PictureBoxSizeMode.StretchImage;
             pctDelivery.TabIndex = 2;
             pctDelivery.TabStop = false;
+            pctDelivery.Click += pctDelivery_Click;
             pctDelivery.MouseEnter += pctDelivery_MouseEnter;
             pctDelivery.MouseLeave += pctDelivery_MouseLeave;
             // 
             // panel2
             // 
+            panel2.Controls.Add(btnResetSequencia);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(checkBoxEmTransito);
             panel2.Controls.Add(dateTimePicker2);
@@ -242,6 +245,25 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1220, 132);
             panel2.TabIndex = 1;
+            // 
+            // btnResetSequencia
+            // 
+            btnResetSequencia.Location = new Point(849, 94);
+            btnResetSequencia.Name = "btnResetSequencia";
+            btnResetSequencia.Size = new Size(220, 34);
+            btnResetSequencia.TabIndex = 15;
+            btnResetSequencia.Text = "Reiniciar Sequêncial";
+            btnResetSequencia.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Image = Properties.Resources.impressora;
+            button2.Location = new Point(722, 94);
+            button2.Name = "button2";
+            button2.Size = new Size(112, 34);
+            button2.TabIndex = 3;
+            button2.Text = "Imprimir";
+            button2.UseVisualStyleBackColor = true;
             // 
             // checkBoxEmTransito
             // 
@@ -417,16 +439,6 @@
             panel3.Size = new Size(1898, 66);
             panel3.TabIndex = 2;
             // 
-            // button2
-            // 
-            button2.Image = Properties.Resources.impressora;
-            button2.Location = new Point(722, 94);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 3;
-            button2.Text = "Imprimir";
-            button2.UseVisualStyleBackColor = true;
-            // 
             // AtendimentosFRM
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -488,5 +500,6 @@
         private Label label1;
         private Label label5;
         private Button button2;
+        private Button btnResetSequencia;
     }
 }

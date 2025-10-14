@@ -317,5 +317,32 @@ namespace AppDelivery
                 pictureBox.BackColor = Color.LightGray;
             }
         }
+
+        // =====================================================
+        // NOVO MÉTODO: CLIQUE NO DELIVERY (Scooter)
+        // =====================================================
+        private void pctDelivery_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Define o tipo de atendimento como Delivery (valor 1)
+                TipoAtendimento tipo = TipoAtendimento.Delivery;
+
+                // Cria e abre o formulário de novo atendimento, passando o TIPO
+                using (NovosAtendimentosFRM novoAtendimento = new NovosAtendimentosFRM(tipo))
+                {
+                    // Abre o novo formulário como modal
+                    novoAtendimento.ShowDialog();
+                }
+
+                // Após fechar o formulário de novo atendimento, atualiza a lista principal
+                CarregarAtendimentos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao iniciar o novo atendimento de Delivery: " + ex.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

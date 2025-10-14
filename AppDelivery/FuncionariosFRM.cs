@@ -51,7 +51,7 @@ namespace AppDelivery
             {
                 try
                 {
-                    string query = "SELECT id, nome, status, comissao FROM tb_funcionarios ORDER BY nome";
+                    string query = "SELECT id_atendente, nome, status, comissao FROM tb_funcionarios ORDER BY nome";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conexao);
                     adapter.Fill(dtFuncionarios);
                     dataGridView1.DataSource = dtFuncionarios;
@@ -139,23 +139,42 @@ namespace AppDelivery
         // Evento de clique do botão "Salvar".
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            // Validação dos campos obrigatórios: Nome e Comissão.
-            if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtComissao.Text))
+            // NOVO: Força o controle ativo a perder o foco para garantir que o TextBox atualize seu valor.
+            this.ActiveControl = null;
+
+            // 1. VALIDAÇÃO DE OBRIGATORIEDADE: Nome
+            // Esta validação é a que você deseja manter (não aceitar vazio/espaços)
+            if (string.IsNullOrWhiteSpace(txtNome.Text))
             {
-                MessageBox.Show("Os campos Nome e Comissão são obrigatórios.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O campo Nome é obrigatório.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNome.Focus();
                 return;
             }
 
-            // Converte a comissão para o tipo numérico e valida.
-            if (!decimal.TryParse(txtComissao.Text, out decimal comissao))
+            // 2. VALIDAÇÃO E CONVERSÃO DA COMISSÃO: (Lógica anterior para aceitar vazio como '0')
+            string comissaoTexto = txtComissao.Text;
+            if (string.IsNullOrWhiteSpace(comissaoTexto))
             {
-                MessageBox.Show("A comissão deve ser um valor numérico válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                comissaoTexto = "0";
+            }
+
+            if (!decimal.TryParse(comissaoTexto, out decimal comissao))
+            {
+                MessageBox.Show("A comissão deve ser um valor numérico válido (ex: 10,00 ou 0).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtComissao.Focus();
                 return;
             }
 
             // Pega os valores dos campos.
+            // Usamos o Trim() aqui novamente para garantir que não haja espaços extras no valor salvo.
             string nomeFuncionario = txtNome.Text.Trim();
-            string statusFuncionario = cmbStatus.SelectedItem.ToString()[0].ToString();
+
+            // Otimização para status:
+            string statusFuncionario = cmbStatus.SelectedItem != null
+                                     ? cmbStatus.SelectedItem.ToString()[0].ToString()
+                                     : "A";
+
+            // ... (Restante do código de conexão e SQL permanece o mesmo) ...
 
             using (SqlConnection conexao = new SqlConnection(connectionString))
             {
@@ -166,17 +185,15 @@ namespace AppDelivery
 
                     if (modoEdicao)
                     {
-                        // Lógica para EDIÇÃO: se modoEdicao for 'true', atualiza o registro.
-                        string queryUpdate = "UPDATE tb_funcionarios SET nome = @nome, status = @status, comissao = @comissao WHERE id = @id";
+                        string queryUpdate = "UPDATE tb_funcionarios SET nome = @nome, status = @status, comissao = @comissao WHERE id_atendente = @id_atendente";
                         cmd = new SqlCommand(queryUpdate, conexao);
                         cmd.Parameters.AddWithValue("@nome", nomeFuncionario);
                         cmd.Parameters.AddWithValue("@status", statusFuncionario);
                         cmd.Parameters.AddWithValue("@comissao", comissao);
-                        cmd.Parameters.AddWithValue("@id", Convert.ToInt32(txtID.Text));
+                        cmd.Parameters.AddWithValue("@id_atendente", Convert.ToInt32(txtID.Text));
                     }
                     else
                     {
-                        // Lógica para NOVO CADASTRO: se modoEdicao for 'false', insere um novo registro.
                         string queryInsert = "INSERT INTO tb_funcionarios (nome, status, comissao) VALUES (@nome, @status, @comissao)";
                         cmd = new SqlCommand(queryInsert, conexao);
                         cmd.Parameters.AddWithValue("@nome", nomeFuncionario);
@@ -193,9 +210,8 @@ namespace AppDelivery
                 }
             }
 
-            // Recarrega os dados e volta ao estado inicial do formulário.
-            CarregarFuncionarios();
             ConfigurarFormularioInicial();
+            CarregarFuncionarios();
         }
 
         // Evento de clique do botão "Cancelar".
@@ -213,23 +229,33 @@ namespace AppDelivery
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
+                // Função auxiliar para garantir que o valor não seja nulo e retorne string vazia se for.
+                Func<string, string> GetSafeString = (colName) =>
+                    row.Cells[colName].Value == null || row.Cells[colName].Value == DBNull.Value
+                    ? string.Empty
+                    : row.Cells[colName].Value.ToString();
+
                 // Preenche os TextBoxes.
-                txtID.Text = row.Cells["id"].Value.ToString();
-                txtNome.Text = row.Cells["nome"].Value.ToString();
-                txtComissao.Text = row.Cells["comissao"].Value.ToString();
+                txtID.Text = GetSafeString("id_atendente");
+                txtNome.Text = GetSafeString("nome");
+                txtComissao.Text = GetSafeString("comissao");
 
                 // Preenche o ComboBox com base no valor do banco de dados.
-                string status = row.Cells["status"].Value.ToString();
+                string status = GetSafeString("status");
                 if (status == "A")
                 {
                     cmbStatus.SelectedIndex = 0; // Define o índice do ComboBox para "Ativo"
                 }
-                else
+                else if (status == "I") // Adicionei 'I' como condição segura
                 {
                     cmbStatus.SelectedIndex = 1; // Define o índice do ComboBox para "Inativo"
                 }
+                else
+                {
+                    cmbStatus.SelectedIndex = -1; // Se for um valor inesperado, não selecione nada.
+                }
 
-                // Habilita o botão de editar, pois agora há uma linha selecionada.
+                // Habilita o botão de editar.
                 btnEditar.Enabled = true;
             }
         }
