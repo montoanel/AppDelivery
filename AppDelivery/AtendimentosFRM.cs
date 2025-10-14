@@ -269,5 +269,53 @@ namespace AppDelivery
                 pictureBox.BackColor = Color.LightGray;
             }
         }
+
+        private void pctDelivery_MouseLeave(object sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                pictureBox.BackColor = Color.Transparent;
+            }
+        }
+
+        private void pctDelivery_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                pictureBox.BackColor = Color.LightGray;
+            }
+        }
+
+        private void pctRetiradaBalcao_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                pictureBox.BackColor = Color.LightGray;
+            }
+        }
+
+        private void pctRetiradaBalcao_MouseLeave(object sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                pictureBox.BackColor = Color.Transparent;
+            }
+        }
+
+        private void pctEncomenda_MouseLeave(object sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                pictureBox.BackColor = Color.Transparent;
+            }
+        }
+
+        private void pctEncomenda_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                pictureBox.BackColor = Color.LightGray;
+            }
+        }
     }
 }

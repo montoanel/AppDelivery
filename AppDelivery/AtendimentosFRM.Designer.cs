@@ -30,11 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AtendimentosFRM));
             panel1 = new Panel();
-            pctReceber = new PictureBox();
+            groupBox1 = new GroupBox();
             pctEncomenda = new PictureBox();
+            pctVendaRapida = new PictureBox();
             pctRetiradaBalcao = new PictureBox();
             pctDelivery = new PictureBox();
-            pctVendaRapida = new PictureBox();
+            pctReceber = new PictureBox();
             panel2 = new Panel();
             checkBoxEmTransito = new CheckBox();
             dateTimePicker2 = new DateTimePicker();
@@ -53,79 +54,109 @@
             lblTipoAtendimento = new Label();
             dataGridView1 = new DataGridView();
             panel3 = new Panel();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            groupBox2 = new GroupBox();
+            label5 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pctReceber).BeginInit();
+            groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pctEncomenda).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctVendaRapida).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctRetiradaBalcao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctDelivery).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pctVendaRapida).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctReceber).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(pctReceber);
-            panel1.Controls.Add(pctEncomenda);
-            panel1.Controls.Add(pctRetiradaBalcao);
-            panel1.Controls.Add(pctDelivery);
-            panel1.Controls.Add(pctVendaRapida);
+            panel1.Controls.Add(groupBox2);
+            panel1.Controls.Add(groupBox1);
             panel1.Location = new Point(1, 1);
             panel1.Name = "panel1";
             panel1.Size = new Size(1895, 120);
             panel1.TabIndex = 0;
             // 
-            // pctReceber
+            // groupBox1
             // 
-            pctReceber.Image = Properties.Resources.forma_de_pagamento;
-            pctReceber.Location = new Point(530, 20);
-            pctReceber.Name = "pctReceber";
-            pctReceber.Size = new Size(96, 75);
-            pctReceber.SizeMode = PictureBoxSizeMode.StretchImage;
-            pctReceber.TabIndex = 5;
-            pctReceber.TabStop = false;
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(pctEncomenda);
+            groupBox1.Controls.Add(pctVendaRapida);
+            groupBox1.Controls.Add(pctRetiradaBalcao);
+            groupBox1.Controls.Add(pctDelivery);
+            groupBox1.Location = new Point(8, 7);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(618, 111);
+            groupBox1.TabIndex = 6;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Atendimentos";
             // 
             // pctEncomenda
             // 
             pctEncomenda.Image = (Image)resources.GetObject("pctEncomenda.Image");
-            pctEncomenda.Location = new Point(400, 10);
+            pctEncomenda.Location = new Point(458, 22);
             pctEncomenda.Name = "pctEncomenda";
-            pctEncomenda.Size = new Size(118, 93);
+            pctEncomenda.Size = new Size(79, 53);
             pctEncomenda.SizeMode = PictureBoxSizeMode.StretchImage;
             pctEncomenda.TabIndex = 4;
             pctEncomenda.TabStop = false;
-            // 
-            // pctRetiradaBalcao
-            // 
-            pctRetiradaBalcao.Image = (Image)resources.GetObject("pctRetiradaBalcao.Image");
-            pctRetiradaBalcao.Location = new Point(270, 10);
-            pctRetiradaBalcao.Name = "pctRetiradaBalcao";
-            pctRetiradaBalcao.Size = new Size(118, 93);
-            pctRetiradaBalcao.SizeMode = PictureBoxSizeMode.StretchImage;
-            pctRetiradaBalcao.TabIndex = 3;
-            pctRetiradaBalcao.TabStop = false;
-            // 
-            // pctDelivery
-            // 
-            pctDelivery.Image = (Image)resources.GetObject("pctDelivery.Image");
-            pctDelivery.Location = new Point(140, 10);
-            pctDelivery.Name = "pctDelivery";
-            pctDelivery.Size = new Size(118, 93);
-            pctDelivery.SizeMode = PictureBoxSizeMode.StretchImage;
-            pctDelivery.TabIndex = 2;
-            pctDelivery.TabStop = false;
+            pctEncomenda.MouseEnter += pctEncomenda_MouseEnter;
+            pctEncomenda.MouseLeave += pctEncomenda_MouseLeave;
             // 
             // pctVendaRapida
             // 
             pctVendaRapida.Image = Properties.Resources.add;
-            pctVendaRapida.Location = new Point(10, 10);
+            pctVendaRapida.Location = new Point(111, 22);
             pctVendaRapida.Name = "pctVendaRapida";
-            pctVendaRapida.Size = new Size(118, 93);
+            pctVendaRapida.Size = new Size(79, 53);
             pctVendaRapida.SizeMode = PictureBoxSizeMode.StretchImage;
             pctVendaRapida.TabIndex = 1;
             pctVendaRapida.TabStop = false;
             pctVendaRapida.MouseEnter += pctNovoAtendimento_MouseEnter;
             pctVendaRapida.MouseLeave += pctNovoAtendimento_MouseLeave;
+            // 
+            // pctRetiradaBalcao
+            // 
+            pctRetiradaBalcao.Image = (Image)resources.GetObject("pctRetiradaBalcao.Image");
+            pctRetiradaBalcao.Location = new Point(335, 22);
+            pctRetiradaBalcao.Name = "pctRetiradaBalcao";
+            pctRetiradaBalcao.Size = new Size(79, 53);
+            pctRetiradaBalcao.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctRetiradaBalcao.TabIndex = 3;
+            pctRetiradaBalcao.TabStop = false;
+            pctRetiradaBalcao.MouseEnter += pctRetiradaBalcao_MouseEnter;
+            pctRetiradaBalcao.MouseLeave += pctRetiradaBalcao_MouseLeave;
+            // 
+            // pctDelivery
+            // 
+            pctDelivery.Image = (Image)resources.GetObject("pctDelivery.Image");
+            pctDelivery.Location = new Point(227, 22);
+            pctDelivery.Name = "pctDelivery";
+            pctDelivery.Size = new Size(79, 53);
+            pctDelivery.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctDelivery.TabIndex = 2;
+            pctDelivery.TabStop = false;
+            pctDelivery.MouseEnter += pctDelivery_MouseEnter;
+            pctDelivery.MouseLeave += pctDelivery_MouseLeave;
+            // 
+            // pctReceber
+            // 
+            pctReceber.Image = Properties.Resources.forma_de_pagamento;
+            pctReceber.Location = new Point(492, 23);
+            pctReceber.Name = "pctReceber";
+            pctReceber.Size = new Size(79, 53);
+            pctReceber.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctReceber.TabIndex = 5;
+            pctReceber.TabStop = false;
+            pctReceber.MouseEnter += pctEncomenda_MouseEnter;
+            pctReceber.MouseLeave += pctEncomenda_MouseLeave;
             // 
             // panel2
             // 
@@ -144,9 +175,9 @@
             panel2.Controls.Add(checkBox2);
             panel2.Controls.Add(checkBox1);
             panel2.Controls.Add(lblTipoAtendimento);
-            panel2.Location = new Point(1, 125);
+            panel2.Location = new Point(1, 127);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1220, 142);
+            panel2.Size = new Size(1220, 132);
             panel2.TabIndex = 1;
             // 
             // checkBoxEmTransito
@@ -323,6 +354,67 @@
             panel3.Size = new Size(1898, 66);
             panel3.TabIndex = 2;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(113, 81);
+            label1.Name = "label1";
+            label1.Size = new Size(75, 21);
+            label1.TabIndex = 7;
+            label1.Text = "V. Rápida";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(233, 81);
+            label2.Name = "label2";
+            label2.Size = new Size(67, 21);
+            label2.TabIndex = 8;
+            label2.Text = "Delivery";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(338, 78);
+            label3.Name = "label3";
+            label3.Size = new Size(73, 21);
+            label3.TabIndex = 9;
+            label3.Text = "V. Buscar";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(452, 78);
+            label4.Name = "label4";
+            label4.Size = new Size(91, 21);
+            label4.TabIndex = 10;
+            label4.Text = "Encomenda";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(label5);
+            groupBox2.Controls.Add(pctReceber);
+            groupBox2.Location = new Point(800, 7);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(618, 111);
+            groupBox2.TabIndex = 7;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Informações Financeiras";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(505, 79);
+            label5.Name = "label5";
+            label5.Size = new Size(66, 21);
+            label5.TabIndex = 11;
+            label5.Text = "Receber";
+            // 
             // AtendimentosFRM
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -335,14 +427,18 @@
             Name = "AtendimentosFRM";
             Text = "AtendimentosFRM";
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pctReceber).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pctEncomenda).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctVendaRapida).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctRetiradaBalcao).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctDelivery).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pctVendaRapida).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctReceber).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -372,5 +468,12 @@
         private PictureBox pctReceber;
         private Panel panel3;
         private CheckBox checkBoxEmTransito;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private Label label5;
     }
 }
