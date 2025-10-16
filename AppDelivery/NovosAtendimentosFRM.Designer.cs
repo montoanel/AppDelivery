@@ -35,6 +35,7 @@
             lblTipoAtendimento = new Label();
             txtTipoAtendimento = new TextBox();
             groupBoxAtendente = new GroupBox();
+            textBox1 = new TextBox();
             lblAtendente = new Label();
             txtInserirAtendente = new TextBox();
             btnInserirAtendente = new Button();
@@ -57,6 +58,7 @@
             lblTotalGeral = new Label();
             groupBox1 = new GroupBox();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            textBox2 = new TextBox();
             panelHeader.SuspendLayout();
             groupBoxAtendente.SuspendLayout();
             groupBoxCliente.SuspendLayout();
@@ -136,6 +138,7 @@
             // 
             // groupBoxAtendente
             // 
+            groupBoxAtendente.Controls.Add(textBox1);
             groupBoxAtendente.Controls.Add(lblAtendente);
             groupBoxAtendente.Controls.Add(txtInserirAtendente);
             groupBoxAtendente.Controls.Add(btnInserirAtendente);
@@ -146,33 +149,43 @@
             groupBoxAtendente.TabStop = false;
             groupBoxAtendente.Text = "Atendente";
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(80, 27);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "ID";
+            textBox1.Size = new Size(45, 31);
+            textBox1.TabIndex = 3;
+            // 
             // lblAtendente
             // 
             lblAtendente.Location = new Point(10, 30);
             lblAtendente.Name = "lblAtendente";
-            lblAtendente.Size = new Size(70, 23);
+            lblAtendente.Size = new Size(78, 23);
             lblAtendente.TabIndex = 0;
-            lblAtendente.Text = "Buscar:";
+            lblAtendente.Text = "Codigo";
+            lblAtendente.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtInserirAtendente
             // 
-            txtInserirAtendente.Location = new Point(80, 26);
+            txtInserirAtendente.Location = new Point(131, 27);
             txtInserirAtendente.Name = "txtInserirAtendente";
             txtInserirAtendente.PlaceholderText = "Nome, CPF, Telefone";
-            txtInserirAtendente.Size = new Size(275, 31);
+            txtInserirAtendente.Size = new Size(242, 31);
             txtInserirAtendente.TabIndex = 1;
             // 
             // btnInserirAtendente
             // 
-            btnInserirAtendente.Location = new Point(366, 25);
+            btnInserirAtendente.Location = new Point(379, 26);
             btnInserirAtendente.Name = "btnInserirAtendente";
             btnInserirAtendente.Size = new Size(75, 32);
             btnInserirAtendente.TabIndex = 2;
-            btnInserirAtendente.Text = "Inserir";
+            btnInserirAtendente.Text = "Buscar";
             // 
             // groupBoxCliente
             // 
             groupBoxCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBoxCliente.Controls.Add(textBox2);
             groupBoxCliente.Controls.Add(lblCliente);
             groupBoxCliente.Controls.Add(txtInserirCliente);
             groupBoxCliente.Controls.Add(btnInserirCliente);
@@ -194,10 +207,10 @@
             // txtInserirCliente
             // 
             txtInserirCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtInserirCliente.Location = new Point(80, 26);
+            txtInserirCliente.Location = new Point(137, 26);
             txtInserirCliente.Name = "txtInserirCliente";
             txtInserirCliente.PlaceholderText = "Nome, CPF, Telefone";
-            txtInserirCliente.Size = new Size(1162, 31);
+            txtInserirCliente.Size = new Size(1105, 31);
             txtInserirCliente.TabIndex = 1;
             // 
             // btnInserirCliente
@@ -342,6 +355,14 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Totais";
             // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(86, 27);
+            textBox2.Name = "textBox2";
+            textBox2.PlaceholderText = "ID";
+            textBox2.Size = new Size(45, 31);
+            textBox2.TabIndex = 4;
+            // 
             // NovosAtendimentosFRM
             // 
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -408,5 +429,7 @@
         private Label lblTotalGeral;
         private GroupBox groupBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private TextBox textBox1;
+        private TextBox textBox2;
     }
 }
