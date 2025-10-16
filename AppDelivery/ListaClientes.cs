@@ -17,6 +17,11 @@ namespace AppDelivery
     {
         private string connectionString;
 
+
+        // Adicione estas propriedades públicas à classe ListaClientes
+        public int ClienteSelecionadoID { get; private set; }
+        public string ClienteSelecionadoNome { get; private set; }
+
         public ListaClientes()
         {
             InitializeComponent();
@@ -229,5 +234,37 @@ namespace AppDelivery
             }
         }
 
+        private void btnAplicar_Click(object sender, EventArgs e)
+        {
+            // 1. Verifica se alguma linha foi selecionada no DataGridView
+            // Assumindo que a grade se chama dgvListaClientes
+            if (dgvListaClientes.SelectedRows.Count > 0)
+            {
+                // 2. Obtém a primeira linha selecionada
+                DataGridViewRow linhaSelecionada = dgvListaClientes.SelectedRows[0];
+
+                try
+                {
+                    // 3. Pega o ID e o Nome da linha e armazena nas propriedades públicas
+                    // IMPORTANTE: Use os nomes reais das colunas da sua tabela 'tb_clientes'.
+
+                    this.ClienteSelecionadoID = Convert.ToInt32(linhaSelecionada.Cells["cod_cliente"].Value);
+                    this.ClienteSelecionadoNome = linhaSelecionada.Cells["nome_cliente"].Value.ToString(); // Assumindo 'nome' é o campo de nome do cliente
+
+                    // 4. Define o DialogResult como OK para sinalizar sucesso e fechar o formulário
+                    this.DialogResult = DialogResult.OK;
+                }
+                catch (Exception ex)
+                {
+                    // Trata possíveis erros de conversão ou coluna inexistente
+                    MessageBox.Show($"Erro ao capturar dados do cliente: {ex.Message}", "Erro de Dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // 5. Exibe um aviso se nenhuma linha foi selecionada
+                MessageBox.Show("Por favor, selecione um cliente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

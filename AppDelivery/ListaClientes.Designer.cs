@@ -35,6 +35,7 @@
             cmbListaFiltroClientes = new ComboBox();
             txtListarCliente = new TextBox();
             btnFiltrar = new Button();
+            btnAplicar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvListaClientes).BeginInit();
             SuspendLayout();
             // 
@@ -105,11 +106,22 @@
             btnFiltrar.UseVisualStyleBackColor = true;
             btnFiltrar.Click += btnFiltrar_Click;
             // 
+            // btnAplicar
+            // 
+            btnAplicar.Location = new Point(802, 855);
+            btnAplicar.Name = "btnAplicar";
+            btnAplicar.Size = new Size(112, 34);
+            btnAplicar.TabIndex = 7;
+            btnAplicar.Text = "Aplicar";
+            btnAplicar.UseVisualStyleBackColor = true;
+            btnAplicar.Click += btnAplicar_Click;
+            // 
             // ListaClientes
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1898, 1024);
+            Controls.Add(btnAplicar);
             Controls.Add(btnFiltrar);
             Controls.Add(txtListarCliente);
             Controls.Add(cmbListaFiltroClientes);
@@ -132,5 +144,6 @@
         private ComboBox cmbListaFiltroClientes;
         private TextBox txtListarCliente;
         private Button btnFiltrar;
+        private Button btnAplicar;
     }
 }

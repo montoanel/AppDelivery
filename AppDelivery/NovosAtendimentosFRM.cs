@@ -358,5 +358,48 @@ namespace AppDelivery
             }
         }
 
+        private void btnInserirAtendente_Click(object sender, EventArgs e)
+        {
+            // 1. Cria uma nova instância do formulário de Funcionários
+            FuncionariosFRM formFuncionarios = new FuncionariosFRM();
+
+            // 2. Exibe o formulário de forma modal e verifica o resultado
+            if (formFuncionarios.ShowDialog() == DialogResult.OK)
+            {
+                // Se o resultado for OK, significa que o usuário selecionou um atendente e clicou em Aplicar
+
+                // 3. Pega o ID e o Nome das propriedades públicas do formulário de funcionários
+
+                // A. Armazena o ID (para gravação no banco de dados)
+                // O ID será armazenado em um campo de texto ou em uma variável de classe (como a anterior). 
+                // Vamos usar o campo de texto conforme solicitado:
+                txtidatendente.Text = formFuncionarios.AtendenteSelecionadoID.ToString();
+
+                // B. Armazena o Nome (para exibição na tela)
+                txtNomeAtendente.Text = formFuncionarios.AtendenteSelecionadoNome;
+            }
+
+            // O formulário FuncionariosFRM é automaticamente descartado ao sair deste bloco.
+        }
+
+        private void btnInserirCliente_Click(object sender, EventArgs e)
+        {
+            // 1. Cria uma nova instância do formulário de Clientes
+            ListaClientes formClientes = new ListaClientes();
+
+            // 2. Exibe o formulário de forma modal e verifica o resultado
+            if (formClientes.ShowDialog() == DialogResult.OK)
+            {
+                // Se o resultado for OK, significa que o usuário selecionou um cliente e clicou em Aplicar
+
+                // 3. Pega o ID e o Nome das propriedades públicas do formulário de clientes
+
+                // A. Armazena o ID (para gravação no banco de dados)
+                txtIDcliente.Text = formClientes.ClienteSelecionadoID.ToString();
+
+                // B. Armazena o Nome (para exibição na tela)
+                txtNomeCliente.Text = formClientes.ClienteSelecionadoNome;
+            }
+        }
     }
 }

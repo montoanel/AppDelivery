@@ -42,6 +42,7 @@
             btnSalvar = new Button();
             cmbStatus = new ComboBox();
             btnCancelar = new Button();
+            btnAplicar = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -177,11 +178,22 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
+            // btnAplicar
+            // 
+            btnAplicar.Location = new Point(396, 115);
+            btnAplicar.Name = "btnAplicar";
+            btnAplicar.Size = new Size(112, 34);
+            btnAplicar.TabIndex = 13;
+            btnAplicar.Text = "Aplicar";
+            btnAplicar.UseVisualStyleBackColor = true;
+            btnAplicar.Click += btnAplicar_Click;
+            // 
             // FuncionariosFRM
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(528, 450);
+            Controls.Add(btnAplicar);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
             Controls.Add(btnEditar);
@@ -220,5 +232,6 @@
         private Button btnSalvar;
         private ComboBox cmbStatus;
         private Button btnCancelar;
+        private Button btnAplicar;
     }
 }

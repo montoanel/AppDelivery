@@ -8,6 +8,14 @@ namespace AppDelivery
 {
     public partial class FuncionariosFRM : Form
     {
+
+        // =======================================================
+        // >> ADICIONAR AQUI: PROPRIEDADES PÚBLICAS PARA RETORNO
+        // =======================================================
+        public int AtendenteSelecionadoID { get; private set; }
+        public string AtendenteSelecionadoNome { get; private set; }
+        // =======================================================
+
         // Variável para armazenar a string de conexão do banco de dados.
         private string connectionString;
 
@@ -17,6 +25,7 @@ namespace AppDelivery
         public FuncionariosFRM()
         {
             InitializeComponent();
+
 
             // Pega a string de conexão do arquivo App.config.
             connectionString = ConfigurationManager.ConnectionStrings["MinhaConexaoDB"].ConnectionString;
@@ -262,6 +271,39 @@ namespace AppDelivery
 
                 // Habilita o botão de editar.
                 btnEditar.Enabled = true;
+            }
+        }
+
+        private void btnAplicar_Click(object sender, EventArgs e)
+        {
+            // 1. Verifica se alguma linha foi selecionada no DataGridView (assumindo o nome dataGridView1)
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // 2. Obtém a primeira linha selecionada
+                DataGridViewRow linhaSelecionada = dataGridView1.SelectedRows[0];
+
+                try
+                {
+                    // 3. Pega o ID e o Nome da linha e armazena nas propriedades públicas
+                    // IMPORTANTE: Certifique-se de que os nomes das colunas 'id_atendente' e 'nome'
+                    // no seu DataGridView estão CORRETOS.
+
+                    this.AtendenteSelecionadoID = Convert.ToInt32(linhaSelecionada.Cells["id_atendente"].Value);
+                    this.AtendenteSelecionadoNome = linhaSelecionada.Cells["nome"].Value.ToString();
+
+                    // 4. Define o DialogResult como OK para sinalizar sucesso e fechar o formulário
+                    this.DialogResult = DialogResult.OK;
+                }
+                catch (Exception ex)
+                {
+                    // Trata possíveis erros de conversão ou coluna inexistente
+                    MessageBox.Show($"Erro ao capturar dados do funcionário: {ex.Message}", "Erro de Dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // 5. Exibe um aviso se nenhuma linha foi selecionada
+                MessageBox.Show("Por favor, selecione um atendente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
