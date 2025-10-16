@@ -182,6 +182,7 @@
             pctEncomenda.SizeMode = PictureBoxSizeMode.StretchImage;
             pctEncomenda.TabIndex = 4;
             pctEncomenda.TabStop = false;
+            pctEncomenda.Click += pctEncomenda_Click;
             pctEncomenda.MouseEnter += pctEncomenda_MouseEnter;
             pctEncomenda.MouseLeave += pctEncomenda_MouseLeave;
             // 
@@ -206,6 +207,7 @@
             pctRetiradaBalcao.SizeMode = PictureBoxSizeMode.StretchImage;
             pctRetiradaBalcao.TabIndex = 3;
             pctRetiradaBalcao.TabStop = false;
+            pctRetiradaBalcao.Click += pctRetiradaBalcao_Click;
             pctRetiradaBalcao.MouseEnter += pctRetiradaBalcao_MouseEnter;
             pctRetiradaBalcao.MouseLeave += pctRetiradaBalcao_MouseLeave;
             // 

@@ -344,5 +344,53 @@ namespace AppDelivery
                                 "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void pctRetiradaBalcao_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Define o tipo de atendimento como Retirada (valor 2 no enum)
+                TipoAtendimento tipo = TipoAtendimento.Retirada;
+
+                // Cria e abre o formulário de novo atendimento, passando o TIPO
+                using (NovosAtendimentosFRM novoAtendimento = new NovosAtendimentosFRM(tipo))
+                {
+                    // Abre o novo formulário como modal
+                    novoAtendimento.ShowDialog();
+                }
+
+                // Após fechar o formulário de novo atendimento, atualiza a lista principal
+                CarregarAtendimentos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao iniciar o novo atendimento de Retirada/Balcão: " + ex.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void pctEncomenda_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Define o tipo de atendimento como Encomenda (valor 3 no enum)
+                TipoAtendimento tipo = TipoAtendimento.Encomenda;
+
+                // Cria e abre o formulário de novo atendimento, passando o TIPO
+                using (NovosAtendimentosFRM novoAtendimento = new NovosAtendimentosFRM(tipo))
+                {
+                    // Abre o novo formulário como modal
+                    novoAtendimento.ShowDialog();
+                }
+
+                // Após fechar o formulário de novo atendimento, atualiza a lista principal
+                CarregarAtendimentos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao iniciar o novo atendimento de Encomenda: " + ex.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
