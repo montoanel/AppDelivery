@@ -24,6 +24,72 @@ namespace AppDelivery
             InitializeComponent();
             connectionString = ConfigurationManager.ConnectionStrings["MinhaConexaoDB"].ConnectionString;
             this.Load += new EventHandler(NovosAtendimentosFRM_Load);
+            this.FormClosing += NovosAtendimentosFRM_FormClosing;
+        }
+
+        // ========================================================
+        // NOVO MÉTODO: INTERCEPTA O FECHAMENTO DO FORMULÁRIO (BOTÃO X)
+        // ========================================================
+        private void NovosAtendimentosFRM_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Apenas intercepta o fechamento se o motivo for o clique do usuário ou Close()
+            if (e.CloseReason == CloseReason.UserClosing || e.CloseReason == CloseReason.None)
+            {
+                // Se o atendimento não foi "concluído" (salvo de forma definitiva)
+                // Você precisará de uma variável de estado para saber se o atendimento foi FINALIZADO com sucesso
+                // Visto que não temos essa variável, assumimos que, ao fechar, queremos CANCELAR/DESISTIR.
+
+                DialogResult resultado = MessageBox.Show(
+                    "Tem certeza que deseja desistir de abrir este novo atendimento? Todas as alterações serão perdidas.",
+                    "Confirmar Desistência",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (resultado == DialogResult.Yes)
+                {
+                    // 1. Excluir o registro provisório do banco de dados
+                    ExcluirAtendimentoProvisorio();
+
+                    // 2. Permite que o formulário feche
+                    e.Cancel = false;
+                }
+                else
+                {
+                    // 3. Cancela o fechamento e mantém o formulário aberto para edição
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        // ========================================================
+        // NOVO MÉTODO: EXCLUI O REGISTRO INICIAL PROVISÓRIO
+        // ========================================================
+        private void ExcluirAtendimentoProvisorio()
+        {
+            if (this.idAtendimentoAtual > 0)
+            {
+                string query = "DELETE FROM tb_atendimentos WHERE id_atendimento = @IdAtendimento";
+
+                using (SqlConnection conexao = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        conexao.Open();
+                        using (SqlCommand cmd = new SqlCommand(query, conexao))
+                        {
+                            cmd.Parameters.AddWithValue("@IdAtendimento", this.idAtendimentoAtual);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Alerta o usuário que o cancelamento falhou (o registro pode persistir)
+                        MessageBox.Show("Atenção: Falha ao excluir o atendimento inicial provisório:\n" + ex.Message,
+                                        "Erro de Cancelamento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         // 🚨 NOVO CONSTRUTOR: Recebe o tipo de atendimento (PASSO 2)
@@ -360,45 +426,81 @@ namespace AppDelivery
 
         private void btnInserirAtendente_Click(object sender, EventArgs e)
         {
-            // 1. Cria uma nova instância do formulário de Funcionários
             FuncionariosFRM formFuncionarios = new FuncionariosFRM();
 
-            // 2. Exibe o formulário de forma modal e verifica o resultado
             if (formFuncionarios.ShowDialog() == DialogResult.OK)
             {
-                // Se o resultado for OK, significa que o usuário selecionou um atendente e clicou em Aplicar
-
                 // 3. Pega o ID e o Nome das propriedades públicas do formulário de funcionários
 
-                // A. Armazena o ID (para gravação no banco de dados)
-                // O ID será armazenado em um campo de texto ou em uma variável de classe (como a anterior). 
-                // Vamos usar o campo de texto conforme solicitado:
-                txtidatendente.Text = formFuncionarios.AtendenteSelecionadoID.ToString();
+                // A. Armazena o ID no campo de texto
+                int idSelecionado = formFuncionarios.AtendenteSelecionadoID;
+                txtidatendente.Text = idSelecionado.ToString();
 
-                // B. Armazena o Nome (para exibição na tela)
+                // B. Armazena o Nome no campo de texto
                 txtNomeAtendente.Text = formFuncionarios.AtendenteSelecionadoNome;
-            }
 
-            // O formulário FuncionariosFRM é automaticamente descartado ao sair deste bloco.
+                // C. 🚨 NOVO: ATUALIZA A VARIÁVEL DE CLASSE COM O ID SELECIONADO
+                this.idAtendenteSelecionado = idSelecionado;
+
+                // 4. 🚨 NOVO: ATUALIZA O BANCO DE DADOS IMEDIATAMENTE APÓS A SELEÇÃO
+                AtualizarAtendenteClienteNoBanco();
+            }
         }
 
         private void btnInserirCliente_Click(object sender, EventArgs e)
         {
-            // 1. Cria uma nova instância do formulário de Clientes
             ListaClientes formClientes = new ListaClientes();
 
-            // 2. Exibe o formulário de forma modal e verifica o resultado
             if (formClientes.ShowDialog() == DialogResult.OK)
             {
-                // Se o resultado for OK, significa que o usuário selecionou um cliente e clicou em Aplicar
-
                 // 3. Pega o ID e o Nome das propriedades públicas do formulário de clientes
 
-                // A. Armazena o ID (para gravação no banco de dados)
-                txtIDcliente.Text = formClientes.ClienteSelecionadoID.ToString();
+                // A. Armazena o ID no campo de texto
+                int idSelecionado = formClientes.ClienteSelecionadoID;
+                txtIDcliente.Text = idSelecionado.ToString();
 
-                // B. Armazena o Nome (para exibição na tela)
+                // B. Armazena o Nome no campo de texto
                 txtNomeCliente.Text = formClientes.ClienteSelecionadoNome;
+
+                // C. 🚨 NOVO: ATUALIZA A VARIÁVEL DE CLASSE COM O ID SELECIONADO
+                this.idClienteSelecionado = idSelecionado;
+
+                // 4. 🚨 NOVO: ATUALIZA O BANCO DE DADOS IMEDIATAMENTE APÓS A SELEÇÃO
+                AtualizarAtendenteClienteNoBanco();
+            }
+        }
+
+        // ========================================================
+        // NOVO MÉTODO: ATUALIZA OS IDs DE ATENDENTE E CLIENTE NO BANCO
+        // ========================================================
+        private void AtualizarAtendenteClienteNoBanco()
+        {
+            string query = @"
+        UPDATE tb_atendimentos
+        SET id_atendente = @IdAtendente,
+            id_cliente = @IdCliente
+        WHERE id_atendimento = @IdAtendimentoAtual";
+
+            using (SqlConnection conexao = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conexao.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conexao))
+                    {
+                        cmd.Parameters.AddWithValue("@IdAtendente", this.idAtendenteSelecionado);
+                        cmd.Parameters.AddWithValue("@IdCliente", this.idClienteSelecionado);
+                        cmd.Parameters.AddWithValue("@IdAtendimentoAtual", this.idAtendimentoAtual);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    // O usuário pode continuar o atendimento, mas será alertado do erro
+                    MessageBox.Show("Erro ao atualizar IDs de Atendente/Cliente no banco:\n" + ex.Message,
+                                    "Erro de BD", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
