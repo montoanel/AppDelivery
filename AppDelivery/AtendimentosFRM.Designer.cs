@@ -149,9 +149,9 @@
             label3.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(338, 78);
             label3.Name = "label3";
-            label3.Size = new Size(73, 21);
+            label3.Size = new Size(68, 21);
             label3.TabIndex = 9;
-            label3.Text = "V. Buscar";
+            label3.Text = "Retirada";
             // 
             // label2
             // 

@@ -73,7 +73,7 @@ namespace AppDelivery
             {
                 { checkBox5, "VendaRapida" },
                 { checkBox1, "Delivery" },
-                { checkBox2, "RetiradaBalcao" },
+                { checkBox2, "Retirada" },
                 { checkBox3, "Encomenda" }
             };
 
