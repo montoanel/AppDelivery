@@ -18,6 +18,9 @@ namespace AppDelivery
         private int idAtendenteSelecionado = 0; // 🚨 NOVO: ID do atendente vinculado (0 inicialmente)
         private int idClienteSelecionado = 0;   // 🚨 NOVO: ID do cliente vinculado (0 inicialmente)
 
+        // 🚨 NOVO: Flag para indicar que o atendimento foi concluído com sucesso
+        private bool atendimentoConcluido = false;
+
         // CONSTRUTOR PADRÃO EXISTENTE (mantido para compatibilidade com o designer)
         public NovosAtendimentosFRM()
         {
@@ -32,13 +35,16 @@ namespace AppDelivery
         // ========================================================
         private void NovosAtendimentosFRM_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Apenas intercepta o fechamento se o motivo for o clique do usuário ou Close()
+            // 🚨 ATUALIZADO: Se o atendimento foi concluído com sucesso, permite o fechamento
+            if (this.atendimentoConcluido)
+            {
+                e.Cancel = false;
+                return;
+            }
+
+            // Antiga lógica de cancelamento (se não foi concluído)
             if (e.CloseReason == CloseReason.UserClosing || e.CloseReason == CloseReason.None)
             {
-                // Se o atendimento não foi "concluído" (salvo de forma definitiva)
-                // Você precisará de uma variável de estado para saber se o atendimento foi FINALIZADO com sucesso
-                // Visto que não temos essa variável, assumimos que, ao fechar, queremos CANCELAR/DESISTIR.
-
                 DialogResult resultado = MessageBox.Show(
                     "Tem certeza que deseja desistir de abrir este novo atendimento? Todas as alterações serão perdidas.",
                     "Confirmar Desistência",
@@ -48,15 +54,11 @@ namespace AppDelivery
 
                 if (resultado == DialogResult.Yes)
                 {
-                    // 1. Excluir o registro provisório do banco de dados
                     ExcluirAtendimentoProvisorio();
-
-                    // 2. Permite que o formulário feche
                     e.Cancel = false;
                 }
                 else
                 {
-                    // 3. Cancela o fechamento e mantém o formulário aberto para edição
                     e.Cancel = true;
                 }
             }
@@ -502,6 +504,195 @@ namespace AppDelivery
                                     "Erro de BD", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        // Em NovosAtendimentosFRM.cs
+
+        private void btnConcluir_Click(object sender, EventArgs e)
+        {
+            // Verifica se há itens na grade
+            if (dgvProdutos.Rows.Count == 0)
+            {
+                MessageBox.Show("Não é possível concluir um atendimento sem produtos!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // 1. Gravar os ITENS do Grid na tabela tb_itens_atendimento
+                SalvarItensNoBanco();
+
+                // 2. Atualizar o CABEÇALHO na tb_atendimentos (Total, Status, Observação)
+                decimal valorTotalLiquido = ObterValorTotalLiquido();
+                string observacao = txtObservacao.Text.Trim();
+                string novoStatus = "Em atendimento";
+
+                AtualizarCabecalhoFinal(valorTotalLiquido, novoStatus, observacao);
+
+                // 3. Define a flag para evitar o cancelamento
+                this.atendimentoConcluido = true;
+                this.DialogResult = DialogResult.OK;
+
+                // =========================================================
+                // 🚨 NOVIDADE: EXIBIÇÃO DA MENSAGEM DE SUCESSO
+                // =========================================================
+
+                // Obtendo a Data/Hora de abertura
+                // Se você não armazenou a data de abertura em uma variável de classe:
+                string dataInicio = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+
+                // Se você não tem a data de abertura, use a data e hora atual como referência
+                // (melhor seria ter armazenado DateTime.Now no construtor)
+
+                string mensagemSucesso =
+                    $"Atendimento concluído com sucesso!\n\n" +
+                    $"ID: {this.idAtendimentoAtual}\n" +
+                    $"Número: {this.proximoNumeroAtendimento}\n" +
+                    $"Tipo: {this.tipoAtendimento.ToString()}\n" +
+                    $"Data/Hora de Conclusão: {dataInicio}"; // Usando data/hora atual (de conclusão)
+
+                // Exibe o MessageBox e espera o usuário clicar em OK
+                MessageBox.Show(
+                    mensagemSucesso,
+                    "Atendimento Concluído",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                // 4. Fechar o formulário (só depois que o OK for clicado)
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                // Se a gravação falhar, alertamos o usuário e não fechamos
+                MessageBox.Show("Erro ao concluir e salvar o atendimento:\n" + ex.Message,
+                                "Erro Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.atendimentoConcluido = false;
+            }
+        }
+
+        // Em NovosAtendimentosFRM.cs
+
+        private void AtualizarCabecalhoFinal(decimal valorTotal, string status, string observacao)
+        {
+            string query = @"
+        UPDATE tb_atendimentos
+        SET 
+            valor_total_liquido = @ValorTotal,
+            valor_total_bruto = @ValorTotal, -- Assumindo que Liquido = Bruto se não houver desconto
+            status_atendimento = @Status,
+            observacoes = @Observacao
+        WHERE 
+            id_atendimento = @IdAtendimentoAtual";
+
+            using (SqlConnection conexao = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conexao.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conexao))
+                    {
+                        cmd.Parameters.AddWithValue("@ValorTotal", valorTotal);
+                        cmd.Parameters.AddWithValue("@Status", status);
+                        cmd.Parameters.AddWithValue("@Observacao", observacao);
+                        cmd.Parameters.AddWithValue("@IdAtendimentoAtual", this.idAtendimentoAtual);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception("Falha ao atualizar o cabeçalho final do atendimento.", ex);
+                }
+            }
+        }
+
+        // Em NovosAtendimentosFRM.cs
+
+        private void SalvarItensNoBanco()
+        {
+            string query = @"
+        INSERT INTO tb_itens_atendimento (
+            id_atendimento, id_produto, quantidade, valor_unitario, 
+            valor_total_item, valor_desconto_item, numero_sequencial
+        )
+        VALUES (
+            @IdAtendimento, @IdProduto, @Quantidade, @ValorUnitario, 
+            @ValorTotalItem, @ValorDescontoItem, @NumeroSequencial
+        )";
+
+            using (SqlConnection conexao = new SqlConnection(connectionString))
+            {
+                conexao.Open();
+
+                // Usamos uma transação para garantir que, se um item falhar, todos os outros sejam revertidos
+                using (SqlTransaction transacao = conexao.BeginTransaction())
+                {
+                    try
+                    {
+                        int sequencial = 1;
+                        foreach (DataGridViewRow row in dgvProdutos.Rows)
+                        {
+                            // 🚨 IMPORTANT: Garanta que as colunas 'id_produto', 'quantidade', 'preco' e 'total' existem e contêm os dados
+                            int idProduto = Convert.ToInt32(row.Cells["id_produto"].Value);
+                            int quantidade = Convert.ToInt32(row.Cells["quantidade"].Value);
+                            decimal precoUnitario = Convert.ToDecimal(row.Cells["preco"].Value);
+                            decimal totalItem = Convert.ToDecimal(row.Cells["total"].Value);
+
+                            using (SqlCommand cmd = new SqlCommand(query, conexao, transacao))
+                            {
+                                cmd.Parameters.AddWithValue("@IdAtendimento", this.idAtendimentoAtual);
+                                cmd.Parameters.AddWithValue("@IdProduto", idProduto);
+                                cmd.Parameters.AddWithValue("@Quantidade", quantidade);
+                                cmd.Parameters.AddWithValue("@ValorUnitario", precoUnitario);
+                                cmd.Parameters.AddWithValue("@ValorTotalItem", totalItem);
+                                cmd.Parameters.AddWithValue("@ValorDescontoItem", 0.00M); // Mantendo 0.00 por enquanto
+                                cmd.Parameters.AddWithValue("@NumeroSequencial", sequencial++);
+
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transacao.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transacao.Rollback();
+                        throw new Exception("Falha ao salvar itens do atendimento no banco de dados.", ex);
+                    }
+                }
+            }
+        }
+
+        // 🔸 Método auxiliar para obter o valor total (você já o calcula na tela)
+        private decimal ObterValorTotalLiquido()
+        {
+            // Extrai o valor do texto do Label (ex: "Total: R$ 41,97")
+            string textoTotal = lblTotalGeral.Text.Replace("Total: ", "").Replace("R$", "").Trim();
+
+            // Tenta converter o valor
+            if (decimal.TryParse(textoTotal, System.Globalization.NumberStyles.Currency, System.Globalization.CultureInfo.CurrentCulture, out decimal total))
+            {
+                return total;
+            }
+            // Se falhar a conversão (o que não deveria ocorrer se o label estiver formatado)
+            // Recorre ao recálculo pelo grid
+            return CalcularTotalGeralGrid();
+        }
+
+        // 🔸 Método auxiliar para recalcular pelo Grid (caso o label falhe)
+        private decimal CalcularTotalGeralGrid()
+        {
+            decimal totalGeral = 0;
+            foreach (DataGridViewRow row in dgvProdutos.Rows)
+            {
+                // Tenta obter o valor da coluna 'total'. Lembre-se que ela é decimal.
+                if (row.Cells["total"].Value != null && decimal.TryParse(row.Cells["total"].Value.ToString(), out decimal totalLinha))
+                {
+                    totalGeral += totalLinha;
+                }
+            }
+            return totalGeral;
         }
     }
 }

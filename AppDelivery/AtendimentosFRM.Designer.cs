@@ -430,27 +430,28 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1885, 676);
+            dataGridView1.Size = new Size(1489, 463);
             dataGridView1.TabIndex = 0;
             // 
             // panel3
             // 
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 956);
+            panel3.Location = new Point(0, 742);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1898, 66);
+            panel3.Size = new Size(1898, 162);
             panel3.TabIndex = 2;
             // 
             // AtendimentosFRM
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1898, 1022);
+            ClientSize = new Size(1898, 904);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(dataGridView1);
             Name = "AtendimentosFRM";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AtendimentosFRM";
             panel1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);

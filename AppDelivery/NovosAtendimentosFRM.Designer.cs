@@ -45,7 +45,7 @@
             txtNomeCliente = new TextBox();
             btnInserirCliente = new Button();
             groupBoxObservacoes = new GroupBox();
-            richTextBoxObs = new RichTextBox();
+            txtObservacao = new RichTextBox();
             groupBoxProdutos = new GroupBox();
             btnBuscarProduto = new Button();
             txtQtd = new TextBox();
@@ -234,7 +234,7 @@
             // groupBoxObservacoes
             // 
             groupBoxObservacoes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxObservacoes.Controls.Add(richTextBoxObs);
+            groupBoxObservacoes.Controls.Add(txtObservacao);
             groupBoxObservacoes.Location = new Point(10, 150);
             groupBoxObservacoes.Name = "groupBoxObservacoes";
             groupBoxObservacoes.Size = new Size(1878, 100);
@@ -242,14 +242,14 @@
             groupBoxObservacoes.TabStop = false;
             groupBoxObservacoes.Text = "Observações";
             // 
-            // richTextBoxObs
+            // txtObservacao
             // 
-            richTextBoxObs.Dock = DockStyle.Fill;
-            richTextBoxObs.Location = new Point(3, 27);
-            richTextBoxObs.Name = "richTextBoxObs";
-            richTextBoxObs.Size = new Size(1872, 70);
-            richTextBoxObs.TabIndex = 0;
-            richTextBoxObs.Text = "";
+            txtObservacao.Dock = DockStyle.Fill;
+            txtObservacao.Location = new Point(3, 27);
+            txtObservacao.Name = "txtObservacao";
+            txtObservacao.Size = new Size(1872, 70);
+            txtObservacao.TabIndex = 0;
+            txtObservacao.Text = "";
             // 
             // groupBoxProdutos
             // 
@@ -337,7 +337,8 @@
             btnConcluir.Name = "btnConcluir";
             btnConcluir.Size = new Size(120, 60);
             btnConcluir.TabIndex = 5;
-            btnConcluir.Text = "F12 - Concluir";
+            btnConcluir.Text = "F12    Concluir";
+            btnConcluir.Click += btnConcluir_Click;
             // 
             // contextMenuStrip1
             // 
@@ -378,6 +379,7 @@
             Controls.Add(panelHeader);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "NovosAtendimentosFRM";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Novos Atendimentos";
             panelHeader.ResumeLayout(false);
             panelHeader.PerformLayout();
@@ -415,7 +417,7 @@
         private Button btnInserirCliente;
 
         private GroupBox groupBoxObservacoes;
-        private RichTextBox richTextBoxObs;
+        private RichTextBox txtObservacao;
 
         private GroupBox groupBoxProdutos;
         private Label lblProduto;
