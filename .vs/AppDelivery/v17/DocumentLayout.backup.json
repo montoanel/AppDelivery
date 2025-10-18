@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\cnpjvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\cnpjvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\funcionariosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\funcionariosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\novosatendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\novosatendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\appdelivery\\funcionariosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\funcionariosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\funcionariosfrm.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\funcionariosfrm.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\appdelivery\\atendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\atendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\appdelivery\\novosatendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\novosatendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\appdelivery\\atendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\atendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\novosatendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\novosatendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\atendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 63,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,29 +66,64 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CnpjValidator.cs",
-              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\CnpjValidator.cs",
-              "RelativeDocumentMoniker": "AppDelivery\\CnpjValidator.cs",
-              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\CnpjValidator.cs",
-              "RelativeToolTip": "AppDelivery\\CnpjValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "NovosAtendimentosFRM.cs",
+              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\NovosAtendimentosFRM.cs",
+              "RelativeDocumentMoniker": "AppDelivery\\NovosAtendimentosFRM.cs",
+              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\NovosAtendimentosFRM.cs",
+              "RelativeToolTip": "AppDelivery\\NovosAtendimentosFRM.cs",
+              "ViewState": "AgIAALUBAAAAAAAAAAAcwMEBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-17T03:22:38.171Z",
+              "WhenOpened": "2025-10-16T14:36:17.832Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AtendimentosFRM.cs",
-              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\AtendimentosFRM.cs",
-              "RelativeDocumentMoniker": "AppDelivery\\AtendimentosFRM.cs",
-              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\AtendimentosFRM.cs",
-              "RelativeToolTip": "AppDelivery\\AtendimentosFRM.cs",
-              "ViewState": "AgIAAMgAAAAAAAAAAAAUwEsAAAAmAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "FuncionariosFRM.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\FuncionariosFRM.cs",
+              "RelativeDocumentMoniker": "AppDelivery\\FuncionariosFRM.cs",
+              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\FuncionariosFRM.cs [Design]",
+              "RelativeToolTip": "AppDelivery\\FuncionariosFRM.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T14:21:57.947Z",
+              "WhenOpened": "2025-10-17T03:31:33.917Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FuncionariosFRM.cs",
+              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\FuncionariosFRM.cs",
+              "RelativeDocumentMoniker": "AppDelivery\\FuncionariosFRM.cs",
+              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\FuncionariosFRM.cs",
+              "RelativeToolTip": "AppDelivery\\FuncionariosFRM.cs",
+              "ViewState": "AgIAAHgBAAAAAAAAAAAkwI0BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T03:31:37.518Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FuncionariosFRM.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\FuncionariosFRM.Designer.cs",
+              "RelativeDocumentMoniker": "AppDelivery\\FuncionariosFRM.Designer.cs",
+              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\FuncionariosFRM.Designer.cs",
+              "RelativeToolTip": "AppDelivery\\FuncionariosFRM.Designer.cs",
+              "ViewState": "AgIAAPIAAAAAAAAAAAAQwPwAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T03:44:42.505Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NovosAtendimentosFRM.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\NovosAtendimentosFRM.cs",
+              "RelativeDocumentMoniker": "AppDelivery\\NovosAtendimentosFRM.cs",
+              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\NovosAtendimentosFRM.cs [Projeto]",
+              "RelativeToolTip": "AppDelivery\\NovosAtendimentosFRM.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T20:02:30.523Z"
             },
             {
               "$type": "Document",
@@ -95,32 +138,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NovosAtendimentosFRM.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\NovosAtendimentosFRM.cs",
-              "RelativeDocumentMoniker": "AppDelivery\\NovosAtendimentosFRM.cs",
-              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\NovosAtendimentosFRM.cs [Design]",
-              "RelativeToolTip": "AppDelivery\\NovosAtendimentosFRM.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T20:02:30.523Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NovosAtendimentosFRM.cs",
-              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\NovosAtendimentosFRM.cs",
-              "RelativeDocumentMoniker": "AppDelivery\\NovosAtendimentosFRM.cs",
-              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\NovosAtendimentosFRM.cs",
-              "RelativeToolTip": "AppDelivery\\NovosAtendimentosFRM.cs",
-              "ViewState": "AgIAAP0BAAAAAAAAAAAgwDsCAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T14:36:17.832Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "AtendimentosFRM.cs",
+              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\AtendimentosFRM.cs",
+              "RelativeDocumentMoniker": "AppDelivery\\AtendimentosFRM.cs",
+              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\AtendimentosFRM.cs",
+              "RelativeToolTip": "AppDelivery\\AtendimentosFRM.cs",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAUwEsAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T14:21:57.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "TipoAtendimento.cs",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\Enums\\TipoAtendimento.cs",
               "RelativeDocumentMoniker": "AppDelivery\\Enums\\TipoAtendimento.cs",
@@ -132,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "AtendimentosFRM.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\AtendimentosFRM.Designer.cs",
               "RelativeDocumentMoniker": "AppDelivery\\AtendimentosFRM.Designer.cs",
@@ -144,7 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\Program.cs",
               "RelativeDocumentMoniker": "AppDelivery\\Program.cs",

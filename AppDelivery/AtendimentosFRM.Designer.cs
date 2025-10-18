@@ -87,7 +87,7 @@
             // 
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(pctReceber);
-            groupBox2.Location = new Point(800, 7);
+            groupBox2.Location = new Point(927, 6);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(420, 111);
             groupBox2.TabIndex = 7;
@@ -128,7 +128,7 @@
             groupBox1.Controls.Add(pctDelivery);
             groupBox1.Location = new Point(8, 7);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(618, 111);
+            groupBox1.Size = new Size(832, 111);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Atendimentos";

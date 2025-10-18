@@ -29,84 +29,80 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            dataGridView1 = new DataGridView();
-            lblID = new Label();
             txtID = new TextBox();
-            txtNome = new TextBox();
+            lblID = new Label();
             lblNome = new Label();
+            txtNome = new TextBox();
             lblStatus = new Label();
             lblComissao = new Label();
             txtComissao = new TextBox();
+            cmbStatus = new ComboBox();
+            dataGridView1 = new DataGridView();
             btnNovo = new Button();
             btnEditar = new Button();
             btnSalvar = new Button();
-            cmbStatus = new ComboBox();
             btnCancelar = new Button();
             btnAplicar = new Button();
+            label1 = new Label();
+            cmbFiltroAtendente = new ComboBox();
+            txtboxFiltro = new TextBox();
+            btnBuscar = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(dataGridView1);
-            panel1.Location = new Point(12, 198);
+            panel1.Controls.Add(txtID);
+            panel1.Controls.Add(lblID);
+            panel1.Controls.Add(lblNome);
+            panel1.Controls.Add(txtNome);
+            panel1.Controls.Add(lblStatus);
+            panel1.Controls.Add(lblComissao);
+            panel1.Controls.Add(txtComissao);
+            panel1.Controls.Add(cmbStatus);
+            panel1.Location = new Point(15, 295);
             panel1.Name = "panel1";
-            panel1.Size = new Size(504, 240);
+            panel1.Size = new Size(504, 174);
             panel1.TabIndex = 0;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(504, 240);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellClick += dataGridView1_CellClick;
-            // 
-            // lblID
-            // 
-            lblID.AutoSize = true;
-            lblID.Location = new Point(12, 26);
-            lblID.Name = "lblID";
-            lblID.Size = new Size(30, 25);
-            lblID.TabIndex = 1;
-            lblID.Text = "ID";
             // 
             // txtID
             // 
-            txtID.Location = new Point(67, 23);
+            txtID.Location = new Point(39, 14);
             txtID.Name = "txtID";
             txtID.ReadOnly = true;
             txtID.Size = new Size(150, 31);
             txtID.TabIndex = 2;
             // 
-            // txtNome
+            // lblID
             // 
-            txtNome.Location = new Point(77, 67);
-            txtNome.Name = "txtNome";
-            txtNome.Size = new Size(424, 31);
-            txtNome.TabIndex = 4;
+            lblID.AutoSize = true;
+            lblID.Location = new Point(3, 14);
+            lblID.Name = "lblID";
+            lblID.Size = new Size(30, 25);
+            lblID.TabIndex = 1;
+            lblID.Text = "ID";
             // 
             // lblNome
             // 
             lblNome.AutoSize = true;
-            lblNome.Location = new Point(12, 70);
+            lblNome.Location = new Point(4, 74);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(61, 25);
             lblNome.TabIndex = 3;
             lblNome.Text = "Nome";
             // 
+            // txtNome
+            // 
+            txtNome.Location = new Point(60, 68);
+            txtNome.Name = "txtNome";
+            txtNome.Size = new Size(441, 31);
+            txtNome.TabIndex = 4;
+            // 
             // lblStatus
             // 
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(255, 26);
+            lblStatus.Location = new Point(205, 14);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(60, 25);
             lblStatus.TabIndex = 5;
@@ -115,7 +111,7 @@
             // lblComissao
             // 
             lblComissao.AutoSize = true;
-            lblComissao.Location = new Point(12, 115);
+            lblComissao.Location = new Point(4, 126);
             lblComissao.Name = "lblComissao";
             lblComissao.Size = new Size(90, 25);
             lblComissao.TabIndex = 7;
@@ -123,14 +119,36 @@
             // 
             // txtComissao
             // 
-            txtComissao.Location = new Point(108, 112);
+            txtComissao.Location = new Point(100, 126);
             txtComissao.Name = "txtComissao";
             txtComissao.Size = new Size(87, 31);
             txtComissao.TabIndex = 8;
             // 
+            // cmbStatus
+            // 
+            cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbStatus.FormattingEnabled = true;
+            cmbStatus.Items.AddRange(new object[] { "Ativo", "Inativo" });
+            cmbStatus.Location = new Point(271, 14);
+            cmbStatus.Name = "cmbStatus";
+            cmbStatus.Size = new Size(230, 33);
+            cmbStatus.TabIndex = 6;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(15, 49);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(602, 240);
+            dataGridView1.TabIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
             // btnNovo
             // 
-            btnNovo.Location = new Point(12, 155);
+            btnNovo.Location = new Point(623, 49);
             btnNovo.Name = "btnNovo";
             btnNovo.Size = new Size(112, 34);
             btnNovo.TabIndex = 9;
@@ -140,7 +158,7 @@
             // 
             // btnEditar
             // 
-            btnEditar.Location = new Point(140, 155);
+            btnEditar.Location = new Point(623, 89);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(112, 34);
             btnEditar.TabIndex = 10;
@@ -150,7 +168,7 @@
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(268, 155);
+            btnSalvar.Location = new Point(623, 129);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(112, 34);
             btnSalvar.TabIndex = 11;
@@ -158,19 +176,9 @@
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += btnSalvar_Click;
             // 
-            // cmbStatus
-            // 
-            cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbStatus.FormattingEnabled = true;
-            cmbStatus.Items.AddRange(new object[] { "Ativo", "Inativo" });
-            cmbStatus.Location = new Point(321, 23);
-            cmbStatus.Name = "cmbStatus";
-            cmbStatus.Size = new Size(180, 33);
-            cmbStatus.TabIndex = 6;
-            // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(396, 155);
+            btnCancelar.Location = new Point(623, 169);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(112, 34);
             btnCancelar.TabIndex = 12;
@@ -180,7 +188,7 @@
             // 
             // btnAplicar
             // 
-            btnAplicar.Location = new Point(396, 115);
+            btnAplicar.Location = new Point(623, 209);
             btnAplicar.Name = "btnAplicar";
             btnAplicar.Size = new Size(112, 34);
             btnAplicar.TabIndex = 13;
@@ -188,29 +196,63 @@
             btnAplicar.UseVisualStyleBackColor = true;
             btnAplicar.Click += btnAplicar_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(9, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 25);
+            label1.TabIndex = 14;
+            label1.Text = "Buscar por:";
+            // 
+            // cmbFiltroAtendente
+            // 
+            cmbFiltroAtendente.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFiltroAtendente.FormattingEnabled = true;
+            cmbFiltroAtendente.Items.AddRange(new object[] { "Automático", "ID", "Nome" });
+            cmbFiltroAtendente.Location = new Point(115, 9);
+            cmbFiltroAtendente.Name = "cmbFiltroAtendente";
+            cmbFiltroAtendente.Size = new Size(99, 33);
+            cmbFiltroAtendente.TabIndex = 15;
+            // 
+            // txtboxFiltro
+            // 
+            txtboxFiltro.Location = new Point(220, 12);
+            txtboxFiltro.Name = "txtboxFiltro";
+            txtboxFiltro.Size = new Size(279, 31);
+            txtboxFiltro.TabIndex = 16;
+            // 
+            // btnBuscar
+            // 
+            btnBuscar.Location = new Point(505, 12);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(112, 34);
+            btnBuscar.TabIndex = 17;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
+            // 
             // FuncionariosFRM
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(528, 450);
+            ClientSize = new Size(760, 479);
+            Controls.Add(dataGridView1);
+            Controls.Add(btnBuscar);
+            Controls.Add(txtboxFiltro);
+            Controls.Add(cmbFiltroAtendente);
+            Controls.Add(label1);
             Controls.Add(btnAplicar);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
             Controls.Add(btnEditar);
             Controls.Add(btnNovo);
-            Controls.Add(txtComissao);
-            Controls.Add(lblComissao);
-            Controls.Add(cmbStatus);
-            Controls.Add(lblStatus);
-            Controls.Add(txtNome);
-            Controls.Add(lblNome);
-            Controls.Add(txtID);
-            Controls.Add(lblID);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FuncionariosFRM";
             Text = "Cadastro de Funcionários";
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -233,5 +275,9 @@
         private ComboBox cmbStatus;
         private Button btnCancelar;
         private Button btnAplicar;
+        private Label label1;
+        private ComboBox cmbFiltroAtendente;
+        private TextBox txtboxFiltro;
+        private Button btnBuscar;
     }
 }

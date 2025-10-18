@@ -170,7 +170,7 @@
             // 
             txtNomeAtendente.Location = new Point(136, 30);
             txtNomeAtendente.Name = "txtNomeAtendente";
-            txtNomeAtendente.PlaceholderText = "Nome, CPF, Telefone";
+            txtNomeAtendente.PlaceholderText = "Nome atendente";
             txtNomeAtendente.Size = new Size(242, 31);
             txtNomeAtendente.TabIndex = 1;
             // 

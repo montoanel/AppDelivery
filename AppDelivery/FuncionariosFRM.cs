@@ -10,7 +10,7 @@ namespace AppDelivery
     {
 
         // =======================================================
-        // >> ADICIONAR AQUI: PROPRIEDADES PÚBLICAS PARA RETORNO
+        // >> PROPRIEDADES PÚBLICAS PARA RETORNO
         // =======================================================
         public int AtendenteSelecionadoID { get; private set; }
         public string AtendenteSelecionadoNome { get; private set; }
@@ -35,14 +35,16 @@ namespace AppDelivery
 
             // Adiciona os event handlers para os botões e o DataGridView.
             this.Load += new EventHandler(FuncionariosFRM_Load);
-
-            // Conecta o evento de clique na célula do DataGridView ao método de preenchimento.
             dataGridView1.CellClick += dataGridView1_CellClick;
 
             btnNovo.Click += btnNovo_Click;
             btnEditar.Click += btnEditar_Click;
             btnSalvar.Click += btnSalvar_Click;
             btnCancelar.Click += btnCancelar_Click;
+
+            // CONEXÃO ADICIONADA: Conecta o evento de clique para o botão Buscar.
+            // *ASSUMIDO: O nome do botão de busca é 'btnBuscar'.
+            btnBuscar.Click += btnBuscar_Click;
         }
 
         private void FuncionariosFRM_Load(object sender, EventArgs e)
@@ -50,23 +52,89 @@ namespace AppDelivery
             // Carrega os dados na grade assim que o formulário é exibido.
             CarregarFuncionarios();
             HabilitarControles(false);
+
+            // Define o filtro padrão como 'AUTOMATICO' se não estiver selecionado.
+            // *ASSUMIDO: O nome do ComboBox de filtro é 'cmbFiltroAtendente' e 'AUTOMATICO' é o índice 0.
+            if (cmbFiltroAtendente.SelectedIndex == -1 && cmbFiltroAtendente.Items.Count > 0)
+            {
+                cmbFiltroAtendente.SelectedIndex = 0;
+            }
         }
 
-        // Carrega os dados da tabela tb_funcionarios no DataGridView.
-        private void CarregarFuncionarios()
+        // Carrega os dados da tabela tb_funcionarios no DataGridView, aplicando filtros.
+        private void CarregarFuncionarios(string filtro = "AUTOMATICO", string valor = "")
         {
             DataTable dtFuncionarios = new DataTable();
             using (SqlConnection conexao = new SqlConnection(connectionString))
             {
                 try
                 {
-                    string query = "SELECT id_atendente, nome, status, comissao FROM tb_funcionarios ORDER BY nome";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conexao);
+                    string queryBase = "SELECT id_atendente, nome, status, comissao FROM tb_funcionarios";
+                    SqlCommand cmd;
+
+                    // 1. Lógica de Filtragem: Apenas aplica filtro se o valor não estiver vazio.
+                    if (!string.IsNullOrWhiteSpace(valor))
+                    {
+                        string valorBusca = valor.Trim();
+                        string filtroUpper = filtro.ToUpper().Trim();
+
+                        string whereClause = "";
+
+                        // REVISÃO DO FILTRO AUTOMÁTICO: Busca genérica por Nome (LIKE) OU ID (LIKE em string).
+                        if (filtroUpper == "AUTOMATICO")
+                        {
+                            // Busca o valor em 'nome' (LIKE) OU em 'id_atendente' (convertendo para string e usando LIKE).
+                            // O uso do OR faz com que o termo 'ana' encontre 'Ana' no nome ou encontre '123' no ID se buscar '23'.
+                            whereClause = " WHERE nome LIKE @valor OR CAST(id_atendente AS VARCHAR(10)) LIKE @valor";
+                            queryBase += whereClause + " ORDER BY nome";
+                            cmd = new SqlCommand(queryBase, conexao);
+                            cmd.Parameters.AddWithValue("@valor", "%" + valorBusca + "%");
+                        }
+                        else if (filtroUpper == "ID")
+                        {
+                            // Filtro por ID: Busca exata.
+                            whereClause = " WHERE id_atendente = @valor";
+                            queryBase += whereClause + " ORDER BY nome";
+                            cmd = new SqlCommand(queryBase, conexao);
+
+                            // Tenta parsear o valor, se falhar (o que não deve ocorrer se o btnBuscar_Click funcionar), usa ID inválido.
+                            if (int.TryParse(valorBusca, out int idValue))
+                            {
+                                cmd.Parameters.AddWithValue("@valor", idValue);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@valor", -1); // ID impossível para não retornar nada em caso de erro.
+                            }
+                        }
+                        else if (filtroUpper == "NOME")
+                        {
+                            // Filtro por NOME: Busca usando LIKE.
+                            whereClause = " WHERE nome LIKE @valor";
+                            queryBase += whereClause + " ORDER BY nome";
+                            cmd = new SqlCommand(queryBase, conexao);
+                            cmd.Parameters.AddWithValue("@valor", "%" + valorBusca + "%");
+                        }
+                        else
+                        {
+                            // Filtro não reconhecido, retorna tudo.
+                            queryBase += " ORDER BY nome";
+                            cmd = new SqlCommand(queryBase, conexao);
+                        }
+                    }
+                    else
+                    {
+                        // 2. Sem valor de busca, carrega todos os funcionários.
+                        queryBase += " ORDER BY nome";
+                        cmd = new SqlCommand(queryBase, conexao);
+                    }
+
+                    // Executa a query
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     adapter.Fill(dtFuncionarios);
                     dataGridView1.DataSource = dtFuncionarios;
 
-                    // Formata as colunas do DataGridView para melhor visualização.
-                    // Nota: O nome da coluna do ID no Select é "id_atendente", não "id".
+                    // Formata as colunas do DataGridView.
                     if (dataGridView1.Columns.Contains("id_atendente")) dataGridView1.Columns["id_atendente"].HeaderText = "ID";
                     if (dataGridView1.Columns.Contains("nome")) dataGridView1.Columns["nome"].HeaderText = "Nome";
                     if (dataGridView1.Columns.Contains("status")) dataGridView1.Columns["status"].HeaderText = "Status";
@@ -84,6 +152,30 @@ namespace AppDelivery
                 }
             }
         }
+
+        // Evento de clique para o botão "Buscar".
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            // Obtém o filtro selecionado (AUTOMATICO, ID, NOME)
+            // *ASSUMIDO: O nome do ComboBox é 'cmbFiltroAtendente'
+            string filtroSelecionado = cmbFiltroAtendente.SelectedItem?.ToString().ToUpper().Trim() ?? "AUTOMATICO";
+
+            // Obtém o valor a ser buscado
+            // *ASSUMIDO: O nome do TextBox de filtro é 'txtboxFiltro'
+            string valorBusca = txtboxFiltro.Text.Trim();
+
+            // Valida apenas se o filtro for explicitamente 'ID'
+            if (filtroSelecionado == "ID" && !int.TryParse(valorBusca, out _))
+            {
+                MessageBox.Show("A busca por ID deve ser um valor numérico.", "Aviso de Filtro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtboxFiltro.Focus();
+                return;
+            }
+
+            // Chama o método de carregamento com os parâmetros de filtro.
+            CarregarFuncionarios(filtroSelecionado, valorBusca);
+        }
+
 
         // Habilita ou desabilita os controles de entrada de dados.
         private void HabilitarControles(bool enabled)
@@ -111,8 +203,7 @@ namespace AppDelivery
         // Configura o estado do formulário para o padrão inicial.
         private void ConfigurarFormularioInicial()
         {
-            // CORREÇÃO: Força o foco a sair dos campos de texto (como txtNome) antes de limpá-los,
-            // evitando que o evento de LostFocus dispare a validação no campo vazio.
+            // CORREÇÃO: Força o foco a sair dos campos de texto (como txtNome) antes de limpá-los.
             this.Focus();
 
             HabilitarControles(false);
@@ -153,8 +244,6 @@ namespace AppDelivery
         // Evento de clique do botão "Salvar".
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            // LINHA REMOVIDA: this.ActiveControl = null; - Sua observação sobre o foco estar correta torna esta linha desnecessária.
-
             // 1. VALIDAÇÃO DE OBRIGATORIEDADE: Nome
             if (string.IsNullOrWhiteSpace(txtNome.Text))
             {
@@ -182,8 +271,8 @@ namespace AppDelivery
 
             // Otimização para status:
             string statusFuncionario = cmbStatus.SelectedItem != null
-                                           ? cmbStatus.SelectedItem.ToString()[0].ToString()
-                                           : "A";
+                                             ? cmbStatus.SelectedItem.ToString()[0].ToString()
+                                             : "A";
 
             using (SqlConnection conexao = new SqlConnection(connectionString))
             {
@@ -224,7 +313,7 @@ namespace AppDelivery
             ConfigurarFormularioInicial();
             CarregarFuncionarios();
 
-            // CORREÇÃO: Força o foco para o DataGridView, um controle seguro, evitando que ele caia no txtNome vazio.
+            // CORREÇÃO: Força o foco para o DataGridView, um controle seguro.
             dataGridView1.Focus();
         }
 
@@ -260,7 +349,7 @@ namespace AppDelivery
                 {
                     cmbStatus.SelectedIndex = 0; // Define o índice do ComboBox para "Ativo"
                 }
-                else if (status == "I") // Adicionei 'I' como condição segura
+                else if (status == "I") // 'I' para Inativo
                 {
                     cmbStatus.SelectedIndex = 1; // Define o índice do ComboBox para "Inativo"
                 }
@@ -276,7 +365,7 @@ namespace AppDelivery
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
-            // 1. Verifica se alguma linha foi selecionada no DataGridView (assumindo o nome dataGridView1)
+            // 1. Verifica se alguma linha foi selecionada no DataGridView
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 // 2. Obtém a primeira linha selecionada
@@ -285,9 +374,6 @@ namespace AppDelivery
                 try
                 {
                     // 3. Pega o ID e o Nome da linha e armazena nas propriedades públicas
-                    // IMPORTANTE: Certifique-se de que os nomes das colunas 'id_atendente' e 'nome'
-                    // no seu DataGridView estão CORRETOS.
-
                     this.AtendenteSelecionadoID = Convert.ToInt32(linhaSelecionada.Cells["id_atendente"].Value);
                     this.AtendenteSelecionadoNome = linhaSelecionada.Cells["nome"].Value.ToString();
 
@@ -306,5 +392,6 @@ namespace AppDelivery
                 MessageBox.Show("Por favor, selecione um atendente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        // OBS: O método FuncionariosFRM_Load_1 foi removido conforme solicitado.
     }
 }
