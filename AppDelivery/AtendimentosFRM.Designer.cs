@@ -34,6 +34,9 @@
             label5 = new Label();
             pctReceber = new PictureBox();
             groupBox1 = new GroupBox();
+            btnEntregar = new Button();
+            btnAdicionarItem = new Button();
+            btnExibirAtendimento = new Button();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
@@ -87,9 +90,9 @@
             // 
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(pctReceber);
-            groupBox2.Location = new Point(927, 6);
+            groupBox2.Location = new Point(1041, 6);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(420, 111);
+            groupBox2.Size = new Size(437, 111);
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "Informações Financeiras";
@@ -98,7 +101,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(331, 78);
+            label5.Location = new Point(19, 87);
             label5.Name = "label5";
             label5.Size = new Size(66, 21);
             label5.TabIndex = 11;
@@ -107,7 +110,7 @@
             // pctReceber
             // 
             pctReceber.Image = Properties.Resources.forma_de_pagamento;
-            pctReceber.Location = new Point(318, 22);
+            pctReceber.Location = new Point(6, 30);
             pctReceber.Name = "pctReceber";
             pctReceber.Size = new Size(79, 53);
             pctReceber.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -118,6 +121,9 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnEntregar);
+            groupBox1.Controls.Add(btnAdicionarItem);
+            groupBox1.Controls.Add(btnExibirAtendimento);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
@@ -128,10 +134,37 @@
             groupBox1.Controls.Add(pctDelivery);
             groupBox1.Location = new Point(8, 7);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(832, 111);
+            groupBox1.Size = new Size(913, 111);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Atendimentos";
+            // 
+            // btnEntregar
+            // 
+            btnEntregar.Location = new Point(753, 22);
+            btnEntregar.Name = "btnEntregar";
+            btnEntregar.Size = new Size(154, 34);
+            btnEntregar.TabIndex = 13;
+            btnEntregar.Text = "Em trânsito";
+            btnEntregar.UseVisualStyleBackColor = true;
+            // 
+            // btnAdicionarItem
+            // 
+            btnAdicionarItem.Location = new Point(543, 61);
+            btnAdicionarItem.Name = "btnAdicionarItem";
+            btnAdicionarItem.Size = new Size(204, 34);
+            btnAdicionarItem.TabIndex = 12;
+            btnAdicionarItem.Text = "Adicionar Item";
+            btnAdicionarItem.UseVisualStyleBackColor = true;
+            // 
+            // btnExibirAtendimento
+            // 
+            btnExibirAtendimento.Location = new Point(543, 21);
+            btnExibirAtendimento.Name = "btnExibirAtendimento";
+            btnExibirAtendimento.Size = new Size(204, 34);
+            btnExibirAtendimento.TabIndex = 11;
+            btnExibirAtendimento.Text = "Exibir Atendimento";
+            btnExibirAtendimento.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -428,10 +461,12 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(1, 273);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1489, 463);
+            dataGridView1.Size = new Size(1427, 295);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellDoubleClick += DataGridView1_CellDoubleClick;
             // 
             // panel3
             // 
@@ -504,5 +539,8 @@
         private Label label5;
         private Button button2;
         private Button btnResetSequencia;
+        private Button btnAdicionarItem;
+        private Button btnExibirAtendimento;
+        private Button btnEntregar;
     }
 }

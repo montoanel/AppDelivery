@@ -20,20 +20,13 @@ namespace AppDelivery
             InitializeComponent();
 
             // 1. Definição das Datas Padrão
-            DateTime hoje = DateTime.Today; // Pega a data de hoje, com hora 00:00:00
-
-            // dateTimePicker1: Ontem à 00:00
+            DateTime hoje = DateTime.Today;
             dateTimePicker1.Value = hoje.AddDays(-1);
-
-            // dateTimePicker2: Hoje às 23:59:59.999...
-            // Usamos .Today.AddDays(1).AddTicks(-1) para pegar o último milissegundo do dia de hoje.
-            // Para simplificar, podemos usar DateTime.Now para a hora atual, ou 23:59:59.
             dateTimePicker2.Value = hoje.AddDays(1).AddSeconds(-1);
 
             // 2. Carregamento da Connection String
             try
             {
-                // Conforme o seu código original
                 connectionString = ConfigurationManager.ConnectionStrings["MinhaConexaoDB"].ConnectionString;
             }
             catch (Exception ex)
@@ -43,16 +36,17 @@ namespace AppDelivery
             }
 
             // Associa o evento Load do formulário
-            this.Load += new EventHandler(AtendimentosFRM_Load);
+            this.Load += new EventHandler(AtendimentosFRM_Load); //
             // Associa o evento Click do botão Filtrar
-            button1.Click += Button1_Click;
+            button1.Click += Button1_Click; //
+
+            // 🚨 NOVO: Associa o evento de clique duplo na grid
+           
         }
 
-        // ***************************************************************
-        // CÓDIGO RESTANTE (GerarClausulaWhere, CarregarAtendimentos, etc.)
-        // MANTÉM-SE EXATAMENTE IGUAL À SUGESTÃO ANTERIOR.
-        // ***************************************************************
-
+        // =====================================================
+        // 🚨 CORREÇÃO: MÉTODO QUE EU TINHA APAGADO
+        // =====================================================
         private void AtendimentosFRM_Load(object sender, EventArgs e)
         {
             // Inicia o carregamento dos atendimentos usando as datas padrão configuradas no construtor
@@ -60,10 +54,6 @@ namespace AppDelivery
         }
 
         // --- LÓGICA DE FILTRAGEM ---
-
-        /// <summary>
-        /// Gera a cláusula WHERE da consulta SQL baseada nas seleções do usuário.
-        /// </summary>
         private string GerarClausulaWhere()
         {
             var condicoes = new List<string>();
@@ -130,15 +120,11 @@ namespace AppDelivery
         /// </summary>
         private void Button1_Click(object sender, EventArgs e)
         {
-            CarregarAtendimentos();
+            CarregarAtendimentos(); //
         }
 
 
         // --- LÓGICA DE DADOS ---
-
-        /// <summary>
-        /// Método principal para carregar os dados no DataGridView, agora aceitando filtro.
-        /// </summary>
         private void CarregarAtendimentos()
         {
             if (string.IsNullOrEmpty(connectionString))
@@ -149,7 +135,7 @@ namespace AppDelivery
             DataTable dtAtendimentos = new DataTable();
             string clausulaWhere = GerarClausulaWhere();
 
-            // Query SQL completa com a cláusula WHERE gerada
+            // Query SQL
             string query = $@"
                 SELECT 
                     id_atendimento,
@@ -171,7 +157,7 @@ namespace AppDelivery
                     conexao.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conexao))
                     {
-                        // Adiciona os parâmetros de Data/Hora para segurança e precisão
+                        // Adiciona os parâmetros de Data/Hora
                         cmd.Parameters.AddWithValue("@DataInicial", dateTimePicker1.Value);
                         cmd.Parameters.AddWithValue("@DataFinal", dateTimePicker2.Value);
 
@@ -181,7 +167,7 @@ namespace AppDelivery
                         }
                     }
 
-                    // Lógica de Tradução de ID Numérico (INT) para o Nome do ENUM (STRING)
+                    // Lógica de Tradução de ID Numérico
                     if (dtAtendimentos.Columns.Contains("tipo_atendimento"))
                     {
                         dtAtendimentos.Columns.Add("TipoTexto", typeof(string));
@@ -222,7 +208,7 @@ namespace AppDelivery
             }
         }
 
-        // Método para melhorar a leitura das colunas na tela (mantido do seu código)
+        // Método para melhorar a leitura das colunas
         private void AjustarNomesDasColunas()
         {
             if (dataGridView1.DataSource != null)
@@ -252,6 +238,68 @@ namespace AppDelivery
                 }
             }
         }
+
+        // Cole este método no lugar do DataGridView1_CellDoubleClick antigo
+
+        // =====================================================
+        // 🚨 MÉTODO CORRIGIDO: CLIQUE DUPLO NA GRID (COM SEGURANÇA)
+        // =====================================================
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // 1. Verifica se o clique foi no cabeçalho (linha < 0)
+            if (e.RowIndex < 0) return;
+
+            // 2. 🚨 VERIFICAÇÃO DE SEGURANÇA:
+            // Garante que o índice da linha clicada existe na coleção de linhas
+            // E que a linha clicada não é a "linha nova" (placeholder)
+            if (e.RowIndex >= dataGridView1.Rows.Count || dataGridView1.Rows[e.RowIndex].IsNewRow)
+            {
+                return; // Sai do método silenciosamente, pois não é uma linha de dados
+            }
+
+            try
+            {
+                // 3. Obter os dados da linha selecionada (agora seguro)
+                DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+
+                // Pega o ID (a coluna "id_atendimento" está no seu SELECT)
+                int idSelecionado = Convert.ToInt32(selectedRow.Cells["id_atendimento"].Value);
+
+                // Pega o Status (a coluna "status_atendimento" está no seu SELECT)
+                string statusAtual = selectedRow.Cells["status_atendimento"].Value.ToString();
+
+                // 4. Verificar se o status permite continuação
+                List<string> statusPermitidos = new List<string> { "Aberto", "Em atendimento", "Em trânsito" };
+
+                if (statusPermitidos.Contains(statusAtual))
+                {
+                    // 5. Abrir o formulário de NovosAtendimentos no "Modo de Edição"
+                    using (NovosAtendimentosFRM frmEdicao = new NovosAtendimentosFRM(idSelecionado))
+                    {
+                        frmEdicao.ShowDialog();
+                    }
+
+                    // 6. Após fechar o formulário de edição, atualiza a lista principal
+                    CarregarAtendimentos(); //
+                }
+                else
+                {
+                    MessageBox.Show(
+                        $"Não é possível continuar este atendimento, pois seu status é '{statusAtual}'.\n" +
+                        "Apenas atendimentos 'Aberto', 'Em atendimento' ou 'Em trânsito' podem ser editados.",
+                        "Ação Não Permitida",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao tentar abrir o atendimento: " + ex.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         // EVENTOS DE MOUSE (Mantidos do seu código)
         private void pctNovoAtendimento_MouseLeave(object sender, EventArgs e)
@@ -310,6 +358,7 @@ namespace AppDelivery
             }
         }
 
+
         private void pctEncomenda_MouseEnter(object sender, EventArgs e)
         {
             if (sender is PictureBox pictureBox)
@@ -318,24 +367,16 @@ namespace AppDelivery
             }
         }
 
-        // =====================================================
-        // NOVO MÉTODO: CLIQUE NO DELIVERY (Scooter)
-        // =====================================================
+        // MÉTODOS DE CLIQUE (Mantidos do seu código)
         private void pctDelivery_Click(object sender, EventArgs e)
         {
             try
             {
-                // Define o tipo de atendimento como Delivery (valor 1)
                 TipoAtendimento tipo = TipoAtendimento.Delivery;
-
-                // Cria e abre o formulário de novo atendimento, passando o TIPO
                 using (NovosAtendimentosFRM novoAtendimento = new NovosAtendimentosFRM(tipo))
                 {
-                    // Abre o novo formulário como modal
                     novoAtendimento.ShowDialog();
                 }
-
-                // Após fechar o formulário de novo atendimento, atualiza a lista principal
                 CarregarAtendimentos();
             }
             catch (Exception ex)
@@ -349,17 +390,11 @@ namespace AppDelivery
         {
             try
             {
-                // Define o tipo de atendimento como Retirada (valor 2 no enum)
                 TipoAtendimento tipo = TipoAtendimento.Retirada;
-
-                // Cria e abre o formulário de novo atendimento, passando o TIPO
                 using (NovosAtendimentosFRM novoAtendimento = new NovosAtendimentosFRM(tipo))
                 {
-                    // Abre o novo formulário como modal
                     novoAtendimento.ShowDialog();
                 }
-
-                // Após fechar o formulário de novo atendimento, atualiza a lista principal
                 CarregarAtendimentos();
             }
             catch (Exception ex)
@@ -373,17 +408,11 @@ namespace AppDelivery
         {
             try
             {
-                // Define o tipo de atendimento como Encomenda (valor 3 no enum)
                 TipoAtendimento tipo = TipoAtendimento.Encomenda;
-
-                // Cria e abre o formulário de novo atendimento, passando o TIPO
                 using (NovosAtendimentosFRM novoAtendimento = new NovosAtendimentosFRM(tipo))
                 {
-                    // Abre o novo formulário como modal
                     novoAtendimento.ShowDialog();
                 }
-
-                // Após fechar o formulário de novo atendimento, atualiza a lista principal
                 CarregarAtendimentos();
             }
             catch (Exception ex)
