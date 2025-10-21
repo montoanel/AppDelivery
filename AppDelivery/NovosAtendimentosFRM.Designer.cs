@@ -77,9 +77,9 @@
             panelHeader.Controls.Add(lblTipoAtendimento);
             panelHeader.Controls.Add(txtTipoAtendimento);
             panelHeader.Dock = DockStyle.Top;
-            panelHeader.Location = new Point(0, 0);
+            panelHeader.Location = new Point(10, 10);
             panelHeader.Name = "panelHeader";
-            panelHeader.Size = new Size(1898, 60);
+            panelHeader.Size = new Size(1878, 60);
             panelHeader.TabIndex = 0;
             // 
             // lblIDAtendimento
@@ -190,9 +190,9 @@
             groupBoxCliente.Controls.Add(lblCliente);
             groupBoxCliente.Controls.Add(txtNomeCliente);
             groupBoxCliente.Controls.Add(btnInserirCliente);
-            groupBoxCliente.Location = new Point(470, 70);
+            groupBoxCliente.Location = new Point(480, 80);
             groupBoxCliente.Name = "groupBoxCliente";
-            groupBoxCliente.Size = new Size(1418, 70);
+            groupBoxCliente.Size = new Size(1398, 70);
             groupBoxCliente.TabIndex = 2;
             groupBoxCliente.TabStop = false;
             groupBoxCliente.Text = "Cliente";
@@ -219,7 +219,7 @@
             txtNomeCliente.Location = new Point(137, 26);
             txtNomeCliente.Name = "txtNomeCliente";
             txtNomeCliente.PlaceholderText = "Nome, CPF, Telefone";
-            txtNomeCliente.Size = new Size(1105, 31);
+            txtNomeCliente.Size = new Size(1085, 31);
             txtNomeCliente.TabIndex = 1;
             // 
             // btnInserirCliente
@@ -235,9 +235,9 @@
             // 
             groupBoxObservacoes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBoxObservacoes.Controls.Add(txtObservacao);
-            groupBoxObservacoes.Location = new Point(10, 150);
+            groupBoxObservacoes.Location = new Point(20, 160);
             groupBoxObservacoes.Name = "groupBoxObservacoes";
-            groupBoxObservacoes.Size = new Size(1878, 100);
+            groupBoxObservacoes.Size = new Size(1858, 100);
             groupBoxObservacoes.TabIndex = 3;
             groupBoxObservacoes.TabStop = false;
             groupBoxObservacoes.Text = "Observações";
@@ -247,7 +247,7 @@
             txtObservacao.Dock = DockStyle.Fill;
             txtObservacao.Location = new Point(3, 27);
             txtObservacao.Name = "txtObservacao";
-            txtObservacao.Size = new Size(1872, 70);
+            txtObservacao.Size = new Size(1852, 70);
             txtObservacao.TabIndex = 0;
             txtObservacao.Text = "";
             // 
@@ -261,9 +261,9 @@
             groupBoxProdutos.Controls.Add(txtBuscarProduto);
             groupBoxProdutos.Controls.Add(btnInserir);
             groupBoxProdutos.Controls.Add(dgvProdutos);
-            groupBoxProdutos.Location = new Point(10, 260);
+            groupBoxProdutos.Location = new Point(20, 270);
             groupBoxProdutos.Name = "groupBoxProdutos";
-            groupBoxProdutos.Size = new Size(1878, 684);
+            groupBoxProdutos.Size = new Size(1858, 664);
             groupBoxProdutos.TabIndex = 4;
             groupBoxProdutos.TabStop = false;
             groupBoxProdutos.Text = "Produtos";
@@ -308,7 +308,7 @@
             txtBuscarProduto.Location = new Point(80, 32);
             txtBuscarProduto.Name = "txtBuscarProduto";
             txtBuscarProduto.PlaceholderText = "Nome, código";
-            txtBuscarProduto.Size = new Size(804, 31);
+            txtBuscarProduto.Size = new Size(784, 31);
             txtBuscarProduto.TabIndex = 1;
             // 
             // btnInserir
@@ -327,13 +327,13 @@
             dgvProdutos.Location = new Point(3, 75);
             dgvProdutos.Name = "dgvProdutos";
             dgvProdutos.RowHeadersWidth = 62;
-            dgvProdutos.Size = new Size(1872, 604);
+            dgvProdutos.Size = new Size(1852, 584);
             dgvProdutos.TabIndex = 3;
             // 
             // btnConcluir
             // 
             btnConcluir.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnConcluir.Location = new Point(1768, 954);
+            btnConcluir.Location = new Point(1758, 944);
             btnConcluir.Name = "btnConcluir";
             btnConcluir.Size = new Size(120, 60);
             btnConcluir.TabIndex = 5;
@@ -359,7 +359,7 @@
             // 
             groupBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             groupBox1.Controls.Add(lblTotalGeral);
-            groupBox1.Location = new Point(10, 954);
+            groupBox1.Location = new Point(20, 944);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(750, 60);
             groupBox1.TabIndex = 7;
@@ -379,6 +379,7 @@
             Controls.Add(panelHeader);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "NovosAtendimentosFRM";
+            Padding = new Padding(10);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Novos Atendimentos";
             panelHeader.ResumeLayout(false);
