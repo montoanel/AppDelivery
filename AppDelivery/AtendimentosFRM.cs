@@ -41,7 +41,7 @@ namespace AppDelivery
             button1.Click += Button1_Click; //
 
             // 🚨 NOVO: Associa o evento de clique duplo na grid
-           
+
         }
 
         // =====================================================
@@ -301,69 +301,29 @@ namespace AppDelivery
         }
 
 
-        // EVENTOS DE MOUSE (Mantidos do seu código)
-        private void pctNovoAtendimento_MouseLeave(object sender, EventArgs e)
+        /// <summary>
+        /// Evento genérico para MOUSE ENTER, aplicado a todos os botões de imagem.
+        /// </summary>
+        private void pctGenerico_MouseEnter(object sender, EventArgs e)
         {
+            // Converte o 'sender' (quem disparou o evento) de volta para um PictureBox
             if (sender is PictureBox pictureBox)
             {
-                pictureBox.BackColor = Color.Transparent;
-            }
-        }
-
-        private void pctNovoAtendimento_MouseEnter(object sender, EventArgs e)
-        {
-            if (sender is PictureBox pictureBox)
-            {
+                // Aplica o efeito
                 pictureBox.BackColor = Color.LightGray;
+                // Ou Color.LightBlue, como você usou em outros
             }
         }
 
-        private void pctDelivery_MouseLeave(object sender, EventArgs e)
+        /// <summary>
+        /// Evento genérico para MOUSE LEAVE, aplicado a todos os botões de imagem.
+        /// </summary>
+        private void pctGenerico_MouseLeave(object sender, EventArgs e)
         {
             if (sender is PictureBox pictureBox)
             {
+                // Remove o efeito
                 pictureBox.BackColor = Color.Transparent;
-            }
-        }
-
-        private void pctDelivery_MouseEnter(object sender, EventArgs e)
-        {
-            if (sender is PictureBox pictureBox)
-            {
-                pictureBox.BackColor = Color.LightGray;
-            }
-        }
-
-        private void pctRetiradaBalcao_MouseEnter(object sender, EventArgs e)
-        {
-            if (sender is PictureBox pictureBox)
-            {
-                pictureBox.BackColor = Color.LightGray;
-            }
-        }
-
-        private void pctRetiradaBalcao_MouseLeave(object sender, EventArgs e)
-        {
-            if (sender is PictureBox pictureBox)
-            {
-                pictureBox.BackColor = Color.Transparent;
-            }
-        }
-
-        private void pctEncomenda_MouseLeave(object sender, EventArgs e)
-        {
-            if (sender is PictureBox pictureBox)
-            {
-                pictureBox.BackColor = Color.Transparent;
-            }
-        }
-
-
-        private void pctEncomenda_MouseEnter(object sender, EventArgs e)
-        {
-            if (sender is PictureBox pictureBox)
-            {
-                pictureBox.BackColor = Color.LightGray;
             }
         }
 
@@ -405,6 +365,83 @@ namespace AppDelivery
         }
 
         private void pctEncomenda_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TipoAtendimento tipo = TipoAtendimento.Encomenda;
+                using (NovosAtendimentosFRM novoAtendimento = new NovosAtendimentosFRM(tipo))
+                {
+                    novoAtendimento.ShowDialog();
+                }
+                CarregarAtendimentos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao iniciar o novo atendimento de Encomenda: " + ex.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            // Pega o estado atual do checkbox "Todos"
+            bool estaMarcado = checkBox4.Checked;
+
+            // Aplica o mesmo estado aos outros checkboxes do grupo "Tipo"
+            checkBox1.Checked = estaMarcado; // Delivery
+            checkBox2.Checked = estaMarcado; // Retirada
+            checkBox3.Checked = estaMarcado; // Encomenda
+            checkBox5.Checked = estaMarcado; // VendaRapida
+        }
+
+        private void btnNovoAtendimento_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+
+            // Calcula o ponto para mostrar o menu logo abaixo do botão
+            Point location = new Point(0, btn.Height);
+
+            // Mostra o menu de contexto
+            menuNovoAtendimento.Show(btn, location);
+        }
+
+        private void toolStripDelivery_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TipoAtendimento tipo = TipoAtendimento.Delivery;
+                using (NovosAtendimentosFRM novoAtendimento = new NovosAtendimentosFRM(tipo))
+                {
+                    novoAtendimento.ShowDialog();
+                }
+                CarregarAtendimentos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao iniciar o novo atendimento de Delivery: " + ex.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void toolStripRetirada_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TipoAtendimento tipo = TipoAtendimento.Retirada;
+                using (NovosAtendimentosFRM novoAtendimento = new NovosAtendimentosFRM(tipo))
+                {
+                    novoAtendimento.ShowDialog();
+                }
+                CarregarAtendimentos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao iniciar o novo atendimento de Retirada/Balcão: " + ex.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void toolStripEncomenda_Click(object sender, EventArgs e)
         {
             try
             {

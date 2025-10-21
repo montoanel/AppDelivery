@@ -28,14 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AtendimentosFRM));
             panel1 = new Panel();
             groupBox2 = new GroupBox();
             label5 = new Label();
             pctReceber = new PictureBox();
             groupBox1 = new GroupBox();
+            btnNovoAtendimento = new Button();
+            menuNovoAtendimento = new ContextMenuStrip(components);
+            toolStripVendaRapida = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            toolStripDelivery = new ToolStripMenuItem();
+            toolStripSeparator2 = new ToolStripSeparator();
+            toolStripRetirada = new ToolStripMenuItem();
+            toolStripSeparator3 = new ToolStripSeparator();
+            toolStripEncomenda = new ToolStripMenuItem();
             btnEntregar = new Button();
-            btnAdicionarItem = new Button();
             btnExibirAtendimento = new Button();
             label4 = new Label();
             label3 = new Label();
@@ -69,6 +78,7 @@
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pctReceber).BeginInit();
             groupBox1.SuspendLayout();
+            menuNovoAtendimento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pctEncomenda).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctVendaRapida).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctRetiradaBalcao).BeginInit();
@@ -83,14 +93,14 @@
             panel1.Controls.Add(groupBox1);
             panel1.Location = new Point(1, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1895, 120);
+            panel1.Size = new Size(1895, 251);
             panel1.TabIndex = 0;
             // 
             // groupBox2
             // 
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(pctReceber);
-            groupBox2.Location = new Point(1041, 6);
+            groupBox2.Location = new Point(509, 11);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(437, 111);
             groupBox2.TabIndex = 7;
@@ -116,13 +126,11 @@
             pctReceber.SizeMode = PictureBoxSizeMode.StretchImage;
             pctReceber.TabIndex = 5;
             pctReceber.TabStop = false;
-            pctReceber.MouseEnter += pctEncomenda_MouseEnter;
-            pctReceber.MouseLeave += pctEncomenda_MouseLeave;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnNovoAtendimento);
             groupBox1.Controls.Add(btnEntregar);
-            groupBox1.Controls.Add(btnAdicionarItem);
             groupBox1.Controls.Add(btnExibirAtendimento);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label3);
@@ -134,32 +142,83 @@
             groupBox1.Controls.Add(pctDelivery);
             groupBox1.Location = new Point(8, 7);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(913, 111);
+            groupBox1.Size = new Size(471, 210);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Atendimentos";
             // 
+            // btnNovoAtendimento
+            // 
+            btnNovoAtendimento.ContextMenuStrip = menuNovoAtendimento;
+            btnNovoAtendimento.Location = new Point(13, 29);
+            btnNovoAtendimento.Name = "btnNovoAtendimento";
+            btnNovoAtendimento.Size = new Size(209, 34);
+            btnNovoAtendimento.TabIndex = 8;
+            btnNovoAtendimento.Text = "➕ Novo Atendimento";
+            btnNovoAtendimento.UseVisualStyleBackColor = true;
+            btnNovoAtendimento.Click += btnNovoAtendimento_Click;
+            // 
+            // menuNovoAtendimento
+            // 
+            menuNovoAtendimento.ImageScalingSize = new Size(24, 24);
+            menuNovoAtendimento.Items.AddRange(new ToolStripItem[] { toolStripVendaRapida, toolStripSeparator1, toolStripDelivery, toolStripSeparator2, toolStripRetirada, toolStripSeparator3, toolStripEncomenda });
+            menuNovoAtendimento.Name = "menuNovoAtendimento";
+            menuNovoAtendimento.Size = new Size(194, 150);
+            // 
+            // toolStripVendaRapida
+            // 
+            toolStripVendaRapida.Name = "toolStripVendaRapida";
+            toolStripVendaRapida.Size = new Size(193, 32);
+            toolStripVendaRapida.Text = "Venda Rápida";
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(190, 6);
+            // 
+            // toolStripDelivery
+            // 
+            toolStripDelivery.Name = "toolStripDelivery";
+            toolStripDelivery.Size = new Size(193, 32);
+            toolStripDelivery.Text = "Delivery";
+            toolStripDelivery.Click += toolStripDelivery_Click;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(190, 6);
+            // 
+            // toolStripRetirada
+            // 
+            toolStripRetirada.Name = "toolStripRetirada";
+            toolStripRetirada.Size = new Size(193, 32);
+            toolStripRetirada.Text = "Retirada";
+            toolStripRetirada.Click += toolStripRetirada_Click;
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(190, 6);
+            // 
+            // toolStripEncomenda
+            // 
+            toolStripEncomenda.Name = "toolStripEncomenda";
+            toolStripEncomenda.Size = new Size(193, 32);
+            toolStripEncomenda.Text = "Encomenda";
+            toolStripEncomenda.Click += toolStripEncomenda_Click;
+            // 
             // btnEntregar
             // 
-            btnEntregar.Location = new Point(753, 22);
+            btnEntregar.Location = new Point(13, 69);
             btnEntregar.Name = "btnEntregar";
             btnEntregar.Size = new Size(154, 34);
             btnEntregar.TabIndex = 13;
             btnEntregar.Text = "Em trânsito";
             btnEntregar.UseVisualStyleBackColor = true;
             // 
-            // btnAdicionarItem
-            // 
-            btnAdicionarItem.Location = new Point(543, 61);
-            btnAdicionarItem.Name = "btnAdicionarItem";
-            btnAdicionarItem.Size = new Size(204, 34);
-            btnAdicionarItem.TabIndex = 12;
-            btnAdicionarItem.Text = "Adicionar Item";
-            btnAdicionarItem.UseVisualStyleBackColor = true;
-            // 
             // btnExibirAtendimento
             // 
-            btnExibirAtendimento.Location = new Point(543, 21);
+            btnExibirAtendimento.Location = new Point(228, 30);
             btnExibirAtendimento.Name = "btnExibirAtendimento";
             btnExibirAtendimento.Size = new Size(204, 34);
             btnExibirAtendimento.TabIndex = 11;
@@ -170,7 +229,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(452, 78);
+            label4.Location = new Point(15, 166);
             label4.Name = "label4";
             label4.Size = new Size(91, 21);
             label4.TabIndex = 10;
@@ -180,7 +239,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(338, 78);
+            label3.Location = new Point(109, 166);
             label3.Name = "label3";
             label3.Size = new Size(68, 21);
             label3.TabIndex = 9;
@@ -190,7 +249,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(233, 81);
+            label2.Location = new Point(197, 169);
             label2.Name = "label2";
             label2.Size = new Size(67, 21);
             label2.TabIndex = 8;
@@ -200,7 +259,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(113, 81);
+            label1.Location = new Point(278, 169);
             label1.Name = "label1";
             label1.Size = new Size(75, 21);
             label1.TabIndex = 7;
@@ -209,53 +268,51 @@
             // pctEncomenda
             // 
             pctEncomenda.Image = (Image)resources.GetObject("pctEncomenda.Image");
-            pctEncomenda.Location = new Point(458, 22);
+            pctEncomenda.Location = new Point(15, 110);
             pctEncomenda.Name = "pctEncomenda";
             pctEncomenda.Size = new Size(79, 53);
             pctEncomenda.SizeMode = PictureBoxSizeMode.StretchImage;
             pctEncomenda.TabIndex = 4;
             pctEncomenda.TabStop = false;
             pctEncomenda.Click += pctEncomenda_Click;
-            pctEncomenda.MouseEnter += pctEncomenda_MouseEnter;
-            pctEncomenda.MouseLeave += pctEncomenda_MouseLeave;
+            pctEncomenda.MouseEnter += pctGenerico_MouseEnter;
+            pctEncomenda.MouseLeave += pctGenerico_MouseLeave;
             // 
             // pctVendaRapida
             // 
             pctVendaRapida.Image = Properties.Resources.add;
-            pctVendaRapida.Location = new Point(111, 22);
+            pctVendaRapida.Location = new Point(270, 110);
             pctVendaRapida.Name = "pctVendaRapida";
             pctVendaRapida.Size = new Size(79, 53);
             pctVendaRapida.SizeMode = PictureBoxSizeMode.StretchImage;
             pctVendaRapida.TabIndex = 1;
             pctVendaRapida.TabStop = false;
-            pctVendaRapida.MouseEnter += pctNovoAtendimento_MouseEnter;
-            pctVendaRapida.MouseLeave += pctNovoAtendimento_MouseLeave;
             // 
             // pctRetiradaBalcao
             // 
             pctRetiradaBalcao.Image = (Image)resources.GetObject("pctRetiradaBalcao.Image");
-            pctRetiradaBalcao.Location = new Point(335, 22);
+            pctRetiradaBalcao.Location = new Point(100, 110);
             pctRetiradaBalcao.Name = "pctRetiradaBalcao";
             pctRetiradaBalcao.Size = new Size(79, 53);
             pctRetiradaBalcao.SizeMode = PictureBoxSizeMode.StretchImage;
             pctRetiradaBalcao.TabIndex = 3;
             pctRetiradaBalcao.TabStop = false;
             pctRetiradaBalcao.Click += pctRetiradaBalcao_Click;
-            pctRetiradaBalcao.MouseEnter += pctRetiradaBalcao_MouseEnter;
-            pctRetiradaBalcao.MouseLeave += pctRetiradaBalcao_MouseLeave;
+            pctRetiradaBalcao.MouseEnter += pctGenerico_MouseEnter;
+            pctRetiradaBalcao.MouseLeave += pctGenerico_MouseLeave;
             // 
             // pctDelivery
             // 
             pctDelivery.Image = (Image)resources.GetObject("pctDelivery.Image");
-            pctDelivery.Location = new Point(227, 22);
+            pctDelivery.Location = new Point(185, 110);
             pctDelivery.Name = "pctDelivery";
             pctDelivery.Size = new Size(79, 53);
             pctDelivery.SizeMode = PictureBoxSizeMode.StretchImage;
             pctDelivery.TabIndex = 2;
             pctDelivery.TabStop = false;
             pctDelivery.Click += pctDelivery_Click;
-            pctDelivery.MouseEnter += pctDelivery_MouseEnter;
-            pctDelivery.MouseLeave += pctDelivery_MouseLeave;
+            pctDelivery.MouseEnter += pctGenerico_MouseEnter;
+            pctDelivery.MouseLeave += pctGenerico_MouseLeave;
             // 
             // panel2
             // 
@@ -276,7 +333,7 @@
             panel2.Controls.Add(checkBox2);
             panel2.Controls.Add(checkBox1);
             panel2.Controls.Add(lblTipoAtendimento);
-            panel2.Location = new Point(1, 127);
+            panel2.Location = new Point(12, 258);
             panel2.Name = "panel2";
             panel2.Size = new Size(1220, 132);
             panel2.TabIndex = 1;
@@ -416,6 +473,7 @@
             checkBox4.TabIndex = 5;
             checkBox4.Text = "Todos";
             checkBox4.UseVisualStyleBackColor = true;
+            checkBox4.CheckedChanged += checkBox4_CheckedChanged;
             // 
             // checkBox3
             // 
@@ -459,7 +517,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(1, 273);
+            dataGridView1.Location = new Point(12, 428);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
@@ -494,6 +552,7 @@
             ((System.ComponentModel.ISupportInitialize)pctReceber).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            menuNovoAtendimento.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pctEncomenda).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctVendaRapida).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctRetiradaBalcao).EndInit();
@@ -539,8 +598,16 @@
         private Label label5;
         private Button button2;
         private Button btnResetSequencia;
-        private Button btnAdicionarItem;
         private Button btnExibirAtendimento;
         private Button btnEntregar;
+        private Button btnNovoAtendimento;
+        private ContextMenuStrip menuNovoAtendimento;
+        private ToolStripMenuItem toolStripVendaRapida;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem toolStripDelivery;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem toolStripRetirada;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripMenuItem toolStripEncomenda;
     }
 }
