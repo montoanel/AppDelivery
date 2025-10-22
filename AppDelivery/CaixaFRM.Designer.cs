@@ -144,7 +144,7 @@ namespace AppDelivery
             btnSalvar.TabIndex = 1;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
-            btnSalvar.Click += btnSalvar_Click;
+//            btnSalvar.Click += btnSalvar_Click;
             // 
             // btnNovo
             // 
