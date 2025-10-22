@@ -28,6 +28,7 @@ namespace AppDelivery
             btnEditar.Click += btnEditar_Click;
             btnSalvar.Click += btnSalvar_Click;
             btnSair.Click += btnSair_Click;
+            gridCaixas.CellClick += gridCaixas_CellClick;
 
             // Adiciona eventos para rastrear alterações (para o btnSair)
             txtNome.TextChanged += new EventHandler(Campo_TextChanged);
@@ -224,36 +225,59 @@ namespace AppDelivery
         // AÇÕES DA GRID (Seleção)
         // ********************************
 
+        // Arquivo: AppDelivery/CaixaFRM.cs (Substitua o seu método gridCaixas_CellClick existente por este)
+
         private void gridCaixas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            // Clicou no cabeçalho da coluna (RowIndex < 0), ignorar
+            if (e.RowIndex < 0)
             {
-                try
+                return;
+            }
+
+            try
+            {
+                // 1. OBTENÇÃO ROBUSTA DO ID
+                // O nome da coluna na Grid DEVE ser "Id", que é a propriedade da classe Caixa.
+                var idCell = gridCaixas.Rows[e.RowIndex].Cells["Id"].Value;
+
+                // Verifica se o valor é nulo ou DBNull
+                if (idCell == null || idCell == DBNull.Value)
                 {
-                    // Obtém o ID da linha selecionada
-                    int idSelecionado = (int)gridCaixas.Rows[e.RowIndex].Cells["Id"].Value;
-
-                    // Busca o objeto completo no banco de dados para carregar todos os dados
-                    Caixa caixa = caixaDAO.BuscarPorId(idSelecionado);
-
-                    if (caixa != null)
-                    {
-                        // Preenche os campos
-                        idCaixa = caixa.Id;
-                        txtID.Text = caixa.Id.ToString();
-                        txtNome.Text = caixa.Nome;
-                        // Mapeamento de 'A'/'I' para CheckBox
-                        chkAtivo.Checked = (caixa.Ativo == 'A');
-
-                        // Habilita a interface em modo de visualização (pronto para clicar em Editar ou Novo)
-                        HabilitarDesabilitarCampos(false);
-                        camposAlterados = false; // Garante que a flag de alteração está limpa após carregar
-                    }
+                    MessageBox.Show("ID do Caixa não encontrado na linha selecionada.", "Erro de Dados", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                catch (Exception ex)
+
+                // Converte o valor para inteiro de forma segura
+                int idSelecionado = Convert.ToInt32(idCell);
+
+                // 2. Busca o objeto completo no banco de dados
+                Caixa caixa = caixaDAO.BuscarPorId(idSelecionado);
+
+                if (caixa != null)
                 {
-                    MessageBox.Show("Erro ao carregar os dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Preenche os campos
+                    idCaixa = caixa.Id;
+                    txtID.Text = caixa.Id.ToString();
+                    txtNome.Text = caixa.Nome;
+
+                    // Mapeamento de 'A'/'I' para CheckBox
+                    chkAtivo.Checked = (caixa.Ativo == 'A');
+
+                    // Habilita a interface em modo de visualização 
+                    HabilitarDesabilitarCampos(false);
+                    camposAlterados = false;
                 }
+                else
+                {
+                    MessageBox.Show("Caixa não encontrado no banco de dados para o ID selecionado.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar os dados do caixa para edição: " + ex.Message, "Erro Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Opcionalmente, limpe os campos se der erro
+                // LimparCampos(); 
             }
         }
     }

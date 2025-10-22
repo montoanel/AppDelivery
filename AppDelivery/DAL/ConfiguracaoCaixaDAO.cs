@@ -7,16 +7,33 @@ using System.Data;
 
 namespace AppDelivery.DAL
 {
-    // Responsável por gerenciar a tabela tb_config_caixa
     public class ConfiguracaoCaixaDAO
     {
         private Conexao conexao = new Conexao();
 
+        // (MÉTODOS SalvarConfiguracao, BuscarCaixaConfigurado, ListarConfiguracoes já estão aqui...)
+
+        // NOVO MÉTODO: Para REMOVER a vinculação de uma máquina
+        public void RemoverConfiguracao(int idConfig)
+        {
+            using (SqlConnection con = Conexao.GetConnection())
+            {
+                // DELETE baseado no ID da configuração
+                string sql = "DELETE FROM tb_config_caixa WHERE id_config = @IdConfig";
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@IdConfig", idConfig);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         // Método para INSERIR ou ATUALIZAR a vinculação Máquina-Caixa
         public void SalvarConfiguracao(string nomeMaquina, int idCaixa)
         {
-            // O nomeMaquina deve ser tratado como UNIQUE. 
-            // O método verifica se existe e faz INSERT ou UPDATE.
+            // O código permanece o mesmo: verifica se existe e faz INSERT/UPDATE
             string sqlCheck = "SELECT id_config FROM tb_config_caixa WHERE nome_maquina = @NomeMaquina";
             int idConfigExistente = 0;
 
@@ -38,12 +55,12 @@ namespace AppDelivery.DAL
                 string sql;
                 if (idConfigExistente > 0)
                 {
-                    // 2. Se existe, ATUALIZA a vinculação (UPDATE)
+                    // 2. Se existe, ATUALIZA
                     sql = "UPDATE tb_config_caixa SET id_caixa = @IdCaixa WHERE nome_maquina = @NomeMaquina";
                 }
                 else
                 {
-                    // 3. Se não existe, INSERE a nova vinculação (INSERT)
+                    // 3. Se não existe, INSERE
                     sql = "INSERT INTO tb_config_caixa (nome_maquina, id_caixa) VALUES (@NomeMaquina, @IdCaixa)";
                 }
 
@@ -60,6 +77,7 @@ namespace AppDelivery.DAL
         // Método para buscar a configuração da máquina (para uso no sistema principal)
         public Caixa BuscarCaixaConfigurado(string nomeMaquina)
         {
+            // ... [Código de Busca por Máquina permanece o mesmo] ...
             Caixa caixa = null;
 
             string sql = @"
@@ -92,13 +110,14 @@ namespace AppDelivery.DAL
             return caixa;
         }
 
-        // Método para listar todas as configurações (útil para o Grid da tela de Configuração)
+        // Método para listar todas as configurações
         public DataTable ListarConfiguracoes()
         {
             DataTable dt = new DataTable();
 
+            // Adicionado cfg.id_caixa para exibição na grid e carregamento na interface
             string sql = @"
-                SELECT cfg.id_config, cfg.nome_maquina, c.nome_caixa, c.ativo
+                SELECT cfg.id_config, cfg.nome_maquina, c.nome_caixa, c.id_caixa
                 FROM tb_config_caixa AS cfg
                 INNER JOIN tb_caixas AS c ON cfg.id_caixa = c.id_caixa
                 ORDER BY cfg.nome_maquina";

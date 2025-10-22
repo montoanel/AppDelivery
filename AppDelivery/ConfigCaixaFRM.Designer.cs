@@ -33,16 +33,21 @@
             this.cmbCaixa = new System.Windows.Forms.ComboBox();
             this.txtNomeMaquina = new System.Windows.Forms.TextBox();
             this.lblNomeMaquina = new System.Windows.Forms.Label();
+            this.txtIDConfig = new System.Windows.Forms.TextBox();
+            this.lblIDConfig = new System.Windows.Forms.Label();
             this.dgvConfiguracoes = new System.Windows.Forms.DataGridView();
             this.lblConfiguracoes = new System.Windows.Forms.Label();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnSair = new System.Windows.Forms.Button();
+            this.btnRemover = new System.Windows.Forms.Button(); // NOVO BOTÃO REMOVER
             this.gbConfiguracao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConfiguracoes)).BeginInit();
             this.SuspendLayout();
             // 
             // gbConfiguracao
             // 
+            this.gbConfiguracao.Controls.Add(this.lblIDConfig);
+            this.gbConfiguracao.Controls.Add(this.txtIDConfig);
             this.gbConfiguracao.Controls.Add(this.lblCaixa);
             this.gbConfiguracao.Controls.Add(this.cmbCaixa);
             this.gbConfiguracao.Controls.Add(this.txtNomeMaquina);
@@ -76,19 +81,36 @@
             // txtNomeMaquina
             // 
             this.txtNomeMaquina.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNomeMaquina.Location = new System.Drawing.Point(15, 50);
+            this.txtNomeMaquina.Location = new System.Drawing.Point(85, 50);
             this.txtNomeMaquina.Name = "txtNomeMaquina";
-            this.txtNomeMaquina.Size = new System.Drawing.Size(300, 25);
+            this.txtNomeMaquina.Size = new System.Drawing.Size(230, 25);
             this.txtNomeMaquina.TabIndex = 1;
             // 
             // lblNomeMaquina
             // 
             this.lblNomeMaquina.AutoSize = true;
-            this.lblNomeMaquina.Location = new System.Drawing.Point(15, 30);
+            this.lblNomeMaquina.Location = new System.Drawing.Point(85, 30);
             this.lblNomeMaquina.Name = "lblNomeMaquina";
             this.lblNomeMaquina.Size = new System.Drawing.Size(95, 17);
             this.lblNomeMaquina.TabIndex = 0;
             this.lblNomeMaquina.Text = "Nome Máquina";
+            // 
+            // txtIDConfig
+            // 
+            this.txtIDConfig.Enabled = false; // Tornar o campo somente leitura
+            this.txtIDConfig.Location = new System.Drawing.Point(15, 50);
+            this.txtIDConfig.Name = "txtIDConfig";
+            this.txtIDConfig.Size = new System.Drawing.Size(55, 25);
+            this.txtIDConfig.TabIndex = 5;
+            // 
+            // lblIDConfig
+            // 
+            this.lblIDConfig.AutoSize = true;
+            this.lblIDConfig.Location = new System.Drawing.Point(15, 30);
+            this.lblIDConfig.Name = "lblIDConfig";
+            this.lblIDConfig.Size = new System.Drawing.Size(20, 17);
+            this.lblIDConfig.TabIndex = 4;
+            this.lblIDConfig.Text = "ID";
             // 
             // dgvConfiguracoes
             // 
@@ -103,6 +125,7 @@
             this.dgvConfiguracoes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvConfiguracoes.Size = new System.Drawing.Size(650, 250);
             this.dgvConfiguracoes.TabIndex = 1;
+            this.dgvConfiguracoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConfiguracoes_CellClick);
             // 
             // lblConfiguracoes
             // 
@@ -138,11 +161,25 @@
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
+            // btnRemover
+            // 
+            this.btnRemover.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnRemover.Enabled = false; // Começa desabilitado
+            this.btnRemover.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRemover.Location = new System.Drawing.Point(410, 422);
+            this.btnRemover.Name = "btnRemover";
+            this.btnRemover.Size = new System.Drawing.Size(80, 30);
+            this.btnRemover.TabIndex = 5;
+            this.btnRemover.Text = "Remover";
+            this.btnRemover.UseVisualStyleBackColor = false;
+            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
+            // 
             // ConfigCaixaFRM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(674, 464);
+            this.Controls.Add(this.btnRemover);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.lblConfiguracoes);
@@ -174,5 +211,8 @@
         private System.Windows.Forms.Label lblConfiguracoes;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnSair;
+        private System.Windows.Forms.Button btnRemover; // Adicionado
+        private System.Windows.Forms.TextBox txtIDConfig; // Adicionado
+        private System.Windows.Forms.Label lblIDConfig; // Adicionado
     }
 }
