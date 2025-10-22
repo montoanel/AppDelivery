@@ -1,4 +1,4 @@
-﻿// AppDelivery/CaixaFRM.cs
+﻿// Arquivo: AppDelivery/CaixaFRM.cs
 using AppDelivery.DAL;
 using System;
 using System.Collections.Generic;
@@ -9,22 +9,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-// Lembre-se de adicionar o using para sua camada de dados (ex: AppDelivery.DAL)
 
 namespace AppDelivery
 {
     public partial class CaixaFRM : Form
     {
-
         private CaixaDAO caixaDAO = new CaixaDAO();
-
-        // Lista para simular o banco de dados temporariamente
-        private List<Caixa> listaDeCaixas = new List<Caixa>();
-        private int proximoId = 1; // Para simular o Auto-Incremento
+        // Variável de controle: 0 para Novo, > 0 para Edição
+        private int idCaixa = 0;
+        // Variável para rastrear se houve alteração nos campos na sessão atual
+        private bool camposAlterados = false;
 
         public CaixaFRM()
         {
             InitializeComponent();
+
+            // Liga os eventos dos botões (caso não estejam no Designer.cs)
+            btnEditar.Click += btnEditar_Click;
+            btnSalvar.Click += btnSalvar_Click;
+            btnSair.Click += btnSair_Click;
+
+            // Adiciona eventos para rastrear alterações (para o btnSair)
+            txtNome.TextChanged += new EventHandler(Campo_TextChanged);
+            chkAtivo.CheckedChanged += new EventHandler(Campo_Changed);
+            // txtID é apenas leitura
         }
 
         private void CaixaFRM_Load(object sender, EventArgs e)
@@ -33,60 +41,102 @@ namespace AppDelivery
             CarregarGrid();
         }
 
+        // ********************************
+        // MÉTODOS AUXILIARES DE INTERFACE E CONTROLE
+        // ********************************
+
+        // Métodos para rastrear se algum campo foi alterado
+        private void Campo_TextChanged(object sender, EventArgs e)
+        {
+            // Só marca como alterado se o formulário estiver em modo de edição/novo
+            if (gbDados.Enabled)
+            {
+                camposAlterados = true;
+            }
+        }
+
+        private void Campo_Changed(object sender, EventArgs e)
+        {
+            if (gbDados.Enabled)
+            {
+                camposAlterados = true;
+            }
+        }
+
         private void HabilitarDesabilitarCampos(bool habilitar)
         {
+            // Habilita/Desabilita a área de entrada de dados
             gbDados.Enabled = habilitar;
-            btnSalvar.Enabled = habilitar;
-            // btnExcluir.Enabled = habilitar; // LINHA REMOVIDA
 
+            // Habilita/Desabilita Salvar (apenas em modo Novo/Edição)
+            btnSalvar.Enabled = habilitar;
+
+            // Botões de ação principal (oposto ao modo atual)
             btnNovo.Enabled = !habilitar;
             gridCaixas.Enabled = !habilitar;
+
+            // O botão Editar só deve ser habilitado se houver um registro carregado (idCaixa > 0)
+            btnEditar.Enabled = (idCaixa > 0) && !habilitar;
+            // O campo txtID é sempre apenas leitura
+            txtID.Enabled = false;
         }
 
         private void LimparCampos()
         {
             txtID.Clear();
             txtNome.Clear();
-            chkAtivo.Checked = true;
+            chkAtivo.Checked = true; // Novo registro sempre começa como Ativo
+            idCaixa = 0; // Indica Novo Registro
+            camposAlterados = false; // Reset da flag de alteração
         }
 
         private void CarregarGrid()
         {
             try
             {
-                // 1. CHAMA O DAO para buscar a lista do banco de dados
-                List<Caixa> listaDeCaixas = caixaDAO.ListarTodos();
+                gridCaixas.DataSource = null;
+                gridCaixas.DataSource = caixaDAO.ListarTodos();
 
-                // --- Toda a lógica de simulação/listaDeCaixas.Add() será removida daqui ---
-
-                // 2. Lógica de Filtro (se você quiser manter o filtro)
-                // Por enquanto, vamos manter a lista completa:
-                var listaParaGrid = listaDeCaixas;
-
-                // 3. Associa a lista do banco de dados ao DataGridView
-                gridCaixas.DataSource = null; // Limpa a fonte de dados anterior
-                gridCaixas.DataSource = listaParaGrid; // Re-associa a lista atualizada
-
-                // 4. Configurar colunas (MANTENHA esta parte)
-                gridCaixas.Columns["Id"].HeaderText = "ID";
-                gridCaixas.Columns["Nome"].HeaderText = "Nome";
-                gridCaixas.Columns["Ativo"].HeaderText = "Status";
-                gridCaixas.Columns["Nome"].Width = 300;
+                // Configurar colunas
+                if (gridCaixas.Columns.Contains("Id")) gridCaixas.Columns["Id"].HeaderText = "ID";
+                if (gridCaixas.Columns.Contains("Nome")) gridCaixas.Columns["Nome"].HeaderText = "Nome";
+                if (gridCaixas.Columns.Contains("Ativo")) gridCaixas.Columns["Ativo"].HeaderText = "Status";
+                if (gridCaixas.Columns.Contains("Nome")) gridCaixas.Columns["Nome"].Width = 300;
             }
             catch (Exception ex)
             {
-                // É crucial tratar exceções que podem ocorrer ao acessar o banco
                 MessageBox.Show("Erro ao carregar os dados do Caixa: " + ex.Message, "Erro de Acesso a Dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // ********************************
+        // AÇÕES DOS BOTÕES (Eventos Click)
+        // ********************************
+
+        // 1. Ação do botão NOVO
         private void btnNovo_Click(object sender, EventArgs e)
         {
+            // Se houver alterações não salvas antes de iniciar o "Novo", pergunta ao usuário
+            if (gbDados.Enabled && camposAlterados)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    "Há um cadastro em andamento. Deseja descartar e iniciar um novo?",
+                    "Confirmar Novo",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (resultado == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             LimparCampos();
             HabilitarDesabilitarCampos(true);
             txtNome.Focus();
         }
 
+        // 2. Ação do botão SALVAR (INSERT/UPDATE)
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNome.Text))
@@ -96,76 +146,113 @@ namespace AppDelivery
                 return;
             }
 
-            // TODO: Implementar lógica de salvar (INSERT ou UPDATE) no banco de dados
+            Caixa caixa = new Caixa();
 
-            Caixa caixa;
+            caixa.Nome = txtNome.Text.Trim();
+            // Mapeamento: Checado ('A') ou Desmarcado ('I')
+            caixa.Ativo = chkAtivo.Checked ? 'A' : 'I';
 
-            // Se o ID está vazio, é um NOVO registro (INSERT)
-            if (string.IsNullOrEmpty(txtID.Text))
+            try
             {
-                caixa = new Caixa();
-                caixa.Id = proximoId++; // Simulação de Auto-Incremento
-                caixa.Nome = txtNome.Text;
-                caixa.Ativo = chkAtivo.Checked;
+                // NOVO REGISTRO (idCaixa == 0)
+                if (idCaixa == 0)
+                {
+                    caixaDAO.Inserir(caixa);
+                    MessageBox.Show("Caixa cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                // EDIÇÃO / INATIVAÇÃO (idCaixa > 0)
+                else
+                {
+                    caixa.Id = idCaixa;
+                    caixaDAO.Atualizar(caixa);
+                    MessageBox.Show("Caixa atualizado (Nome e/ou Status) com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
-                // Ex: CaixaDAO.Inserir(caixa);
-                listaDeCaixas.Add(caixa); // Simulação
-
-                MessageBox.Show("Caixa cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CarregarGrid();
+                HabilitarDesabilitarCampos(false);
+                LimparCampos();
             }
-            // Se o ID NÃO está vazio, é uma EDIÇÃO (UPDATE)
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao salvar o caixa: " + ex.Message, "Erro de Banco de Dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // 3. Ação do botão EDITAR
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (idCaixa > 0)
+            {
+                HabilitarDesabilitarCampos(true);
+                txtNome.Focus();
+            }
             else
             {
-                int id = int.Parse(txtID.Text);
-
-                // Ex: caixa = CaixaDAO.BuscarPorId(id);
-                caixa = listaDeCaixas.FirstOrDefault(c => c.Id == id); // Simulação
-
-                if (caixa != null)
-                {
-                    caixa.Nome = txtNome.Text;
-                    caixa.Ativo = chkAtivo.Checked; // <- A lógica de INATIVAR acontece aqui
-                    // Ex: CaixaDAO.Atualizar(caixa);
-                }
-                MessageBox.Show("Caixa atualizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Selecione um caixa na listagem para editar.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            CarregarGrid();
-            HabilitarDesabilitarCampos(false);
-            LimparCampos();
+            // Limpa a flag ao entrar em modo edição para que só altere após a primeira modificação neste modo.
+            camposAlterados = false;
         }
 
-        // MÉTODO btnExcluir_Click FOI COMPLETAMENTE REMOVIDO
-
+        // 4. Ação do botão SAIR
         private void btnSair_Click(object sender, EventArgs e)
         {
-            this.Close();
+            // Verifica se os campos estão habilitados (modo Novo ou Edição) E se houve alterações
+            if (gbDados.Enabled && camposAlterados)
+            {
+                string acao = (idCaixa == 0) ? "cadastrar um novo registro" : "salvar as alterações";
+
+                DialogResult resultado = MessageBox.Show(
+                    $"Você está prestes a {acao}. Deseja sair e descartar as alterações não salvas?",
+                    "Confirmar Saída",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Close();
+            }
         }
+
+
+        // ********************************
+        // AÇÕES DA GRID (Seleção)
+        // ********************************
 
         private void gridCaixas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Certifica-se de que o clique foi em uma linha válida
             if (e.RowIndex >= 0)
             {
-                // Pega a linha clicada
-                DataGridViewRow row = gridCaixas.Rows[e.RowIndex];
-
-                // TODO: Se os dados vierem do banco, você pode precisar buscar o objeto completo
-                // Caixa caixa = CaixaDAO.BuscarPorId((int)row.Cells["Id"].Value);
-
-                // Simulação (pegando direto da lista)
-                int id = (int)row.Cells["Id"].Value;
-                Caixa caixa = listaDeCaixas.FirstOrDefault(c => c.Id == id);
-
-                if (caixa != null)
+                try
                 {
-                    // Preenche os campos do formulário
-                    txtID.Text = caixa.Id.ToString();
-                    txtNome.Text = caixa.Nome;
-                    chkAtivo.Checked = caixa.Ativo;
+                    // Obtém o ID da linha selecionada
+                    int idSelecionado = (int)gridCaixas.Rows[e.RowIndex].Cells["Id"].Value;
 
-                    // Habilita os campos para edição/inativação
-                    HabilitarDesabilitarCampos(true);
+                    // Busca o objeto completo no banco de dados para carregar todos os dados
+                    Caixa caixa = caixaDAO.BuscarPorId(idSelecionado);
+
+                    if (caixa != null)
+                    {
+                        // Preenche os campos
+                        idCaixa = caixa.Id;
+                        txtID.Text = caixa.Id.ToString();
+                        txtNome.Text = caixa.Nome;
+                        // Mapeamento de 'A'/'I' para CheckBox
+                        chkAtivo.Checked = (caixa.Ativo == 'A');
+
+                        // Habilita a interface em modo de visualização (pronto para clicar em Editar ou Novo)
+                        HabilitarDesabilitarCampos(false);
+                        camposAlterados = false; // Garante que a flag de alteração está limpa após carregar
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao carregar os dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

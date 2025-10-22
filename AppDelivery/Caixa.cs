@@ -1,13 +1,19 @@
-﻿// AppDelivery/Caixa.cs
+﻿// Arquivo: AppDelivery/Caixa.cs
+
 namespace AppDelivery
 {
     public class Caixa
     {
+        // Mapeado para a coluna id_caixa
         public int Id { get; set; }
-        public string Nome { get; set; }
-        public bool Ativo { get; set; } // true = Ativo, false = Inativo
 
-        public Caixa(int id, string nome, bool ativo)
+        // Mapeado para a coluna nome_caixa
+        public string Nome { get; set; }
+
+        // Mapeado para a coluna ativo ('A' para Ativo, 'I' para Inativo)
+        public char Ativo { get; set; }
+
+        public Caixa(int id, string nome, char ativo)
         {
             Id = id;
             Nome = nome;

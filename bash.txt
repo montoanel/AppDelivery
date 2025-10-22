@@ -13,3 +13,9 @@ git push origin main
 
 
 cd /c/Users/Angélica/source/repos/AppDelivery
+
+
+
+git fetch origin  : Baixa as informações mais recentes do repositório remoto (origin) para o seu ambiente local, mas não altera seus arquivos de trabalho. Isso garante que você tenha a referência exata do que está no GitHub.
+
+git reset --hard origin/main: Força o branch local (main) a ser exatamente igual ao origin/main (o código salvo no GitHub). Este comando: Descarta todos os seus commits locais que não estão no GitHub. Apaga todas as alterações nos arquivos rastreados.
