@@ -54,6 +54,7 @@ C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.AtendimentosFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.CadastroClienteFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.CadastroProdutosFrm.resources
+C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.CaixaFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.FormasPagamentoFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.FuncionariosFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.GrupoProdutoFRM.resources

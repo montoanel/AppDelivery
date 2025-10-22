@@ -118,7 +118,13 @@ namespace AppDelivery
             FuncionariosFRM funcionariosFRM = new FuncionariosFRM();
             funcionariosFRM.ShowDialog();
 
-            
+
+        }
+
+        private void caixasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CaixaFRM caixaFRM = new CaixaFRM();
+            caixaFRM.ShowDialog();
         }
     }
 }
