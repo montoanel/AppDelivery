@@ -75,3 +75,4 @@ C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.pdb
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.genruntimeconfig.cache
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\ref\AppDelivery.dll
+C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.ConfigCaixaFRM.resources

@@ -126,5 +126,12 @@ namespace AppDelivery
             CaixaFRM caixaFRM = new CaixaFRM();
             caixaFRM.ShowDialog();
         }
+
+        private void paramêtrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            ConfigCaixaFRM configCaixaFRM = new ConfigCaixaFRM();
+            configCaixaFRM.ShowDialog();
+        }
     }
 }

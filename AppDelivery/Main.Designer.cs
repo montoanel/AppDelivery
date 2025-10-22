@@ -39,8 +39,10 @@
             gruposDeProdutosToolStripMenuItem = new ToolStripMenuItem();
             formasDePagamentoToolStripMenuItem = new ToolStripMenuItem();
             funcionáriosToolStripMenuItem = new ToolStripMenuItem();
-            pctAtendimentos = new PictureBox();
             caixasToolStripMenuItem = new ToolStripMenuItem();
+            pctAtendimentos = new PictureBox();
+            parametrostToolStripMenuItem = new ToolStripMenuItem();
+            paramêtrosToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).BeginInit();
             menuStrip1.SuspendLayout();
@@ -76,7 +78,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastrosToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastrosToolStripMenuItem, parametrostToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1898, 33);
@@ -137,6 +139,13 @@
             funcionáriosToolStripMenuItem.Text = "Funcionários";
             funcionáriosToolStripMenuItem.Click += funcionáriosToolStripMenuItem_Click;
             // 
+            // caixasToolStripMenuItem
+            // 
+            caixasToolStripMenuItem.Name = "caixasToolStripMenuItem";
+            caixasToolStripMenuItem.Size = new Size(293, 34);
+            caixasToolStripMenuItem.Text = "Caixas";
+            caixasToolStripMenuItem.Click += caixasToolStripMenuItem_Click;
+            // 
             // pctAtendimentos
             // 
             pctAtendimentos.Image = Properties.Resources.icons8_lista_100;
@@ -150,12 +159,19 @@
             pctAtendimentos.MouseEnter += pctAtendimentos_MouseEnter;
             pctAtendimentos.MouseLeave += pctAtendimentos_MouseLeave;
             // 
-            // caixasToolStripMenuItem
+            // parametrostToolStripMenuItem
             // 
-            caixasToolStripMenuItem.Name = "caixasToolStripMenuItem";
-            caixasToolStripMenuItem.Size = new Size(293, 34);
-            caixasToolStripMenuItem.Text = "Caixas";
-            caixasToolStripMenuItem.Click += caixasToolStripMenuItem_Click;
+            parametrostToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { paramêtrosToolStripMenuItem });
+            parametrostToolStripMenuItem.Name = "parametrostToolStripMenuItem";
+            parametrostToolStripMenuItem.Size = new Size(236, 29);
+            parametrostToolStripMenuItem.Text = "Configurações do Sistema";
+            // 
+            // paramêtrosToolStripMenuItem
+            // 
+            paramêtrosToolStripMenuItem.Name = "paramêtrosToolStripMenuItem";
+            paramêtrosToolStripMenuItem.Size = new Size(274, 34);
+            paramêtrosToolStripMenuItem.Text = "Paramêtros de Caixa";
+            paramêtrosToolStripMenuItem.Click += paramêtrosToolStripMenuItem_Click;
             // 
             // Main
             // 
@@ -194,5 +210,7 @@
         private PictureBox pctAtendimentos;
         private ToolStripMenuItem funcionáriosToolStripMenuItem;
         private ToolStripMenuItem caixasToolStripMenuItem;
+        private ToolStripMenuItem parametrostToolStripMenuItem;
+        private ToolStripMenuItem paramêtrosToolStripMenuItem;
     }
 }
