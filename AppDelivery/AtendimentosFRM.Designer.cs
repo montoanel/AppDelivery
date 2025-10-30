@@ -126,6 +126,8 @@
             pctReceber.SizeMode = PictureBoxSizeMode.StretchImage;
             pctReceber.TabIndex = 5;
             pctReceber.TabStop = false;
+            pctReceber.MouseEnter += pctGenerico_MouseEnter;
+            pctReceber.MouseLeave += pctGenerico_MouseLeave;
             // 
             // groupBox1
             // 
@@ -546,6 +548,7 @@
             Name = "AtendimentosFRM";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AtendimentosFRM";
+            WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();

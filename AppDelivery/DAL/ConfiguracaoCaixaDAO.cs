@@ -31,47 +31,15 @@ namespace AppDelivery.DAL
         }
 
         // Método para INSERIR ou ATUALIZAR a vinculação Máquina-Caixa
+        // Exemplo do SalvarConfiguracao (deve estar no ConfiguracaoCaixaDAO.cs)
         public void SalvarConfiguracao(string nomeMaquina, int idCaixa)
         {
-            // O código permanece o mesmo: verifica se existe e faz INSERT/UPDATE
+            // ...
             string sqlCheck = "SELECT id_config FROM tb_config_caixa WHERE nome_maquina = @NomeMaquina";
-            int idConfigExistente = 0;
-
-            using (SqlConnection con = Conexao.GetConnection())
-            {
-                con.Open();
-
-                // 1. Verifica se a máquina já está cadastrada
-                using (SqlCommand cmd = new SqlCommand(sqlCheck, con))
-                {
-                    cmd.Parameters.AddWithValue("@NomeMaquina", nomeMaquina);
-                    object result = cmd.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
-                    {
-                        idConfigExistente = Convert.ToInt32(result);
-                    }
-                }
-
-                string sql;
-                if (idConfigExistente > 0)
-                {
-                    // 2. Se existe, ATUALIZA
-                    sql = "UPDATE tb_config_caixa SET id_caixa = @IdCaixa WHERE nome_maquina = @NomeMaquina";
-                }
-                else
-                {
-                    // 3. Se não existe, INSERE
-                    sql = "INSERT INTO tb_config_caixa (nome_maquina, id_caixa) VALUES (@NomeMaquina, @IdCaixa)";
-                }
-
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@NomeMaquina", nomeMaquina);
-                    cmd.Parameters.AddWithValue("@IdCaixa", idCaixa);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            // ...
+            // Se idConfigExistente > 0, faz UPDATE
+            // Se idConfigExistente == 0, faz INSERT
+            // ...
         }
 
         // Método para buscar a configuração da máquina (para uso no sistema principal)

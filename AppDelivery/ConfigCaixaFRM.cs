@@ -99,31 +99,57 @@ namespace AppDelivery
         // AÇÕES DA GRID (SELEÇÃO)
         // **********************************
 
+        // Arquivo: AppDelivery/ConfigCaixaFRM.cs (MÉTODO CORRIGIDO)
+
         private void dgvConfiguracoes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            // Ignora o clique no cabeçalho
+            if (e.RowIndex < 0)
             {
-                try
+                return;
+            }
+
+            try
+            {
+                // 1. OBTENÇÃO ROBUSTA DO ID DE CONFIGURAÇÃO
+                object idConfigValue = dgvConfiguracoes.Rows[e.RowIndex].Cells["id_config"].Value;
+
+                // Verifica se o valor é nulo e converte de forma segura
+                if (idConfigValue == null || idConfigValue == DBNull.Value)
                 {
-                    // Obtém o ID da Configuração (tabela tb_config_caixa)
-                    idConfiguracao = Convert.ToInt32(dgvConfiguracoes.Rows[e.RowIndex].Cells["id_config"].Value);
-                    txtIDConfig.Text = idConfiguracao.ToString();
-
-                    // Obtém o Nome da Máquina e o ID do Caixa para preencher os campos de edição
-                    string nomeMaquina = dgvConfiguracoes.Rows[e.RowIndex].Cells["nome_maquina"].Value.ToString();
-                    int idCaixaVinculado = Convert.ToInt32(dgvConfiguracoes.Rows[e.RowIndex].Cells["id_caixa"].Value);
-
-                    txtNomeMaquina.Text = nomeMaquina;
-                    cmbCaixa.SelectedValue = idCaixaVinculado;
-
-                    // Habilita o botão Remover e Salvar para possível alteração
-                    btnRemover.Enabled = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao carregar a configuração selecionada: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LimparCamposConfiguracao();
+                    return;
                 }
+
+                // Converte o ID principal
+                idConfiguracao = Convert.ToInt32(idConfigValue);
+                txtIDConfig.Text = idConfiguracao.ToString();
+
+                // 2. OBTENÇÃO ROBUSTA DO NOME DA MÁQUINA (CORREÇÃO PRINCIPAL)
+                object nomeMaquinaValue = dgvConfiguracoes.Rows[e.RowIndex].Cells["nome_maquina"].Value;
+
+                // Verifica se é nulo/DBNull e usa string vazia em vez de falhar
+                string nomeMaquina = (nomeMaquinaValue == null || nomeMaquinaValue == DBNull.Value) ? string.Empty : nomeMaquinaValue.ToString();
+
+                // 3. OBTENÇÃO ROBUSTA DO ID DO CAIXA
+                object idCaixaValue = dgvConfiguracoes.Rows[e.RowIndex].Cells["id_caixa"].Value;
+
+                // Converte o ID do caixa de forma segura (usa 0 se for nulo)
+                int idCaixaVinculado = (idCaixaValue == null || idCaixaValue == DBNull.Value) ? 0 : Convert.ToInt32(idCaixaValue);
+
+                // Preenche os campos de edição
+                txtNomeMaquina.Text = nomeMaquina;
+
+                // Garante que o ComboBox selecione o valor correto (ou nenhum, se 0)
+                cmbCaixa.SelectedValue = idCaixaVinculado;
+
+                // Habilita o botão Remover e Salvar para possível alteração
+                btnRemover.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar a configuração selecionada. Verifique o formato dos dados na Grid. Detalhe: " + ex.Message, "Erro Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LimparCamposConfiguracao();
             }
         }
 

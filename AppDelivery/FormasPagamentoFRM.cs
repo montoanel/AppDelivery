@@ -50,14 +50,14 @@ namespace AppDelivery
             {
                 try
                 {
-                    string query = "SELECT id_pagamento, nome_pagamento, inativo, data_cadastro FROM tb_formas_pagamento ORDER BY nome_pagamento";
+                    string query = "SELECT id_forma_pagamento, nome_forma_pagamento, inativo, data_cadastro FROM tb_formas_pagamento ORDER BY nome_forma_pagamento";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conexao);
                     adapter.Fill(dtFormasPagamento);
                     dataGridView1.DataSource = dtFormasPagamento;
 
                     // Formata as colunas do DataGridView
-                    if (dataGridView1.Columns.Contains("id_pagamento")) dataGridView1.Columns["id_pagamento"].HeaderText = "ID";
-                    if (dataGridView1.Columns.Contains("nome_pagamento")) dataGridView1.Columns["nome_pagamento"].HeaderText = "Nome";
+                    if (dataGridView1.Columns.Contains("id_forma_pagamento")) dataGridView1.Columns["id_forma_pagamento"].HeaderText = "ID";
+                    if (dataGridView1.Columns.Contains("nome_forma_pagamento")) dataGridView1.Columns["nome_forma_pagamento"].HeaderText = "Nome";
                     if (dataGridView1.Columns.Contains("inativo")) dataGridView1.Columns["inativo"].HeaderText = "Status";
                     if (dataGridView1.Columns.Contains("data_cadastro")) dataGridView1.Columns["data_cadastro"].HeaderText = "Data de Cadastro";
 
@@ -148,7 +148,7 @@ namespace AppDelivery
                     if (modoEdicao)
                     {
                         // Lógica para EDIÇÃO
-                        string queryUpdate = "UPDATE tb_formas_pagamento SET nome_pagamento = @nome, inativo = @inativo WHERE id_pagamento = @id";
+                        string queryUpdate = "UPDATE tb_formas_pagamento SET nome_forma_pagamento = @nome, inativo = @inativo WHERE id_forma_pagamento = @id";
                         cmd = new SqlCommand(queryUpdate, conexao);
                         cmd.Parameters.AddWithValue("@nome", nomePagamento);
                         cmd.Parameters.AddWithValue("@inativo", inativoStatus);
@@ -157,7 +157,7 @@ namespace AppDelivery
                     else
                     {
                         // Lógica para NOVO CADASTRO
-                        string queryInsert = "INSERT INTO tb_formas_pagamento (nome_pagamento, inativo, data_cadastro) VALUES (@nome, @inativo, GETDATE())";
+                        string queryInsert = "INSERT INTO tb_formas_pagamento (nome_forma_pagamento, inativo, data_cadastro) VALUES (@nome, @inativo, GETDATE())";
                         cmd = new SqlCommand(queryInsert, conexao);
                         cmd.Parameters.AddWithValue("@nome", nomePagamento);
                         cmd.Parameters.AddWithValue("@inativo", inativoStatus);
@@ -188,8 +188,8 @@ namespace AppDelivery
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                txtID.Text = row.Cells["id_pagamento"].Value.ToString();
-                txtboxNome.Text = row.Cells["nome_pagamento"].Value.ToString();
+                txtID.Text = row.Cells["id_forma_pagamento"].Value.ToString();
+                txtboxNome.Text = row.Cells["nome_forma_pagamento"].Value.ToString();
 
                 string status = row.Cells["inativo"].Value.ToString();
                 cmbStatus.SelectedIndex = status == "A" ? 0 : 1; // 0 para "Ativo", 1 para "Inativo"

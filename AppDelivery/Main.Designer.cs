@@ -40,9 +40,9 @@
             formasDePagamentoToolStripMenuItem = new ToolStripMenuItem();
             funcionáriosToolStripMenuItem = new ToolStripMenuItem();
             caixasToolStripMenuItem = new ToolStripMenuItem();
-            pctAtendimentos = new PictureBox();
             parametrostToolStripMenuItem = new ToolStripMenuItem();
             paramêtrosToolStripMenuItem = new ToolStripMenuItem();
+            pctAtendimentos = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).BeginInit();
             menuStrip1.SuspendLayout();
@@ -146,19 +146,6 @@
             caixasToolStripMenuItem.Text = "Caixas";
             caixasToolStripMenuItem.Click += caixasToolStripMenuItem_Click;
             // 
-            // pctAtendimentos
-            // 
-            pctAtendimentos.Image = Properties.Resources.icons8_lista_100;
-            pctAtendimentos.Location = new Point(196, 43);
-            pctAtendimentos.Name = "pctAtendimentos";
-            pctAtendimentos.Size = new Size(100, 90);
-            pctAtendimentos.SizeMode = PictureBoxSizeMode.StretchImage;
-            pctAtendimentos.TabIndex = 3;
-            pctAtendimentos.TabStop = false;
-            pctAtendimentos.Click += pctAtendimentos_Click;
-            pctAtendimentos.MouseEnter += pctAtendimentos_MouseEnter;
-            pctAtendimentos.MouseLeave += pctAtendimentos_MouseLeave;
-            // 
             // parametrostToolStripMenuItem
             // 
             parametrostToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { paramêtrosToolStripMenuItem });
@@ -173,6 +160,19 @@
             paramêtrosToolStripMenuItem.Text = "Paramêtros de Caixa";
             paramêtrosToolStripMenuItem.Click += paramêtrosToolStripMenuItem_Click;
             // 
+            // pctAtendimentos
+            // 
+            pctAtendimentos.Image = Properties.Resources.icons8_lista_100;
+            pctAtendimentos.Location = new Point(196, 43);
+            pctAtendimentos.Name = "pctAtendimentos";
+            pctAtendimentos.Size = new Size(100, 90);
+            pctAtendimentos.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctAtendimentos.TabIndex = 3;
+            pctAtendimentos.TabStop = false;
+            pctAtendimentos.Click += pctAtendimentos_Click;
+            pctAtendimentos.MouseEnter += pctAtendimentos_MouseEnter;
+            pctAtendimentos.MouseLeave += pctAtendimentos_MouseLeave;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -185,6 +185,7 @@
             MainMenuStrip = menuStrip1;
             Name = "Main";
             Text = "Main";
+            WindowState = FormWindowState.Maximized;
             MouseEnter += Main_MouseEnter;
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).EndInit();
