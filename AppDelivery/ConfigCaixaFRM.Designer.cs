@@ -28,175 +28,205 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gbConfiguracao = new System.Windows.Forms.GroupBox();
-            this.lblCaixa = new System.Windows.Forms.Label();
-            this.cmbCaixa = new System.Windows.Forms.ComboBox();
-            this.txtNomeMaquina = new System.Windows.Forms.TextBox();
-            this.lblNomeMaquina = new System.Windows.Forms.Label();
-            this.txtIDConfig = new System.Windows.Forms.TextBox();
-            this.lblIDConfig = new System.Windows.Forms.Label();
-            this.dgvConfiguracoes = new System.Windows.Forms.DataGridView();
-            this.lblConfiguracoes = new System.Windows.Forms.Label();
-            this.btnSalvar = new System.Windows.Forms.Button();
-            this.btnSair = new System.Windows.Forms.Button();
-            this.btnRemover = new System.Windows.Forms.Button(); // NOVO BOTÃO REMOVER
-            this.gbConfiguracao.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvConfiguracoes)).BeginInit();
-            this.SuspendLayout();
+            gbConfiguracao = new GroupBox();
+            lblIDConfig = new Label();
+            txtIDConfig = new TextBox();
+            lblCaixa = new Label();
+            cmbCaixa = new ComboBox();
+            txtNomeMaquina = new TextBox();
+            lblNomeMaquina = new Label();
+            dgvConfiguracoes = new DataGridView();
+            lblConfiguracoes = new Label();
+            btnSalvar = new Button();
+            btnSair = new Button();
+            btnDesvincular = new Button();
+            btnNovo = new Button();
+            gbConfiguracao.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvConfiguracoes).BeginInit();
+            SuspendLayout();
             // 
             // gbConfiguracao
             // 
-            this.gbConfiguracao.Controls.Add(this.lblIDConfig);
-            this.gbConfiguracao.Controls.Add(this.txtIDConfig);
-            this.gbConfiguracao.Controls.Add(this.lblCaixa);
-            this.gbConfiguracao.Controls.Add(this.cmbCaixa);
-            this.gbConfiguracao.Controls.Add(this.txtNomeMaquina);
-            this.gbConfiguracao.Controls.Add(this.lblNomeMaquina);
-            this.gbConfiguracao.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.gbConfiguracao.Location = new System.Drawing.Point(12, 12);
-            this.gbConfiguracao.Name = "gbConfiguracao";
-            this.gbConfiguracao.Size = new System.Drawing.Size(650, 107);
-            this.gbConfiguracao.TabIndex = 0;
-            this.gbConfiguracao.TabStop = false;
-            this.gbConfiguracao.Text = "Vincular Máquina ao Caixa";
-            // 
-            // lblCaixa
-            // 
-            this.lblCaixa.AutoSize = true;
-            this.lblCaixa.Location = new System.Drawing.Point(335, 30);
-            this.lblCaixa.Name = "lblCaixa";
-            this.lblCaixa.Size = new System.Drawing.Size(40, 17);
-            this.lblCaixa.TabIndex = 3;
-            this.lblCaixa.Text = "Caixa";
-            // 
-            // cmbCaixa
-            // 
-            this.cmbCaixa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCaixa.FormattingEnabled = true;
-            this.cmbCaixa.Location = new System.Drawing.Point(335, 50);
-            this.cmbCaixa.Name = "cmbCaixa";
-            this.cmbCaixa.Size = new System.Drawing.Size(300, 25);
-            this.cmbCaixa.TabIndex = 2;
-            // 
-            // txtNomeMaquina
-            // 
-            this.txtNomeMaquina.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNomeMaquina.Location = new System.Drawing.Point(85, 50);
-            this.txtNomeMaquina.Name = "txtNomeMaquina";
-            this.txtNomeMaquina.Size = new System.Drawing.Size(230, 25);
-            this.txtNomeMaquina.TabIndex = 1;
-            // 
-            // lblNomeMaquina
-            // 
-            this.lblNomeMaquina.AutoSize = true;
-            this.lblNomeMaquina.Location = new System.Drawing.Point(85, 30);
-            this.lblNomeMaquina.Name = "lblNomeMaquina";
-            this.lblNomeMaquina.Size = new System.Drawing.Size(95, 17);
-            this.lblNomeMaquina.TabIndex = 0;
-            this.lblNomeMaquina.Text = "Nome Máquina";
-            // 
-            // txtIDConfig
-            // 
-            this.txtIDConfig.Enabled = false; // Tornar o campo somente leitura
-            this.txtIDConfig.Location = new System.Drawing.Point(15, 50);
-            this.txtIDConfig.Name = "txtIDConfig";
-            this.txtIDConfig.Size = new System.Drawing.Size(55, 25);
-            this.txtIDConfig.TabIndex = 5;
+            gbConfiguracao.Controls.Add(lblIDConfig);
+            gbConfiguracao.Controls.Add(txtIDConfig);
+            gbConfiguracao.Controls.Add(lblCaixa);
+            gbConfiguracao.Controls.Add(cmbCaixa);
+            gbConfiguracao.Controls.Add(txtNomeMaquina);
+            gbConfiguracao.Controls.Add(lblNomeMaquina);
+            gbConfiguracao.Font = new Font("Segoe UI", 9.75F);
+            gbConfiguracao.Location = new Point(17, 20);
+            gbConfiguracao.Margin = new Padding(4, 5, 4, 5);
+            gbConfiguracao.Name = "gbConfiguracao";
+            gbConfiguracao.Padding = new Padding(4, 5, 4, 5);
+            gbConfiguracao.Size = new Size(929, 178);
+            gbConfiguracao.TabIndex = 0;
+            gbConfiguracao.TabStop = false;
+            gbConfiguracao.Text = "Vincular Máquina ao Caixa";
             // 
             // lblIDConfig
             // 
-            this.lblIDConfig.AutoSize = true;
-            this.lblIDConfig.Location = new System.Drawing.Point(15, 30);
-            this.lblIDConfig.Name = "lblIDConfig";
-            this.lblIDConfig.Size = new System.Drawing.Size(20, 17);
-            this.lblIDConfig.TabIndex = 4;
-            this.lblIDConfig.Text = "ID";
+            lblIDConfig.AutoSize = true;
+            lblIDConfig.Location = new Point(21, 50);
+            lblIDConfig.Margin = new Padding(4, 0, 4, 0);
+            lblIDConfig.Name = "lblIDConfig";
+            lblIDConfig.Size = new Size(31, 28);
+            lblIDConfig.TabIndex = 4;
+            lblIDConfig.Text = "ID";
+            // 
+            // txtIDConfig
+            // 
+            txtIDConfig.Enabled = false;
+            txtIDConfig.Location = new Point(21, 83);
+            txtIDConfig.Margin = new Padding(4, 5, 4, 5);
+            txtIDConfig.Name = "txtIDConfig";
+            txtIDConfig.Size = new Size(77, 33);
+            txtIDConfig.TabIndex = 5;
+            // 
+            // lblCaixa
+            // 
+            lblCaixa.AutoSize = true;
+            lblCaixa.Location = new Point(479, 50);
+            lblCaixa.Margin = new Padding(4, 0, 4, 0);
+            lblCaixa.Name = "lblCaixa";
+            lblCaixa.Size = new Size(58, 28);
+            lblCaixa.TabIndex = 3;
+            lblCaixa.Text = "Caixa";
+            // 
+            // cmbCaixa
+            // 
+            cmbCaixa.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCaixa.FormattingEnabled = true;
+            cmbCaixa.Location = new Point(479, 83);
+            cmbCaixa.Margin = new Padding(4, 5, 4, 5);
+            cmbCaixa.Name = "cmbCaixa";
+            cmbCaixa.Size = new Size(427, 36);
+            cmbCaixa.TabIndex = 2;
+            // 
+            // txtNomeMaquina
+            // 
+            txtNomeMaquina.CharacterCasing = CharacterCasing.Upper;
+            txtNomeMaquina.Location = new Point(121, 83);
+            txtNomeMaquina.Margin = new Padding(4, 5, 4, 5);
+            txtNomeMaquina.Name = "txtNomeMaquina";
+            txtNomeMaquina.Size = new Size(327, 33);
+            txtNomeMaquina.TabIndex = 1;
+            // 
+            // lblNomeMaquina
+            // 
+            lblNomeMaquina.AutoSize = true;
+            lblNomeMaquina.Location = new Point(121, 50);
+            lblNomeMaquina.Margin = new Padding(4, 0, 4, 0);
+            lblNomeMaquina.Name = "lblNomeMaquina";
+            lblNomeMaquina.Size = new Size(148, 28);
+            lblNomeMaquina.TabIndex = 0;
+            lblNomeMaquina.Text = "Nome Máquina";
             // 
             // dgvConfiguracoes
             // 
-            this.dgvConfiguracoes.AllowUserToAddRows = false;
-            this.dgvConfiguracoes.AllowUserToDeleteRows = false;
-            this.dgvConfiguracoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvConfiguracoes.Location = new System.Drawing.Point(12, 166);
-            this.dgvConfiguracoes.Name = "dgvConfiguracoes";
-            this.dgvConfiguracoes.ReadOnly = true;
-            this.dgvConfiguracoes.RowHeadersWidth = 51;
-            this.dgvConfiguracoes.RowTemplate.Height = 25;
-            this.dgvConfiguracoes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvConfiguracoes.Size = new System.Drawing.Size(650, 250);
-            this.dgvConfiguracoes.TabIndex = 1;
-            this.dgvConfiguracoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConfiguracoes_CellClick);
+            dgvConfiguracoes.AllowUserToAddRows = false;
+            dgvConfiguracoes.AllowUserToDeleteRows = false;
+            dgvConfiguracoes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvConfiguracoes.Location = new Point(17, 277);
+            dgvConfiguracoes.Margin = new Padding(4, 5, 4, 5);
+            dgvConfiguracoes.Name = "dgvConfiguracoes";
+            dgvConfiguracoes.ReadOnly = true;
+            dgvConfiguracoes.RowHeadersWidth = 51;
+            dgvConfiguracoes.RowTemplate.Height = 25;
+            dgvConfiguracoes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvConfiguracoes.Size = new Size(929, 417);
+            dgvConfiguracoes.TabIndex = 1;
+            dgvConfiguracoes.CellClick += dgvConfiguracoes_CellClick;
             // 
             // lblConfiguracoes
             // 
-            this.lblConfiguracoes.AutoSize = true;
-            this.lblConfiguracoes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblConfiguracoes.Location = new System.Drawing.Point(12, 146);
-            this.lblConfiguracoes.Name = "lblConfiguracoes";
-            this.lblConfiguracoes.Size = new System.Drawing.Size(206, 17);
-            this.lblConfiguracoes.TabIndex = 2;
-            this.lblConfiguracoes.Text = "Configurações Atuais (Máquina)";
+            lblConfiguracoes.AutoSize = true;
+            lblConfiguracoes.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            lblConfiguracoes.Location = new Point(17, 243);
+            lblConfiguracoes.Margin = new Padding(4, 0, 4, 0);
+            lblConfiguracoes.Name = "lblConfiguracoes";
+            lblConfiguracoes.Size = new Size(316, 28);
+            lblConfiguracoes.TabIndex = 2;
+            lblConfiguracoes.Text = "Configurações Atuais (Máquina)";
             // 
             // btnSalvar
             // 
-            this.btnSalvar.BackColor = System.Drawing.Color.LightGreen;
-            this.btnSalvar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSalvar.Location = new System.Drawing.Point(582, 422);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(80, 30);
-            this.btnSalvar.TabIndex = 3;
-            this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = false;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            btnSalvar.BackColor = Color.LightGreen;
+            btnSalvar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            btnSalvar.Location = new Point(831, 703);
+            btnSalvar.Margin = new Padding(4, 5, 4, 5);
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.Size = new Size(114, 50);
+            btnSalvar.TabIndex = 3;
+            btnSalvar.Text = "Salvar";
+            btnSalvar.UseVisualStyleBackColor = false;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // btnSair
             // 
-            this.btnSair.BackColor = System.Drawing.Color.LightCoral;
-            this.btnSair.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSair.Location = new System.Drawing.Point(496, 422);
-            this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(80, 30);
-            this.btnSair.TabIndex = 4;
-            this.btnSair.Text = "Sair";
-            this.btnSair.UseVisualStyleBackColor = false;
-            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+            btnSair.BackColor = Color.LightCoral;
+            btnSair.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            btnSair.Location = new Point(709, 703);
+            btnSair.Margin = new Padding(4, 5, 4, 5);
+            btnSair.Name = "btnSair";
+            btnSair.Size = new Size(114, 50);
+            btnSair.TabIndex = 4;
+            btnSair.Text = "Sair";
+            btnSair.UseVisualStyleBackColor = false;
+            btnSair.Click += btnSair_Click;
             // 
-            // btnRemover
+            // btnDesvincular
             // 
-            this.btnRemover.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnRemover.Enabled = false; // Começa desabilitado
-            this.btnRemover.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnRemover.Location = new System.Drawing.Point(410, 422);
-            this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(80, 30);
-            this.btnRemover.TabIndex = 5;
-            this.btnRemover.Text = "Remover";
-            this.btnRemover.UseVisualStyleBackColor = false;
-            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
+            btnDesvincular.BackColor = Color.OrangeRed;
+            btnDesvincular.Enabled = false;
+            btnDesvincular.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            btnDesvincular.Location = new Point(562, 703);
+            btnDesvincular.Margin = new Padding(4, 5, 4, 5);
+            btnDesvincular.Name = "btnDesvincular";
+            btnDesvincular.Size = new Size(138, 50);
+            btnDesvincular.TabIndex = 5;
+            btnDesvincular.Text = "Desvincular";
+            btnDesvincular.UseVisualStyleBackColor = false;
+            btnDesvincular.Click += btnDesvincular_Click;
+            // 
+            // btnNovo
+            // 
+            btnNovo.BackColor = Color.Yellow;
+            btnNovo.Enabled = false;
+            btnNovo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            btnNovo.Location = new Point(440, 703);
+            btnNovo.Margin = new Padding(4, 5, 4, 5);
+            btnNovo.Name = "btnNovo";
+            btnNovo.Size = new Size(114, 50);
+            btnNovo.TabIndex = 6;
+            btnNovo.Text = "Novo";
+            btnNovo.UseVisualStyleBackColor = false;
+            btnNovo.Click += btnNovo_Click;
             // 
             // ConfigCaixaFRM
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(674, 464);
-            this.Controls.Add(this.btnRemover);
-            this.Controls.Add(this.btnSair);
-            this.Controls.Add(this.btnSalvar);
-            this.Controls.Add(this.lblConfiguracoes);
-            this.Controls.Add(this.dgvConfiguracoes);
-            this.Controls.Add(this.gbConfiguracao);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "ConfigCaixaFRM";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Configuração de Caixa por Máquina";
-            this.Load += new System.EventHandler(this.ConfigCaixaFRM_Load);
-            this.gbConfiguracao.ResumeLayout(false);
-            this.gbConfiguracao.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvConfiguracoes)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(963, 773);
+            Controls.Add(btnNovo);
+            Controls.Add(btnDesvincular);
+            Controls.Add(btnSair);
+            Controls.Add(btnSalvar);
+            Controls.Add(lblConfiguracoes);
+            Controls.Add(dgvConfiguracoes);
+            Controls.Add(gbConfiguracao);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4, 5, 4, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "ConfigCaixaFRM";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Configuração de Caixa por Máquina";
+            Load += ConfigCaixaFRM_Load;
+            gbConfiguracao.ResumeLayout(false);
+            gbConfiguracao.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvConfiguracoes).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -211,8 +241,9 @@
         private System.Windows.Forms.Label lblConfiguracoes;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnSair;
-        private System.Windows.Forms.Button btnRemover; // Adicionado
+        private System.Windows.Forms.Button btnDesvincular; // Adicionado
         private System.Windows.Forms.TextBox txtIDConfig; // Adicionado
         private System.Windows.Forms.Label lblIDConfig; // Adicionado
+        private Button btnNovo;
     }
 }

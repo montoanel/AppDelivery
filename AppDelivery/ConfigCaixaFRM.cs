@@ -21,11 +21,15 @@ namespace AppDelivery
         {
             InitializeComponent();
 
-            // Liga o evento CellClick da Grid (não estava no Designer.cs gerado)
+            // [AJUSTADO] Liga o evento CellClick da Grid e os botões
             dgvConfiguracoes.CellClick += dgvConfiguracoes_CellClick;
-            btnRemover.Click += btnRemover_Click; // Liga o novo botão
+
+            // Certifique-se de que esses botões existam no seu Designer
+            btnNovo.Click += btnNovo_Click;
+            btnDesvincular.Click += btnDesvincular_Click;
         }
 
+        // [MÉTODO AJUSTADO]
         private void ConfigCaixaFRM_Load(object sender, EventArgs e)
         {
             // 1. Carrega os dados na tela
@@ -34,23 +38,87 @@ namespace AppDelivery
             // 2. Preenche o nome da máquina local por padrão
             txtNomeMaquina.Text = System.Environment.MachineName.ToUpper();
 
-            // 3. Limpa e desabilita o ID da Configuração e o botão Remover
+            // 3. Limpa os campos
             LimparCamposConfiguracao();
 
             // 4. Carrega a lista de configurações existentes
             CarregarConfiguracoesGrid();
+
+            // 5. [NOVO PASSO] Tenta "Acusar" o vínculo existente
+            TentarCarregarConfiguracaoLocal();
+        }
+
+        // [NOVO MÉTODO]
+        // Procura na grid (que já foi carregada) se a máquina local existe
+        private void TentarCarregarConfiguracaoLocal()
+        {
+            string maquinaLocal = txtNomeMaquina.Text;
+
+            foreach (DataGridViewRow row in dgvConfiguracoes.Rows)
+            {
+                // Ignora linhas de cabeçalho ou inválidas
+                if (row.IsNewRow || row.Cells["nome_maquina"].Value == null) continue;
+
+                string nomeMaquinaNaGrid = row.Cells["nome_maquina"].Value.ToString();
+
+                // Compara ignorando maiúsculas/minúsculas
+                if (nomeMaquinaNaGrid.Equals(maquinaLocal, StringComparison.OrdinalIgnoreCase))
+                {
+                    // ENCONTROU!
+                    // Vamos simular um clique na grid para carregar os dados
+                    try
+                    {
+                        // Obtém os valores da linha encontrada
+                        int idConfig = Convert.ToInt32(row.Cells["id_config"].Value);
+
+                        // [AJUSTE DE NULO] Verifica se o id_caixa não é nulo
+                        object idCaixaValue = row.Cells["id_caixa"].Value;
+                        int idCaixa = (idCaixaValue == null || idCaixaValue == DBNull.Value) ? 0 : Convert.ToInt32(idCaixaValue);
+
+                        // Preenche os campos do formulário
+                        idConfiguracao = idConfig;
+                        txtIDConfig.Text = idConfig.ToString();
+
+                        if (idCaixa > 0)
+                            cmbCaixa.SelectedValue = idCaixa;
+
+                        btnDesvincular.Enabled = true; // Habilita o desvínculo
+
+                        // Seleciona a linha na grid visualmente
+                        row.Selected = true;
+                        dgvConfiguracoes.CurrentCell = row.Cells[0];
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Máquina local encontrada, mas houve erro ao carregar os dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Para a busca, pois já encontrou a máquina
+                    return;
+                }
+            }
+
+            // Se o loop terminar, a máquina não foi encontrada/vinculada.
+            // O formulário permanece limpo (ação "Novo"), pronto para salvar.
         }
 
         // **********************************
         // MÉTODOS AUXILIARES
         // **********************************
 
+        // [MÉTODO AJUSTADO]
         private void LimparCamposConfiguracao()
         {
             txtIDConfig.Clear();
             idConfiguracao = 0;
-            btnRemover.Enabled = false;
-            // Mantém cmbCaixa e txtNomeMaquina com os valores padrão/máquina atual
+            btnDesvincular.Enabled = false;
+
+            // Reseta o ComboBox para "Selecione..."
+            if (cmbCaixa.Items.Count > 0)
+                cmbCaixa.SelectedIndex = 0;
+
+            // Mantém/Reseta o nome da máquina local
+            txtNomeMaquina.Text = System.Environment.MachineName.ToUpper();
         }
 
         private void CarregarCaixasAtivos()
@@ -60,22 +128,19 @@ namespace AppDelivery
                                          .Where(c => c.Ativo == 'A')
                                          .ToList();
 
+            // Adiciona um item nulo no início da lista para forçar seleção
+            caixas.Insert(0, new Caixa(0, "Selecione um Caixa...", 'A'));
+
             cmbCaixa.DataSource = caixas;
             cmbCaixa.DisplayMember = "Nome";
             cmbCaixa.ValueMember = "Id";
-
-            // Adiciona um item para "Selecione..."
-            if (caixas.Count > 0)
-            {
-                // Adiciona um item nulo no início da lista para forçar seleção
-                caixas.Insert(0, new Caixa(0, "Selecione um Caixa...", 'A'));
-            }
             cmbCaixa.SelectedIndex = 0;
         }
 
         private void CarregarConfiguracoesGrid()
         {
-            LimparCamposConfiguracao(); // Limpa o ID e desabilita o botão antes de recarregar
+            // Limpa o ID e desabilita o botão antes de recarregar
+            // LimparCamposConfiguracao(); // Removido daqui para não limpar a seleção local
 
             dgvConfiguracoes.DataSource = configDAO.ListarConfiguracoes();
 
@@ -99,8 +164,7 @@ namespace AppDelivery
         // AÇÕES DA GRID (SELEÇÃO)
         // **********************************
 
-        // Arquivo: AppDelivery/ConfigCaixaFRM.cs (MÉTODO CORRIGIDO)
-
+        // [MÉTODO CORRIGIDO - JÁ ESTAVA OK NO SEU ARQUIVO]
         private void dgvConfiguracoes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Ignora o clique no cabeçalho
@@ -125,30 +189,24 @@ namespace AppDelivery
                 idConfiguracao = Convert.ToInt32(idConfigValue);
                 txtIDConfig.Text = idConfiguracao.ToString();
 
-                // 2. OBTENÇÃO ROBUSTA DO NOME DA MÁQUINA (CORREÇÃO PRINCIPAL)
+                // 2. OBTENÇÃO ROBUSTA DO NOME DA MÁQUINA
                 object nomeMaquinaValue = dgvConfiguracoes.Rows[e.RowIndex].Cells["nome_maquina"].Value;
-
-                // Verifica se é nulo/DBNull e usa string vazia em vez de falhar
                 string nomeMaquina = (nomeMaquinaValue == null || nomeMaquinaValue == DBNull.Value) ? string.Empty : nomeMaquinaValue.ToString();
 
                 // 3. OBTENÇÃO ROBUSTA DO ID DO CAIXA
                 object idCaixaValue = dgvConfiguracoes.Rows[e.RowIndex].Cells["id_caixa"].Value;
-
-                // Converte o ID do caixa de forma segura (usa 0 se for nulo)
                 int idCaixaVinculado = (idCaixaValue == null || idCaixaValue == DBNull.Value) ? 0 : Convert.ToInt32(idCaixaValue);
 
                 // Preenche os campos de edição
                 txtNomeMaquina.Text = nomeMaquina;
-
-                // Garante que o ComboBox selecione o valor correto (ou nenhum, se 0)
                 cmbCaixa.SelectedValue = idCaixaVinculado;
 
-                // Habilita o botão Remover e Salvar para possível alteração
-                btnRemover.Enabled = true;
+                // Habilita o botão
+                btnDesvincular.Enabled = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar a configuração selecionada. Verifique o formato dos dados na Grid. Detalhe: " + ex.Message, "Erro Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro ao carregar a configuração selecionada: " + ex.Message, "Erro Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 LimparCamposConfiguracao();
             }
         }
@@ -176,12 +234,17 @@ namespace AppDelivery
                 int idCaixaSelecionado = Convert.ToInt32(cmbCaixa.SelectedValue);
                 string nomeMaquina = txtNomeMaquina.Text.Trim().ToUpper();
 
+                // O DAO cuida se é INSERT ou UPDATE
                 configDAO.SalvarConfiguracao(nomeMaquina, idCaixaSelecionado);
 
                 MessageBox.Show($"Máquina '{nomeMaquina}' vinculada/atualizada ao Caixa '{cmbCaixa.Text}' com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Recarrega a lista e o parâmetro do sistema (se for a máquina local)
+                // Recarrega a lista e o parâmetro do sistema
                 CarregarConfiguracoesGrid();
+
+                // [AJUSTADO] Recarrega o vínculo local, se for a máquina atual
+                TentarCarregarConfiguracaoLocal();
+
                 ParametroSistema.CarregarParametrosCaixa();
             }
             catch (Exception ex)
@@ -190,15 +253,15 @@ namespace AppDelivery
             }
         }
 
-        // NOVO MÉTODO: Ação do botão REMOVER (DESVINCULAR)
-        private void btnRemover_Click(object sender, EventArgs e)
+        // [MÉTODO AJUSTADO] (antigo btnRemover_Click)
+        private void btnDesvincular_Click(object sender, EventArgs e)
         {
             if (idConfiguracao > 0)
             {
                 DialogResult resultado = MessageBox.Show(
-                    $"Deseja realmente REMOVER a vinculação da máquina '{txtNomeMaquina.Text}' ao Caixa? " +
-                    "A máquina não terá mais um caixa definido após esta ação.",
-                    "Confirmar Remoção",
+                    $"Deseja realmente DESVINCULAR a máquina '{txtNomeMaquina.Text}'?" +
+                    "\nA máquina perderá o vínculo com o Caixa atual.",
+                    "Confirmar Desvínculo",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning);
 
@@ -210,13 +273,14 @@ namespace AppDelivery
 
                         MessageBox.Show("Vinculação removida com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // Limpa os campos, recarrega a grid e atualiza o parâmetro do sistema
-                        LimparCamposConfiguracao();
+                        // Recarrega a grid
                         CarregarConfiguracoesGrid();
-                        ParametroSistema.CarregarParametrosCaixa();
 
-                        // O nome da máquina local é mantido para facilitar nova configuração
-                        txtNomeMaquina.Text = System.Environment.MachineName.ToUpper();
+                        // Limpa os campos (que automaticamente recarrega o nome da máquina local)
+                        LimparCamposConfiguracao();
+
+                        // Atualiza o parâmetro global
+                        ParametroSistema.CarregarParametrosCaixa();
                     }
                     catch (Exception ex)
                     {
@@ -226,13 +290,21 @@ namespace AppDelivery
             }
             else
             {
-                MessageBox.Show("Selecione uma configuração na listagem para remover.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione uma configuração na listagem para desvincular.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void btnSair_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        // [NOVO MÉTODO]
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            LimparCamposConfiguracao();
+            // Desseleciona qualquer linha da grid
+            dgvConfiguracoes.ClearSelection();
         }
     }
 }
