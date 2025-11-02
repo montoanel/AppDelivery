@@ -1,10 +1,13 @@
-﻿// AppDelivery/ParametroSistema.cs
+﻿// AppDelivery/DAL/ParametroSistema.cs
 
-using AppDelivery.DAL;
+// CORRIGIDO: Adicionado 'using AppDelivery;' para encontrar a classe 'Caixa'
+using AppDelivery;
 using System;
 using System.Windows.Forms;
+// REMOVIDO: 'using AppDelivery.DAL;' não é mais necessário, pois estamos neste namespace
 
-namespace AppDelivery
+// CORRIGIDO: O namespace DEVE ser 'AppDelivery.DAL' para corresponder à pasta
+namespace AppDelivery.DAL
 {
     public static class ParametroSistema
     {
@@ -12,43 +15,47 @@ namespace AppDelivery
         public static string NomeCaixaAtual { get; private set; }
         public static bool IsCaixaAtivo { get; private set; }
 
-        // REMOVIDO: O nome da máquina não é mais necessário aqui.
-        // public static readonly string NomeMaquina = System.Environment.MachineName;
+        // Esta propriedade estática armazena o objeto Caixa
+        public static Caixa CaixaDaEstacao { get; private set; }
 
-        // [MÉTODO REFATORADO]
-        // Tenta buscar a configuração do caixa para a máquina atual
+        // O DAO para buscar o caixa (agora é encontrado pois está no mesmo namespace)
+        private static CaixaDAO caixaDAO = new CaixaDAO();
+
+
+        // [MÉTODO REFATORADO E CORRIGIDO]
         public static bool CarregarParametrosCaixa()
         {
-            // Instancia o DAO que BUSCA os dados do caixa
-            CaixaDAO caixaDAO = new CaixaDAO();
-
-            // 1. Lê o ID salvo no arquivo config.ini local
+            // 1. Lê o ID salvo no config.ini local
+            // ConfigLocal está no mesmo namespace (AppDelivery.DAL), então é encontrado
             int idCaixaConfigurado = ConfigLocal.LerIdCaixa();
 
             if (idCaixaConfigurado > 0)
             {
-                // 2. Se encontrou um ID, busca os dados completos no banco
-                Caixa caixa = caixaDAO.BuscarPorId(idCaixaConfigurado);
+                // 2. Busca os dados completos no banco
+                // caixaDAO é o campo estático (definido acima)
+                // Caixa é encontrado por causa do 'using AppDelivery;'
+                CaixaDaEstacao = caixaDAO.BuscarPorId(idCaixaConfigurado);
 
-                if (caixa != null && caixa.Ativo == 'A')
+                if (CaixaDaEstacao != null && CaixaDaEstacao.Ativo == 'A')
                 {
                     // Encontrou e o caixa está Ativo
-                    IdCaixaAtual = caixa.Id;
-                    NomeCaixaAtual = caixa.Nome;
+                    IdCaixaAtual = CaixaDaEstacao.Id;
+                    NomeCaixaAtual = CaixaDaEstacao.Nome;
                     IsCaixaAtivo = true;
                     return true;
                 }
-                else if (caixa != null && caixa.Ativo == 'I')
+                else if (CaixaDaEstacao != null && CaixaDaEstacao.Ativo == 'I')
                 {
                     // Encontrou, mas o caixa está Inativo
-                    IdCaixaAtual = caixa.Id;
-                    NomeCaixaAtual = caixa.Nome + " (INATIVO)";
+                    IdCaixaAtual = CaixaDaEstacao.Id;
+                    NomeCaixaAtual = CaixaDaEstacao.Nome + " (INATIVO)";
                     IsCaixaAtivo = false;
                     return false;
                 }
                 else
                 {
-                    // O ID salvo no config.ini não existe mais no banco (ex: foi excluído)
+                    // O ID salvo no config.ini não existe mais no banco
+                    CaixaDaEstacao = null;
                     IdCaixaAtual = 0;
                     NomeCaixaAtual = "Config. Inválida";
                     IsCaixaAtivo = false;
@@ -58,6 +65,7 @@ namespace AppDelivery
             else
             {
                 // Não encontrou ID no config.ini
+                CaixaDaEstacao = null;
                 IdCaixaAtual = 0;
                 NomeCaixaAtual = "Não Configurado";
                 IsCaixaAtivo = false;
@@ -65,8 +73,7 @@ namespace AppDelivery
             }
         }
 
-        // Método de Ação Rápida para ser chamado antes de operações financeiras
-        // Este método [ValidarCaixaAtivo] já estava correto e não precisa de mudanças.
+        // Método de Ação Rápida (não precisa de alteração)
         public static bool ValidarCaixaAtivo(string operacao)
         {
             if (IdCaixaAtual == 0 || !IsCaixaAtivo)
