@@ -129,9 +129,15 @@ namespace AppDelivery
 
         private void paramêtrosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             ConfigCaixaFRM configCaixaFRM = new ConfigCaixaFRM();
             configCaixaFRM.ShowDialog();
+        }
+
+        private void gestãoDeCaixaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GestaoCaixaFRM gestaoCaixaFRM = new GestaoCaixaFRM();
+            gestaoCaixaFRM.ShowDialog();
         }
     }
 }

@@ -42,7 +42,9 @@
             caixasToolStripMenuItem = new ToolStripMenuItem();
             parametrostToolStripMenuItem = new ToolStripMenuItem();
             paramêtrosToolStripMenuItem = new ToolStripMenuItem();
+            financeiroToolStripMenuItem = new ToolStripMenuItem();
             pctAtendimentos = new PictureBox();
+            gestãoDeCaixaToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).BeginInit();
             menuStrip1.SuspendLayout();
@@ -78,7 +80,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastrosToolStripMenuItem, parametrostToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastrosToolStripMenuItem, parametrostToolStripMenuItem, financeiroToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1898, 33);
@@ -160,6 +162,13 @@
             paramêtrosToolStripMenuItem.Text = "Paramêtros de Caixa";
             paramêtrosToolStripMenuItem.Click += paramêtrosToolStripMenuItem_Click;
             // 
+            // financeiroToolStripMenuItem
+            // 
+            financeiroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { gestãoDeCaixaToolStripMenuItem });
+            financeiroToolStripMenuItem.Name = "financeiroToolStripMenuItem";
+            financeiroToolStripMenuItem.Size = new Size(108, 29);
+            financeiroToolStripMenuItem.Text = "Financeiro";
+            // 
             // pctAtendimentos
             // 
             pctAtendimentos.Image = Properties.Resources.icons8_lista_100;
@@ -172,6 +181,13 @@
             pctAtendimentos.Click += pctAtendimentos_Click;
             pctAtendimentos.MouseEnter += pctAtendimentos_MouseEnter;
             pctAtendimentos.MouseLeave += pctAtendimentos_MouseLeave;
+            // 
+            // gestãoDeCaixaToolStripMenuItem
+            // 
+            gestãoDeCaixaToolStripMenuItem.Name = "gestãoDeCaixaToolStripMenuItem";
+            gestãoDeCaixaToolStripMenuItem.Size = new Size(270, 34);
+            gestãoDeCaixaToolStripMenuItem.Text = "Gestão de Caixa";
+            gestãoDeCaixaToolStripMenuItem.Click += gestãoDeCaixaToolStripMenuItem_Click;
             // 
             // Main
             // 
@@ -213,5 +229,7 @@
         private ToolStripMenuItem caixasToolStripMenuItem;
         private ToolStripMenuItem parametrostToolStripMenuItem;
         private ToolStripMenuItem paramêtrosToolStripMenuItem;
+        private ToolStripMenuItem financeiroToolStripMenuItem;
+        private ToolStripMenuItem gestãoDeCaixaToolStripMenuItem;
     }
 }

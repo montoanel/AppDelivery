@@ -11,6 +11,38 @@ namespace AppDelivery
         public static int IdCaixaAtual { get; private set; }
         public static string NomeCaixaAtual { get; private set; }
         public static bool IsCaixaAtivo { get; private set; }
+        public static CaixaSessao SessaoAtual { get; private set; }
+
+        // --- NOVO MÉTODO ---
+        /// <summary>
+        /// Verifica no banco de dados se existe uma sessão aberta para o caixa desta máquina.
+        /// Atualiza a propriedade 'SessaoAtual'.
+        /// </summary>
+        /// <returns>True se encontrou uma sessão aberta, False se o caixa está fechado.</returns>
+        public static bool CarregarSessaoAtual()
+        {
+            // Primeiro, garante que sabemos qual é o caixa
+            if (IdCaixaAtual == 0)
+            {
+                SessaoAtual = null;
+                return false;
+            }
+
+            try
+            {
+                // Usa o DAO que acabamos de criar
+                CaixaSessaoDAO sessaoDAO = new CaixaSessaoDAO();
+                SessaoAtual = sessaoDAO.VerificarSessaoAberta(IdCaixaAtual);
+
+                return (SessaoAtual != null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao verificar sessão de caixa: " + ex.Message, "Erro Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SessaoAtual = null;
+                return false;
+            }
+        }
 
         // REMOVIDO: O nome da máquina não é mais necessário aqui.
         // public static readonly string NomeMaquina = System.Environment.MachineName;

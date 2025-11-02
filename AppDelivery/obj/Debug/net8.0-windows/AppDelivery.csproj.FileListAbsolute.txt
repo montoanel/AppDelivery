@@ -59,6 +59,7 @@ C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\bin\Debug\net8.0-windows
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.csproj.AssemblyReference.cache
+C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.AberturaCaixaFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.AtendimentosFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.CadastroClienteFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.CadastroProdutosFrm.resources
@@ -66,6 +67,7 @@ C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.ConfigCaixaFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.FormasPagamentoFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.FuncionariosFRM.resources
+C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.GestaoCaixaFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.GrupoProdutoFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.ListaClientes.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.ListaProdutosFRM.resources
