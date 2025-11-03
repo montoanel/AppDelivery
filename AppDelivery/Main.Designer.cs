@@ -43,8 +43,9 @@
             parametrostToolStripMenuItem = new ToolStripMenuItem();
             paramêtrosToolStripMenuItem = new ToolStripMenuItem();
             financeiroToolStripMenuItem = new ToolStripMenuItem();
-            pctAtendimentos = new PictureBox();
             gestãoDeCaixaToolStripMenuItem = new ToolStripMenuItem();
+            pctAtendimentos = new PictureBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).BeginInit();
             menuStrip1.SuspendLayout();
@@ -169,6 +170,13 @@
             financeiroToolStripMenuItem.Size = new Size(108, 29);
             financeiroToolStripMenuItem.Text = "Financeiro";
             // 
+            // gestãoDeCaixaToolStripMenuItem
+            // 
+            gestãoDeCaixaToolStripMenuItem.Name = "gestãoDeCaixaToolStripMenuItem";
+            gestãoDeCaixaToolStripMenuItem.Size = new Size(240, 34);
+            gestãoDeCaixaToolStripMenuItem.Text = "Gestão de Caixa";
+            gestãoDeCaixaToolStripMenuItem.Click += gestãoDeCaixaToolStripMenuItem_Click;
+            // 
             // pctAtendimentos
             // 
             pctAtendimentos.Image = Properties.Resources.icons8_lista_100;
@@ -182,18 +190,21 @@
             pctAtendimentos.MouseEnter += pctAtendimentos_MouseEnter;
             pctAtendimentos.MouseLeave += pctAtendimentos_MouseLeave;
             // 
-            // gestãoDeCaixaToolStripMenuItem
+            // label1
             // 
-            gestãoDeCaixaToolStripMenuItem.Name = "gestãoDeCaixaToolStripMenuItem";
-            gestãoDeCaixaToolStripMenuItem.Size = new Size(270, 34);
-            gestãoDeCaixaToolStripMenuItem.Text = "Gestão de Caixa";
-            gestãoDeCaixaToolStripMenuItem.Click += gestãoDeCaixaToolStripMenuItem_Click;
+            label1.AutoSize = true;
+            label1.Location = new Point(1558, 43);
+            label1.Name = "label1";
+            label1.Size = new Size(59, 25);
+            label1.TabIndex = 4;
+            label1.Text = "label1";
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1898, 1024);
+            Controls.Add(label1);
             Controls.Add(pctAtendimentos);
             Controls.Add(pctBoxProdutos);
             Controls.Add(pctBoxClientes);
@@ -231,5 +242,6 @@
         private ToolStripMenuItem paramêtrosToolStripMenuItem;
         private ToolStripMenuItem financeiroToolStripMenuItem;
         private ToolStripMenuItem gestãoDeCaixaToolStripMenuItem;
+        private Label label1;
     }
 }

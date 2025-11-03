@@ -524,16 +524,16 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1427, 295);
+            dataGridView1.Size = new Size(1223, 421);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellDoubleClick += DataGridView1_CellDoubleClick;
             // 
             // panel3
             // 
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 742);
+            panel3.Location = new Point(0, 861);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1898, 162);
+            panel3.Size = new Size(1898, 43);
             panel3.TabIndex = 2;
             // 
             // AtendimentosFRM
