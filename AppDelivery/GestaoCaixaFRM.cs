@@ -18,7 +18,6 @@ namespace AppDelivery
             try
             {
                 // 1. Verifica se a máquina está vinculada a um caixa
-                // (Isso lê o 'config.ini' ou parâmetro global)
                 if (!ParametroSistema.IsCaixaAtivo)
                 {
                     MessageBox.Show("Este terminal não está configurado para um caixa ativo.\n\nVá em 'Configurações -> Vincular Caixa' no menu principal.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -27,7 +26,6 @@ namespace AppDelivery
                 }
 
                 // 2. Carrega a SESSÃO ATUAL (Aberto/Fechado) do ParametroSistema
-                // (Isso faz a consulta no tb_caixa_sessao)
                 ParametroSistema.CarregarSessaoAtual();
 
                 // 3. Atualiza os botões e labels da tela
@@ -43,22 +41,19 @@ namespace AppDelivery
         /// <summary>
         /// *** MÉTODO CORRIGIDO ***
         /// Atualiza os botões e labels do formulário com base no status da sessão
-        /// e nos novos nomes de labels (lblIdCaixa, lblNomeCaixa, lblSituacaoCaixa)
         /// </summary>
         private void AtualizarStatusInterface()
         {
-            // 1. Preenche o ID e o Nome do Caixa (lidos do ParametroSistema)
-            // (Assumindo que você renomeou os labels no Designer)
+            // 1. Preenche o ID e o Nome do Caixa
             lblIdCaixa.Text = ParametroSistema.IdCaixaAtual.ToString();
             lblNomeCaixa.Text = ParametroSistema.NomeCaixaAtual;
 
             // 2. Verifica o Status da Sessão
             // [CORREÇÃO] Verificamos o *objeto* da sessão, não o booleano.
-            // Isso evita o NullReferenceException se IsSessaoAberta=true mas SessaoAtual=null.
             if (ParametroSistema.SessaoAtual != null)
             {
                 // O caixa ESTÁ ABERTO
-                // Agora esta linha (antiga linha 55) é segura:
+                // Esta linha agora é segura
                 lblSituacaoCaixa.Text = $"ABERTO (Desde: {ParametroSistema.SessaoAtual.DataAbertura:G})";
                 lblSituacaoCaixa.ForeColor = Color.Green;
 
@@ -70,7 +65,7 @@ namespace AppDelivery
             }
             else
             {
-                // O caixa ESTÁ FECHADO
+                // O caixa ESTÁ FECHADO (SessaoAtual é null)
                 lblSituacaoCaixa.Text = "FECHADO";
                 lblSituacaoCaixa.ForeColor = Color.Red;
 
@@ -84,12 +79,9 @@ namespace AppDelivery
 
         private void btnAbrirCaixa_Click(object sender, EventArgs e)
         {
-            // PRÓXIMO PASSO: Criar este formulário 'AberturaCaixaFRM'
-
             // Verifique se você já tem este formulário 'AberturaCaixaFRM' criado
             using (AberturaCaixaFRM frmAbertura = new AberturaCaixaFRM())
             {
-                // ShowDialog() "trava" este formulário até o usuário fechar o popup
                 if (frmAbertura.ShowDialog(this) == DialogResult.OK)
                 {
                     // Se o usuário confirmou a abertura lá,

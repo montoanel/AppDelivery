@@ -36,23 +36,26 @@
             btnSangria = new Button();
             btnSair = new Button();
             lblIdCaixa = new Label();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
             SuspendLayout();
             // 
             // lblNomeCaixa
             // 
             lblNomeCaixa.AutoSize = true;
-            lblNomeCaixa.Location = new Point(140, 20);
+            lblNomeCaixa.Location = new Point(433, 20);
             lblNomeCaixa.Name = "lblNomeCaixa";
-            lblNomeCaixa.Size = new Size(110, 25);
+            lblNomeCaixa.Size = new Size(102, 25);
             lblNomeCaixa.TabIndex = 0;
             lblNomeCaixa.Text = "NomeCaixa";
             // 
             // lblSituacaoCaixa
             // 
             lblSituacaoCaixa.AutoSize = true;
-            lblSituacaoCaixa.Location = new Point(78, 62);
+            lblSituacaoCaixa.Location = new Point(685, 20);
             lblSituacaoCaixa.Name = "lblSituacaoCaixa";
-            lblSituacaoCaixa.Size = new Size(78, 25);
+            lblSituacaoCaixa.Size = new Size(79, 25);
             lblSituacaoCaixa.TabIndex = 1;
             lblSituacaoCaixa.Text = "Situacao";
             // 
@@ -106,17 +109,47 @@
             // lblIdCaixa
             // 
             lblIdCaixa.AutoSize = true;
-            lblIdCaixa.Location = new Point(78, 20);
+            lblIdCaixa.Location = new Point(171, 20);
             lblIdCaixa.Name = "lblIdCaixa";
             lblIdCaixa.Size = new Size(30, 25);
             lblIdCaixa.TabIndex = 7;
             lblIdCaixa.Text = "ID";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 20);
+            label1.Name = "label1";
+            label1.Size = new Size(145, 25);
+            label1.TabIndex = 8;
+            label1.Text = "ID Caixa Estação:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(243, 20);
+            label2.Name = "label2";
+            label2.Size = new Size(176, 25);
+            label2.TabIndex = 9;
+            label2.Text = "Nome Caixa Estação:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(550, 20);
+            label3.Name = "label3";
+            label3.Size = new Size(129, 25);
+            label3.TabIndex = 10;
+            label3.Text = "Situação Caixa:";
             // 
             // GestaoCaixaFRM
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(lblIdCaixa);
             Controls.Add(btnSair);
             Controls.Add(btnSangria);
@@ -127,10 +160,7 @@
             Controls.Add(lblNomeCaixa);
             Name = "GestaoCaixaFRM";
             Text = "GestaoCaixaFRM";
-
-            // *** LINHA ADICIONADA AQUI ***
-            this.Load += new System.EventHandler(this.GestaoCaixaFRM_Load);
-
+            Load += GestaoCaixaFRM_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -145,5 +175,8 @@
         private Button btnSangria;
         private Button btnSair;
         private Label lblIdCaixa;
+        private Label label1;
+        private Label label2;
+        private Label label3;
     }
 }

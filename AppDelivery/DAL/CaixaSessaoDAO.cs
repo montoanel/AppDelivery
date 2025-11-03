@@ -1,82 +1,140 @@
-﻿using Microsoft.Data.SqlClient;
+﻿// Arquivo: AppDelivery/DAL/CaixaSessaoDAO.cs
+using Microsoft.Data.SqlClient;
 using System;
-using System.Data;
 
 namespace AppDelivery.DAL
 {
     public class CaixaSessaoDAO
     {
-        /// <summary>
-        /// Verifica se existe uma sessão de caixa aberta para o ID do caixa informado.
-        /// </summary>
-        /// <param name="idCaixa">ID do caixa (vindo do ParametroSistema.IdCaixaAtual)</param>
-        /// <returns>Um objeto CaixaSessao se houver uma sessão aberta, ou null se estiver fechado.</returns>
-        public CaixaSessao VerificarSessaoAberta(int idCaixa)
-        {
-            CaixaSessao sessao = null;
+        // Constante para o ID da forma de pagamento "Dinheiro"
+        // Assumindo que o id_forma_pagamento para 'Dinheiro' (tPag 01) é 1.
+        private const int ID_FORMA_PAGAMENTO_DINHEIRO = 1;
 
+        /// <summary>
+        /// Abre uma nova sessão de caixa e registra a movimentação de abertura (suprimento).
+        /// Tudo dentro de uma transação.
+        /// </summary>
+        public void AbrirSessao(CaixaSessao sessao)
+        {
             using (SqlConnection con = Conexao.GetConnection())
             {
-                // Busca a sessão que está com status 'A' (Aber_t_a)
-                string sql = "SELECT * FROM tb_caixa_sessoes " +
-                             "WHERE id_caixa = @idCaixa AND status_sessao = 'A'";
                 con.Open();
+                // Inicia a Transação
+                SqlTransaction transaction = con.BeginTransaction();
 
+                try
+                {
+                    // --- PASSO 1: Inserir na tb_caixa_sessao ---
+                    string sqlSessao = @"
+                        INSERT INTO tb_caixa_sessao 
+                            (id_caixa, id_atendente_abertura, data_abertura, valor_abertura, status_sessao)
+                        VALUES 
+                            (@IdCaixa, @IdAtendente, @DataAbertura, @ValorAbertura, @Status);
+                        
+                        SELECT SCOPE_IDENTITY();"; // Retorna o ID da sessão que acabamos de criar
+
+                    int novoSessaoId;
+                    using (SqlCommand cmdSessao = new SqlCommand(sqlSessao, con, transaction))
+                    {
+                        cmdSessao.Parameters.AddWithValue("@IdCaixa", sessao.IdCaixa);
+                        cmdSessao.Parameters.AddWithValue("@IdAtendente", sessao.IdAtendenteAbertura);
+                        cmdSessao.Parameters.AddWithValue("@DataAbertura", sessao.DataAbertura);
+                        cmdSessao.Parameters.AddWithValue("@ValorAbertura", sessao.ValorAbertura);
+                        cmdSessao.Parameters.AddWithValue("@Status", sessao.StatusSessao);
+
+                        // Executa e pega o novo ID
+                        novoSessaoId = Convert.ToInt32(cmdSessao.ExecuteScalar());
+                    }
+
+                    // Se o valor de abertura for maior que zero, registra a movimentação
+                    if (sessao.ValorAbertura > 0)
+                    {
+                        // --- PASSO 2: Inserir na tb_caixa_movimentacao ---
+                        string sqlMov = @"
+                            INSERT INTO tb_caixa_movimentacao
+                                (id_sessao, id_forma_pagamento, tipo_mov, valor, data_mov, descricao, id_atendente)
+                            VALUES
+                                (@IdSessao, @IdFormaPag, 'E', @Valor, @DataMov, 'VALOR DE ABERTURA (SUPRIMENTO)', @IdAtendente)";
+
+                        using (SqlCommand cmdMov = new SqlCommand(sqlMov, con, transaction))
+                        {
+                            cmdMov.Parameters.AddWithValue("@IdSessao", novoSessaoId);
+                            cmdMov.Parameters.AddWithValue("@IdFormaPag", ID_FORMA_PAGAMENTO_DINHEIRO); // Dinheiro
+                            cmdMov.Parameters.AddWithValue("@Valor", sessao.ValorAbertura);
+                            cmdMov.Parameters.AddWithValue("@DataMov", sessao.DataAbertura);
+                            cmdMov.Parameters.AddWithValue("@IdAtendente", sessao.IdAtendenteAbertura);
+
+                            cmdMov.ExecuteNonQuery();
+                        }
+                    }
+
+                    // --- PASSO 3: Confirma a transação ---
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    // Se qualquer comando falhar, desfaz tudo
+                    transaction.Rollback();
+                    throw new Exception("Erro ao tentar abrir o caixa (Transação revertida): " + ex.Message);
+                }
+            }
+        }
+
+        /// <summary>
+        /// *** MÉTODO NOVO (CORRIGINDO O ERRO) ***
+        /// Busca no banco de dados se existe uma sessão com status 'A' (Aberta) para o caixa informado.
+        /// </summary>
+        /// <param name="idCaixa">ID do caixa (lido do config.ini)</param>
+        /// <returns>Um objeto CaixaSessao se encontrar; null se não encontrar.</returns>
+        public CaixaSessao VerificarSessaoAberta(int idCaixa)
+        {
+            using (SqlConnection con = Conexao.GetConnection())
+            {
+                // Busca a sessão que está com status 'A' (Aberta) para este caixa
+                string sql = @"
+                    SELECT TOP 1 
+                        id_sessao, id_caixa, id_atendente_abertura, id_atendente_fechamento,
+                        data_abertura, data_fechamento, valor_abertura, valor_fechamento, status_sessao
+                    FROM 
+                        tb_caixa_sessao 
+                    WHERE 
+                        id_caixa = @IdCaixa AND status_sessao = 'A'
+                    ORDER BY 
+                        data_abertura DESC";
+
+                con.Open();
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("@idCaixa", idCaixa);
+                    cmd.Parameters.AddWithValue("@IdCaixa", idCaixa);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read()) // Se encontrou um registro
+                        if (reader.Read())
                         {
-                            sessao = new CaixaSessao();
-                            sessao.IdSessao = Convert.ToInt32(reader["id_sessao"]);
-                            sessao.IdCaixa = Convert.ToInt32(reader["id_caixa"]);
-                            sessao.DataAbertura = Convert.ToDateTime(reader["data_abertura"]);
-                            sessao.IdAtendenteAbertura = Convert.ToInt32(reader["id_atendente_abertura"]);
-                            sessao.ValorAbertura = Convert.ToDecimal(reader["valor_abertura"]);
-                            sessao.StatusSessao = Convert.ToChar(reader["status_sessao"]);
+                            // Encontrou uma sessão aberta, preenche o objeto
+                            CaixaSessao sessao = new CaixaSessao();
+                            sessao.IdSessao = reader.GetInt32(reader.GetOrdinal("id_sessao"));
+                            sessao.IdCaixa = reader.GetInt32(reader.GetOrdinal("id_caixa"));
+                            sessao.IdAtendenteAbertura = reader.GetInt32(reader.GetOrdinal("id_atendente_abertura"));
 
-                            // (Campos de fechamento estarão nulos, não precisamos lê-los aqui)
+                            // Campos que podem ser nulos (fechamento)
+                            sessao.IdAtendenteFechamento = reader.IsDBNull(reader.GetOrdinal("id_atendente_fechamento")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_atendente_fechamento"));
+                            sessao.DataFechamento = reader.IsDBNull(reader.GetOrdinal("data_fechamento")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("data_fechamento"));
+                            sessao.ValorFechamento = reader.IsDBNull(reader.GetOrdinal("valor_fechamento")) ? (decimal?)null : reader.GetDecimal(reader.GetOrdinal("valor_fechamento"));
+
+                            sessao.DataAbertura = reader.GetDateTime(reader.GetOrdinal("data_abertura"));
+                            sessao.ValorAbertura = reader.GetDecimal(reader.GetOrdinal("valor_abertura"));
+                            sessao.StatusSessao = Convert.ToChar(reader.GetString(reader.GetOrdinal("status_sessao")));
+
+                            return sessao;
                         }
                     }
                 }
             }
-            return sessao; // Retorna null se não encontrou nada
+
+            // Se não encontrou nenhuma sessão aberta
+            return null;
         }
 
-        /// <summary>
-        /// Insere um novo registro de sessão de caixa no banco de dados.
-        /// </summary>
-        /// <param name="sessao">O objeto CaixaSessao preenchido com os dados da abertura.</param>
-        /// <returns>O ID da nova sessão criada.</returns>
-        public int AbrirSessao(CaixaSessao sessao)
-        {
-            using (SqlConnection con = Conexao.GetConnection())
-            {
-                string sql = "INSERT INTO tb_caixa_sessoes " +
-                             "(id_caixa, data_abertura, id_atendente_abertura, valor_abertura, status_sessao) " +
-                             "VALUES " +
-                             "(@idCaixa, @dataAbertura, @idAtendente, @valorAbertura, 'A'); " +
-                             "SELECT CAST(scope_identity() AS int);"; // Retorna o ID que acabou de ser criado
-
-                con.Open();
-
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@idCaixa", sessao.IdCaixa);
-                    cmd.Parameters.AddWithValue("@dataAbertura", sessao.DataAbertura);
-                    cmd.Parameters.AddWithValue("@idAtendente", sessao.IdAtendenteAbertura);
-                    cmd.Parameters.AddWithValue("@valorAbertura", sessao.ValorAbertura);
-
-                    // ExecuteScalar é usado aqui para pegar o ID de retorno
-                    int novoIdSessao = (int)cmd.ExecuteScalar();
-                    return novoIdSessao;
-                }
-            }
-        }
-
-        // (No futuro, adicionaremos aqui o método 'FecharSessao(int idSessao, ...)' )
-    }
-}
+    } // Fim da classe CaixaSessaoDAO
+} // Fim do namespace

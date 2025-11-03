@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            lblValorAbertura = new Label();
             txtValorAbertura = new TextBox();
-            label2 = new Label();
+            lblAtendente = new Label();
             cmbAtendente = new ComboBox();
             btnConfirmar = new Button();
             btnCancelar = new Button();
             SuspendLayout();
             // 
-            // label1
+            // lblValorAbertura
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(213, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Valor de Abertura (Troco):";
+            lblValorAbertura.AutoSize = true;
+            lblValorAbertura.Location = new Point(12, 19);
+            lblValorAbertura.Name = "lblValorAbertura";
+            lblValorAbertura.Size = new Size(213, 25);
+            lblValorAbertura.TabIndex = 0;
+            lblValorAbertura.Text = "Valor de Abertura (Troco):";
             // 
             // txtValorAbertura
             // 
@@ -52,19 +52,20 @@
             txtValorAbertura.Size = new Size(181, 31);
             txtValorAbertura.TabIndex = 1;
             // 
-            // label2
+            // lblAtendente
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 74);
-            label2.Name = "label2";
-            label2.Size = new Size(94, 25);
-            label2.TabIndex = 2;
-            label2.Text = "Atendente";
+            lblAtendente.AutoSize = true;
+            lblAtendente.Location = new Point(12, 74);
+            lblAtendente.Name = "lblAtendente";
+            lblAtendente.Size = new Size(94, 25);
+            lblAtendente.TabIndex = 2;
+            lblAtendente.Text = "Atendente";
             // 
             // cmbAtendente
             // 
+            cmbAtendente.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAtendente.FormattingEnabled = true;
-            cmbAtendente.Location = new Point(112, 71);
+            cmbAtendente.Location = new Point(231, 66);
             cmbAtendente.Name = "cmbAtendente";
             cmbAtendente.Size = new Size(182, 33);
             cmbAtendente.TabIndex = 3;
@@ -95,9 +96,9 @@
             Controls.Add(btnCancelar);
             Controls.Add(btnConfirmar);
             Controls.Add(cmbAtendente);
-            Controls.Add(label2);
+            Controls.Add(lblAtendente);
             Controls.Add(txtValorAbertura);
-            Controls.Add(label1);
+            Controls.Add(lblValorAbertura);
             Name = "AberturaCaixaFRM";
             Text = "AberturaCaixaFRM";
             ResumeLayout(false);
@@ -106,9 +107,9 @@
 
         #endregion
 
-        private Label label1;
+        private Label lblValorAbertura;
         private TextBox txtValorAbertura;
-        private Label label2;
+        private Label lblAtendente;
         private ComboBox cmbAtendente;
         private Button btnConfirmar;
         private Button btnCancelar;
