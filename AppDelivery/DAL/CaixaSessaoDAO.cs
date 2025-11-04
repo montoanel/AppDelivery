@@ -26,7 +26,7 @@ namespace AppDelivery.DAL
                 {
                     // --- PASSO 1: Inserir na tb_caixa_sessao ---
                     string sqlSessao = @"
-                        INSERT INTO tb_caixa_sessao 
+                        INSERT INTO tb_caixa_sessoes 
                             (id_caixa, id_atendente_abertura, data_abertura, valor_abertura, status_sessao)
                         VALUES 
                             (@IdCaixa, @IdAtendente, @DataAbertura, @ValorAbertura, @Status);
@@ -94,9 +94,9 @@ namespace AppDelivery.DAL
                 string sql = @"
                     SELECT TOP 1 
                         id_sessao, id_caixa, id_atendente_abertura, id_atendente_fechamento,
-                        data_abertura, data_fechamento, valor_abertura, valor_fechamento, status_sessao
+                        data_abertura, data_fechamento, valor_abertura, valor_fechamento_apurado, status_sessao
                     FROM 
-                        tb_caixa_sessao 
+                        tb_caixa_sessoes 
                     WHERE 
                         id_caixa = @IdCaixa AND status_sessao = 'A'
                     ORDER BY 
@@ -120,7 +120,7 @@ namespace AppDelivery.DAL
                             // Campos que podem ser nulos (fechamento)
                             sessao.IdAtendenteFechamento = reader.IsDBNull(reader.GetOrdinal("id_atendente_fechamento")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_atendente_fechamento"));
                             sessao.DataFechamento = reader.IsDBNull(reader.GetOrdinal("data_fechamento")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("data_fechamento"));
-                            sessao.ValorFechamento = reader.IsDBNull(reader.GetOrdinal("valor_fechamento")) ? (decimal?)null : reader.GetDecimal(reader.GetOrdinal("valor_fechamento"));
+                            sessao.ValorFechamento = reader.IsDBNull(reader.GetOrdinal("valor_fechamento_apurado")) ? (decimal?)null : reader.GetDecimal(reader.GetOrdinal("valor_fechamento_apurado"));
 
                             sessao.DataAbertura = reader.GetDateTime(reader.GetOrdinal("data_abertura"));
                             sessao.ValorAbertura = reader.GetDecimal(reader.GetOrdinal("valor_abertura"));

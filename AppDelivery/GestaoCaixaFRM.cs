@@ -18,6 +18,7 @@ namespace AppDelivery
             try
             {
                 // 1. Verifica se a máquina está vinculada a um caixa
+                // (Isso lê o 'config.ini' ou parâmetro global)
                 if (!ParametroSistema.IsCaixaAtivo)
                 {
                     MessageBox.Show("Este terminal não está configurado para um caixa ativo.\n\nVá em 'Configurações -> Vincular Caixa' no menu principal.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -26,6 +27,7 @@ namespace AppDelivery
                 }
 
                 // 2. Carrega a SESSÃO ATUAL (Aberto/Fechado) do ParametroSistema
+                // (Isso faz a consulta no tb_caixa_sessao)
                 ParametroSistema.CarregarSessaoAtual();
 
                 // 3. Atualiza os botões e labels da tela
@@ -49,7 +51,7 @@ namespace AppDelivery
             lblNomeCaixa.Text = ParametroSistema.NomeCaixaAtual;
 
             // 2. Verifica o Status da Sessão
-            // [CORREÇÃO] Verificamos o *objeto* da sessão, não o booleano.
+            // [A CORREÇÃO ESTÁ AQUI]
             if (ParametroSistema.SessaoAtual != null)
             {
                 // O caixa ESTÁ ABERTO
@@ -66,6 +68,7 @@ namespace AppDelivery
             else
             {
                 // O caixa ESTÁ FECHADO (SessaoAtual é null)
+                // É ISSO QUE DEVE ACONTECER NA SUA INSTALAÇÃO NOVA
                 lblSituacaoCaixa.Text = "FECHADO";
                 lblSituacaoCaixa.ForeColor = Color.Red;
 
