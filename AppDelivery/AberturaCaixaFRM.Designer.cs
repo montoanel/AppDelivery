@@ -78,6 +78,7 @@
             btnConfirmar.TabIndex = 4;
             btnConfirmar.Text = "Confirmar Abertura";
             btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // btnCancelar
             // 
@@ -87,6 +88,7 @@
             btnCancelar.TabIndex = 5;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // AberturaCaixaFRM
             // 
@@ -101,6 +103,7 @@
             Controls.Add(lblValorAbertura);
             Name = "AberturaCaixaFRM";
             Text = "AberturaCaixaFRM";
+            Load += AberturaCaixaFRM_Load;
             ResumeLayout(false);
             PerformLayout();
         }

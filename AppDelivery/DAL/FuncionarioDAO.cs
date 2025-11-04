@@ -33,7 +33,7 @@ namespace AppDelivery.DAL
                         {
                             Funcionario func = new Funcionario
                             {
-                                IdFuncionario = Convert.ToInt32(reader["id_funcionario"]),
+                                IdFuncionario = Convert.ToInt32(reader["id_atendente"]),
                                 Nome = reader["nome"].ToString(),
                                 // Convertemos o string(1) do banco para char
                                 StatusFuncionario = Convert.ToChar(reader["status"].ToString())
