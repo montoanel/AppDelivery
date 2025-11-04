@@ -13,7 +13,7 @@ namespace AppDelivery
         public DateTime DataAbertura { get; set; }
         public DateTime? DataFechamento { get; set; }
         public decimal ValorAbertura { get; set; }
-        public decimal? ValorFechamento { get; set; }
+        public decimal? ValorFechamentoApurado { get; set; }
         public char StatusSessao { get; set; } // A = Aberta, F = Fechada
     }
 }

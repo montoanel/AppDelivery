@@ -4,6 +4,7 @@ using System;
 
 namespace AppDelivery.DAL
 {
+
     public class CaixaSessaoDAO
     {
         private const int ID_FORMA_PAGAMENTO_DINHEIRO = 1;
@@ -102,7 +103,7 @@ namespace AppDelivery.DAL
 
                             sessao.IdAtendenteFechamento = reader.IsDBNull(reader.GetOrdinal("id_atendente_fechamento")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_atendente_fechamento"));
                             sessao.DataFechamento = reader.IsDBNull(reader.GetOrdinal("data_fechamento")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("data_fechamento"));
-                            sessao.ValorFechamento = reader.IsDBNull(reader.GetOrdinal("valor_fechamento_apurado")) ? (decimal?)null : reader.GetDecimal(reader.GetOrdinal("valor_fechamento_apurado"));
+                            sessao.ValorFechamentoApurado = reader.IsDBNull(reader.GetOrdinal("valor_fechamento_apurado")) ? (decimal?)null : reader.GetDecimal(reader.GetOrdinal("valor_fechamento_apurado"));
 
                             sessao.DataAbertura = reader.GetDateTime(reader.GetOrdinal("data_abertura"));
                             sessao.ValorAbertura = reader.GetDecimal(reader.GetOrdinal("valor_abertura"));
