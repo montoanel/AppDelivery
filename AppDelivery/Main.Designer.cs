@@ -46,6 +46,7 @@
             gestãoDeCaixaToolStripMenuItem = new ToolStripMenuItem();
             pctAtendimentos = new PictureBox();
             label1 = new Label();
+            painelDeUsuáriosToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pctBoxClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxProdutos).BeginInit();
             menuStrip1.SuspendLayout();
@@ -151,7 +152,7 @@
             // 
             // parametrostToolStripMenuItem
             // 
-            parametrostToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { paramêtrosToolStripMenuItem });
+            parametrostToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { paramêtrosToolStripMenuItem, painelDeUsuáriosToolStripMenuItem });
             parametrostToolStripMenuItem.Name = "parametrostToolStripMenuItem";
             parametrostToolStripMenuItem.Size = new Size(236, 29);
             parametrostToolStripMenuItem.Text = "Configurações do Sistema";
@@ -199,6 +200,13 @@
             label1.TabIndex = 4;
             label1.Text = "label1";
             // 
+            // painelDeUsuáriosToolStripMenuItem
+            // 
+            painelDeUsuáriosToolStripMenuItem.Name = "painelDeUsuáriosToolStripMenuItem";
+            painelDeUsuáriosToolStripMenuItem.Size = new Size(274, 34);
+            painelDeUsuáriosToolStripMenuItem.Text = "Painel de Usuários";
+            painelDeUsuáriosToolStripMenuItem.Click += painelDeUsuáriosToolStripMenuItem_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -243,5 +251,6 @@
         private ToolStripMenuItem financeiroToolStripMenuItem;
         private ToolStripMenuItem gestãoDeCaixaToolStripMenuItem;
         private Label label1;
+        private ToolStripMenuItem painelDeUsuáriosToolStripMenuItem;
     }
 }

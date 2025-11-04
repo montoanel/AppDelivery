@@ -139,5 +139,11 @@ namespace AppDelivery
             GestaoCaixaFRM gestaoCaixaFRM = new GestaoCaixaFRM();
             gestaoCaixaFRM.ShowDialog();
         }
+
+        private void painelDeUsuáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PainelUsuariosFRM painelUsuariosFRM = new PainelUsuariosFRM();
+            painelUsuariosFRM.ShowDialog();
+        }
     }
 }

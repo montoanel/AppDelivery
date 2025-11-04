@@ -73,6 +73,7 @@ C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.ListaProdutosFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.Main.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.NovosAtendimentosFRM.resources
+C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.PainelUsuariosFRM.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.Properties.Resources.resources
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.csproj.GenerateResource.cache
 C:\Users\Angélica\source\repos\AppDelivery\AppDelivery\obj\Debug\net8.0-windows\AppDelivery.GeneratedMSBuildEditorConfig.editorconfig
