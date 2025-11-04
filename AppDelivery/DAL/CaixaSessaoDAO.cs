@@ -58,12 +58,12 @@ namespace AppDelivery.DAL
                     if (sessao.ValorAbertura > 0)
                     {
                         // --- PASSO 2: Inserir na tb_caixa_movimentos ---
-                        // CORREÇÃO: Usando 'id_sessao' e 'id_usuario' (conforme discutido)
+                        // CORREÇÃO: Usando 'id_sessao' e 'id_atendente' (conforme discutido)
                         string sqlMov = @"
                     INSERT INTO tb_caixa_movimentos 
-                        (id_sessao, data_movimento, tipo_movimento, valor, id_forma_pagamento, id_usuario, observacao)
+                        (id_sessao, data_movimento, tipo_movimento, valor, id_forma_pagamento, id_atendente, observacao)
                     VALUES
-                        (@IdSessao, @DataAbertura, 'Abertura', @ValorAbertura, @IdFormaPagamento, @IdAtendente, @Obs);
+                        (@IdSessao, @DataAbertura, 'A', @ValorAbertura, @IdFormaPagamento, @IdAtendente, @Obs);
                 ";
 
                         using (SqlCommand cmdMov = new SqlCommand(sqlMov, con, transaction))
@@ -73,7 +73,7 @@ namespace AppDelivery.DAL
                             cmdMov.Parameters.Add("@IdFormaPagamento", SqlDbType.Int).Value = ID_FORMA_PAGAMENTO_DINHEIRO;
                             cmdMov.Parameters.Add("@ValorAbertura", SqlDbType.Decimal).Value = sessao.ValorAbertura;
                             cmdMov.Parameters.Add("@DataAbertura", SqlDbType.DateTime).Value = sessao.DataAbertura;
-                            cmdMov.Parameters.Add("@IdAtendente", SqlDbType.Int).Value = sessao.IdAtendenteAbertura; // Usa @IdAtendente para o campo id_usuario (o valor é o mesmo)
+                            cmdMov.Parameters.Add("@IdAtendente", SqlDbType.Int).Value = sessao.IdAtendenteAbertura; // 
                             cmdMov.Parameters.Add("@Obs", SqlDbType.VarChar).Value = "VALOR DE ABERTURA (SUPRIMENTO)";
 
                             cmdMov.ExecuteNonQuery();
