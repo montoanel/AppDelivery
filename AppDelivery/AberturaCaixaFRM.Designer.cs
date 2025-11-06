@@ -34,6 +34,8 @@
             cmbAtendente = new ComboBox();
             btnConfirmar = new Button();
             btnCancelar = new Button();
+            lblObservação = new Label();
+            txtObservacao = new TextBox();
             SuspendLayout();
             // 
             // lblValorAbertura
@@ -90,11 +92,30 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
+            // lblObservação
+            // 
+            lblObservação.AutoSize = true;
+            lblObservação.Location = new Point(12, 122);
+            lblObservação.Name = "lblObservação";
+            lblObservação.Size = new Size(106, 25);
+            lblObservação.TabIndex = 6;
+            lblObservação.Text = "Observação";
+            // 
+            // txtObservacao
+            // 
+            txtObservacao.Location = new Point(231, 122);
+            txtObservacao.Name = "txtObservacao";
+            txtObservacao.Size = new Size(260, 31);
+            txtObservacao.TabIndex = 7;
+            txtObservacao.Text = "Valor Abertura de Caixa - Troco";
+            // 
             // AberturaCaixaFRM
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txtObservacao);
+            Controls.Add(lblObservação);
             Controls.Add(btnCancelar);
             Controls.Add(btnConfirmar);
             Controls.Add(cmbAtendente);
@@ -116,5 +137,7 @@
         private ComboBox cmbAtendente;
         private Button btnConfirmar;
         private Button btnCancelar;
+        private Label lblObservação;
+        private TextBox txtObservacao;
     }
 }

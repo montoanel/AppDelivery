@@ -15,6 +15,7 @@ namespace AppDelivery
             Application.Run(new Main());
             //Application.Run(new CadastroProdutosFrm());
             //Application.Run(new CaixaFRM());
+            //Application.Run(new AberturaCaixaFRM());
         }
     }
 }
