@@ -15,6 +15,10 @@ namespace AppDelivery
 
         private void GestaoCaixaFRM_Load(object sender, EventArgs e)
         {
+
+            cmbAcao.SelectedIndex = 0;
+
+
             try
             {
                 // 1. Verifica se a máquina está vinculada a um caixa

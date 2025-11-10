@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace AppDelivery.Enums
 {
-    internal class TipoOperacaoCaixa
+    public enum TipoOperacaoCaixa
     {
+        Abertura = 0,
+        Reforco = 1,
+        Sangria = 2,
+        Vendas = 3,
+        Fechamento = 4
     }
 }

@@ -42,6 +42,8 @@
             panel1 = new Panel();
             groupBox2 = new GroupBox();
             groupBox1 = new GroupBox();
+            cmbAcao = new ComboBox();
+            bntImprimirAção = new Button();
             panel1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -151,6 +153,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(bntImprimirAção);
+            panel1.Controls.Add(cmbAcao);
             panel1.Controls.Add(groupBox2);
             panel1.Controls.Add(groupBox1);
             panel1.Dock = DockStyle.Fill;
@@ -188,6 +192,25 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Informações do Caixa";
             // 
+            // cmbAcao
+            // 
+            cmbAcao.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbAcao.FormattingEnabled = true;
+            cmbAcao.Items.AddRange(new object[] { "Abertura", "Suprimento", "Sangria", "Fechamento" });
+            cmbAcao.Location = new Point(79, 318);
+            cmbAcao.Name = "cmbAcao";
+            cmbAcao.Size = new Size(182, 33);
+            cmbAcao.TabIndex = 2;
+            // 
+            // bntImprimirAção
+            // 
+            bntImprimirAção.Location = new Point(267, 318);
+            bntImprimirAção.Name = "bntImprimirAção";
+            bntImprimirAção.Size = new Size(112, 34);
+            bntImprimirAção.TabIndex = 3;
+            bntImprimirAção.Text = "Imprimir";
+            bntImprimirAção.UseVisualStyleBackColor = true;
+            // 
             // GestaoCaixaFRM
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -220,5 +243,7 @@
         private Panel panel1;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
+        private Button bntImprimirAção;
+        private ComboBox cmbAcao;
     }
 }

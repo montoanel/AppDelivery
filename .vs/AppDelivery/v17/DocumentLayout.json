@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\appdelivery\\aberturacaixafrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\aberturacaixafrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\enums\\tipooperacaocaixa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\enums\\tipooperacaocaixa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\appdelivery\\gestaocaixafrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\gestaocaixafrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\gestaocaixafrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\gestaocaixafrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\dal\\caixasessaodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\dal\\parametrosistema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\dal\\parametrosistema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|c:\\users\\ang\u00E9lica\\source\\repos\\appdelivery\\appdelivery\\gestaocaixafrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\gestaocaixafrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ang\u00E9lica\\AppData\\Local\\Temp\\emdfhtjn..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
@@ -64,10 +60,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\appdelivery\\atendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\atendimentosfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\appdelivery\\caixafrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A5F41539-69BD-4A16-806A-67F11C0E059A}|AppDelivery\\AppDelivery.csproj|solutionrelative:appdelivery\\caixafrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -77,7 +69,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 63,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -93,30 +85,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\Program.cs",
-              "RelativeDocumentMoniker": "AppDelivery\\Program.cs",
-              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\Program.cs*",
-              "RelativeToolTip": "AppDelivery\\Program.cs*",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwA4AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T00:03:34.429Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AberturaCaixaFRM.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\AberturaCaixaFRM.cs",
-              "RelativeDocumentMoniker": "AppDelivery\\AberturaCaixaFRM.cs",
-              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\AberturaCaixaFRM.cs [Projeto]",
-              "RelativeToolTip": "AppDelivery\\AberturaCaixaFRM.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T20:13:00.964Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
               "Title": "CaixaSessaoDAO.cs",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\DAL\\CaixaSessaoDAO.cs",
@@ -125,7 +93,46 @@
               "RelativeToolTip": "AppDelivery\\DAL\\CaixaSessaoDAO.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAArwEEAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T03:37:30.05Z"
+              "WhenOpened": "2025-11-02T03:37:30.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GestaoCaixaFRM.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\GestaoCaixaFRM.cs",
+              "RelativeDocumentMoniker": "AppDelivery\\GestaoCaixaFRM.cs",
+              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\GestaoCaixaFRM.cs [Projeto]",
+              "RelativeToolTip": "AppDelivery\\GestaoCaixaFRM.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-02T04:14:26.216Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GestaoCaixaFRM.cs",
+              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\GestaoCaixaFRM.cs",
+              "RelativeDocumentMoniker": "AppDelivery\\GestaoCaixaFRM.cs",
+              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\GestaoCaixaFRM.cs",
+              "RelativeToolTip": "AppDelivery\\GestaoCaixaFRM.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T02:37:39.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TipoOperacaoCaixa.cs",
+              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\Enums\\TipoOperacaoCaixa.cs",
+              "RelativeDocumentMoniker": "AppDelivery\\Enums\\TipoOperacaoCaixa.cs",
+              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\Enums\\TipoOperacaoCaixa.cs*",
+              "RelativeToolTip": "AppDelivery\\Enums\\TipoOperacaoCaixa.cs*",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAIwA4AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:21:03.824Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -137,18 +144,8 @@
               "RelativeToolTip": "AppDelivery\\AberturaCaixaFRM.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAIgAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T14:38:54.705Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GestaoCaixaFRM.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\GestaoCaixaFRM.cs",
-              "RelativeDocumentMoniker": "AppDelivery\\GestaoCaixaFRM.cs",
-              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\GestaoCaixaFRM.cs [Projeto]",
-              "RelativeToolTip": "AppDelivery\\GestaoCaixaFRM.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T04:14:26.216Z"
+              "WhenOpened": "2025-11-04T14:38:54.705Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -160,18 +157,6 @@
               "RelativeToolTip": "AppDelivery\\PainelUsuariosFRM.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-04T14:12:45.599Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GestaoCaixaFRM.cs",
-              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\GestaoCaixaFRM.cs",
-              "RelativeDocumentMoniker": "AppDelivery\\GestaoCaixaFRM.cs",
-              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\GestaoCaixaFRM.cs",
-              "RelativeToolTip": "AppDelivery\\GestaoCaixaFRM.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAwwB4AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T02:37:39.964Z"
             },
             {
               "$type": "Document",
@@ -187,7 +172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "emdfhtjn..sql",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\AppData\\Local\\Temp\\emdfhtjn..sql",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\emdfhtjn..sql",
@@ -198,7 +183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "CaixaDAO.cs",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\DAL\\CaixaDAO.cs",
               "RelativeDocumentMoniker": "AppDelivery\\DAL\\CaixaDAO.cs",
@@ -210,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 10,
               "Title": "ParametroSistema.cs",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\ParametroSistema.cs",
               "RelativeDocumentMoniker": "AppDelivery\\ParametroSistema.cs",
@@ -222,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "ConfigLocal.cs",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\DAL\\ConfigLocal.cs",
               "RelativeDocumentMoniker": "AppDelivery\\DAL\\ConfigLocal.cs",
@@ -234,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 11,
               "Title": "GestaoCaixaFRM.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\GestaoCaixaFRM.Designer.cs",
               "RelativeDocumentMoniker": "AppDelivery\\GestaoCaixaFRM.Designer.cs",
@@ -242,11 +227,12 @@
               "RelativeToolTip": "AppDelivery\\GestaoCaixaFRM.Designer.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAkwBYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T13:55:37.924Z"
+              "WhenOpened": "2025-11-03T13:55:37.924Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 12,
               "Title": "FormasPagamentoFRM.cs [Projeto]",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\FormasPagamentoFRM.cs",
               "RelativeDocumentMoniker": "AppDelivery\\FormasPagamentoFRM.cs",
@@ -257,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 13,
               "Title": "ConfigCaixaFRM.cs [Projeto]",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\ConfigCaixaFRM.cs",
               "RelativeDocumentMoniker": "AppDelivery\\ConfigCaixaFRM.cs",
@@ -268,7 +254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 14,
               "Title": "AtendimentosFRM.cs [Projeto]",
               "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\AtendimentosFRM.cs",
               "RelativeDocumentMoniker": "AppDelivery\\AtendimentosFRM.cs",
@@ -276,17 +262,6 @@
               "RelativeToolTip": "AppDelivery\\AtendimentosFRM.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-02T02:43:11.316Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "CaixaFRM.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\CaixaFRM.cs",
-              "RelativeDocumentMoniker": "AppDelivery\\CaixaFRM.cs",
-              "ToolTip": "C:\\Users\\Ang\u00E9lica\\source\\repos\\AppDelivery\\AppDelivery\\CaixaFRM.cs [Projeto]",
-              "RelativeToolTip": "AppDelivery\\CaixaFRM.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T03:48:05.496Z"
             }
           ]
         },
